@@ -1,0 +1,235 @@
+std::basic_ostringstream::swap
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Input/output library
+
+I/O manipulators
+
+Print functions (C++23)
+
+C-style I/O
+
+Buffers
+
+basic_streambuf
+
+basic_filebuf
+
+basic_stringbuf
+
+basic_spanbuf(C++23)
+
+strstreambuf(C++98/26*)
+
+basic_syncbuf(C++20)
+
+Streams
+
+Abstractions
+
+ios_base
+
+basic_ios
+
+basic_istream
+
+basic_ostream
+
+basic_iostream
+
+File I/O
+
+basic_ifstream
+
+basic_ofstream
+
+basic_fstream
+
+String I/O
+
+basic_istringstream
+
+basic_ostringstream
+
+basic_stringstream
+
+Array I/O
+
+basic_ispanstream(C++23)
+
+basic_ospanstream(C++23)
+
+basic_spanstream(C++23)
+
+istrstream(C++98/26*)
+
+ostrstream(C++98/26*)
+
+strstream(C++98/26*)
+
+Synchronized Output
+
+basic_osyncstream(C++20)
+
+Types
+
+streamoff
+
+streamsize
+
+fpos
+
+Error category interface
+
+iostream_category(C++11)
+
+io_errc(C++11)
+
+[edit] std::basic_ostringstream
+
+Member functions
+
+basic_ostringstream::basic_ostringstream
+
+basic_ostringstream::operator=
+
+basic_ostringstream::swap(C++11)
+
+basic_ostringstream::rdbuf
+
+String operations
+
+basic_ostringstream::str
+
+basic_ostringstream::view(C++20)
+
+Non-member functions
+
+swap(std::basic_ostringstream)(C++11)
+
+[edit] 
+
+
+
+
+
+ void swap( basic_ostringstream& other );
+
+ 
+
+ (since C++11) 
+
+
+
+
+
+
+
+Exchanges the state of the stream with those of other. 
+
+This is done by calling basic_ostream<CharT, Traits>::swap(other) and rdbuf()->swap(*other.rdbuf()).  
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Exceptions
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+  other
+
+
+
+ -
+
+
+
+  stream to exchange the state with
+
+
+
+[edit] Return value
+
+(none)
+
+
+
+[edit] Exceptions
+
+May throw implementation-defined exceptions. 
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] See also
+
+
+
+
+
+  operator=(C++11)
+
+
+
+  moves the string stream  (public member function) [edit]
+
+
+
+
+
+  swap(C++11)
+
+
+
+  swaps two basic_stringbuf objects  (public member function of std::basic_stringbuf<CharT,Traits,Allocator>) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

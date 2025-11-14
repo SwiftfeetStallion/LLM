@@ -1,0 +1,245 @@
+std::stack[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::stack
+
+Member functions
+
+stack::stack
+
+stack::~stack
+
+stack::operator=
+
+Element access
+
+stack::top
+
+Capacity
+
+stack::empty
+
+stack::size
+
+Modifiers
+
+stack::push
+
+stack::push_range(C++23)
+
+stack::emplace(C++11)
+
+stack::pop
+
+stack::swap(C++11)
+
+Non-member functions
+
+swap(std::stack)(C++11)
+
+operator==operator!=operator<operator>operator<=operator>=operator<=>(C++20)
+
+Helper classes
+
+uses_allocator<std::stack>(C++11)
+
+formatter<std::stack>(C++23)
+
+Deduction guides(C++17)
+
+[edit] 
+
+
+
+
+
+ size_type size() const;
+
+ 
+
+ 
+
+
+
+
+
+
+
+Returns the number of elements in the container adaptor. Equivalent to: return c.size().
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Complexity
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+(none)
+
+
+
+[edit] Return value
+
+The number of elements in the container adaptor.
+
+
+
+[edit] Complexity
+
+Constant.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <cassert>
+
+#include <stack>
+
+ 
+
+int main()
+
+{
+
+    std::stack<int> stack;
+
+    assert(stack.size() == 0);
+
+ 
+
+    const int count = 8;
+
+    for (int i = 0; i != count; ++i)
+
+        stack.push(i);
+
+    assert(stack.size() == count);
+
+}
+
+
+
+[edit] See also
+
+
+
+
+
+  empty
+
+
+
+  checks whether the container adaptor is empty  (public member function) [edit]
+
+
+
+
+
+  sizessize(C++17)(C++20)
+
+
+
+  returns the size of a container or array  (function template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

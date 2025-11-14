@@ -1,0 +1,233 @@
+std::text_encoding::text_encoding
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Text processing library
+
+Localization library
+
+Regular expressions library (C++11)
+
+Formatting library (C++20)
+
+Null-terminated sequence utilities
+
+Byte strings
+
+Multibyte strings
+
+Wide strings
+
+Primitive numeric conversions
+
+
+
+to_chars(C++17)
+
+to_chars_result(C++17)
+
+from_chars(C++17)
+
+from_chars_result(C++17)
+
+chars_format(C++17)
+
+
+
+Text encoding identifications
+
+
+
+text_encoding(C++26)
+
+
+
+[edit] std::text_encoding
+
+Member functions
+
+Creation
+
+text_encoding::text_encoding
+
+text_encoding::literal
+
+text_encoding::environment
+
+Observers
+
+text_encoding::mib
+
+text_encoding::name
+
+text_encoding::aliases
+
+text_encoding::environment_is
+
+Helpers
+
+text_encoding::comp-name
+
+Non-member functions
+
+operator==(std::text_encoding)
+
+Member types
+
+text_encoding::id
+
+text_encoding::aliases_view
+
+Helper classes
+
+hash<std::text_encoding>
+
+[edit] 
+
+
+
+
+
+ constexpr text_encoding() = default;
+
+ (1) 
+
+ (since C++26) 
+
+
+
+
+
+ constexpr explicit text_encoding( std::string_view enc ) noexcept;
+
+ (2) 
+
+ (since C++26) 
+
+
+
+
+
+ constexpr text_encoding( std::text_encoding::id i ) noexcept;
+
+ (3) 
+
+ (since C++26) 
+
+
+
+
+
+
+
+Constructs a new text encoding object. 
+
+
+
+1) Default constructor. Constructs an object with MIBenum value std::text_encoding::id::unknown and empty character encoding name.
+
+2) Constructs an object with character encoding name enc.
+
+ If enc names a registered character encoding other than NATS-DANO or NATS-DANO-ADD, then the constructed object will have the corresponding MIBenum value, otherwise it will have MIBenum std::text_encoding::id::other.
+
+ Behavior is undefined if enc.size() > std::text_encoding::max_name_length || enc.contains('\0').
+
+3) Constructs an object with MIBenum value i.
+
+ If i is std::text_encoding::id::other or std::text_encoding::id::unknown, then the constructed object will have empty character encoding name, otherwise it will have one of the corresponding names.
+
+ Behavior is undefined if i is not a named enumerator of std::text_encoding::id.
+
+[edit] Parameters
+
+
+
+
+
+ enc
+
+
+
+ -
+
+
+
+ character encoding name
+
+
+
+
+
+ i
+
+
+
+ -
+
+
+
+ MIBenum value
+
+
+
+[edit] Example
+
+View on Compiler Explorer.
+
+
+
+Run this code
+
+#include <text_encoding>
+
+ 
+
+int main()
+
+{
+
+    constexpr std::text_encoding iso60 = std::text_encoding::ISO60DanishNorwegian;
+
+    static_assert(iso60 == std::text_encoding("csISO60DanishNorwegian"));
+
+    static_assert(iso60 == std::text_encoding("iso-ir-60"));
+
+    static_assert(iso60 == std::text_encoding("NS_4551-1"));
+
+}
+
+
+
+[edit] External links
+
+
+
+
+
+IANA registry of character set names and MIBenum values.
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

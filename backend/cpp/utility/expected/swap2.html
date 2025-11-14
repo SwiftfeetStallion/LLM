@@ -1,0 +1,457 @@
+swap(std::expected)
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Utilities library
+
+
+
+Language support
+
+Type support (basic types, RTTI)
+
+Library feature-test macros (C++20)
+
+Program utilities
+
+Variadic functions
+
+initializer_list(C++11)
+
+is_constant_evaluated(C++20)
+
+is_within_lifetime(C++26)
+
+source_location(C++20)
+
+Coroutine support (C++20)
+
+Contract support (C++26)
+
+Three-way comparison
+
+three_way_comparablethree_way_comparable_with(C++20)(C++20)
+
+strong_ordering(C++20)
+
+weak_ordering(C++20)
+
+partial_ordering(C++20)
+
+common_comparison_category(C++20)
+
+compare_three_way_result(C++20)
+
+compare_three_way(C++20)
+
+strong_order(C++20)
+
+weak_order(C++20)
+
+partial_order(C++20)
+
+compare_strong_order_fallback(C++20)
+
+compare_weak_order_fallback(C++20)
+
+compare_partial_order_fallback(C++20)  
+
+
+
+
+
+is_eqis_ltis_lteq(C++20)(C++20)(C++20)  
+
+
+
+is_neqis_gtis_gteq(C++20)(C++20)(C++20)
+
+
+
+
+
+
+
+
+
+
+
+General utilities
+
+
+
+Function objects
+
+Bit manipulation (C++20)
+
+C-style bit manipulation (C++26)
+
+bitset
+
+hash(C++11)
+
+
+
+Relational operators (deprecated in C++20)
+
+
+
+
+
+rel_ops::operator!=rel_ops::operator>  
+
+
+
+rel_ops::operator<=rel_ops::operator>=
+
+
+
+Integer comparison functions
+
+
+
+cmp_equalcmp_lesscmp_less_than(C++20)(C++20)(C++20)  
+
+
+
+cmp_not_equalcmp_greatercmp_greater_than(C++20)(C++20)(C++20)
+
+
+
+in_range(C++20)
+
+Swap and type operations
+
+
+
+swap
+
+ranges::swap(C++20)
+
+exchange(C++14)
+
+declval(C++11)
+
+to_underlying(C++23)
+
+
+
+forward(C++11)
+
+forward_like(C++23)
+
+move(C++11)
+
+move_if_noexcept(C++11)
+
+as_const(C++17)
+
+
+
+Common vocabulary types
+
+
+
+pair
+
+tuple(C++11)
+
+optional(C++17)
+
+any(C++17)
+
+variant(C++17)
+
+
+
+tuple_size(C++11)
+
+tuple_element(C++11)
+
+apply(C++17)
+
+make_from_tuple(C++17)
+
+expected(C++23)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] std::expected
+
+Member functions
+
+expected::expected
+
+expected::~expected
+
+expected::operator=
+
+Observers
+
+expected::operator->expected::operator*
+
+expected::operator boolexpected::has_value
+
+expected::value
+
+expected::error
+
+expected::value_or
+
+expected::error_or
+
+Monadic operations
+
+expected::and_then
+
+expected::or_else
+
+expected::transform
+
+expected::transform_error
+
+Modifiers
+
+expected::emplace
+
+expected::swap
+
+Non-member functions
+
+operator==(std::expected)
+
+swap(std::expected)
+
+Helper classes
+
+unexpected
+
+bad_expected_access
+
+unexpect_tunexpect
+
+[edit] 
+
+
+
+
+
+ friend constexpr void swap( expected& lhs, expected& rhs ) noexcept(/*see below*/);
+
+ 
+
+ (since C++23) 
+
+
+
+
+
+
+
+Overloads the std::swap algorithm for std::expected. Exchanges the state of lhs with that of rhs. Effectively calls lhs.swap(rhs).
+
+This overload participates in overload resolution only if lhs.swap(rhs) is valid.
+
+This function  is not visible to ordinary unqualified or qualified lookup, and can only be found by argument-dependent lookup when std::expected<T, E> is an associated class of the arguments.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Exceptions
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ lhs, rhs
+
+
+
+ -
+
+
+
+ expected objects whose states to swap
+
+
+
+[edit] Return value
+
+(none)
+
+
+
+[edit] Exceptions
+
+noexcept specification:  
+
+noexcept(noexcept(lhs.swap(rhs)))
+
+[edit] Example
+
+Run this code
+
+#include <expected>
+
+#include <iostream>
+
+#include <string_view>
+
+ 
+
+using Ex = std::expected<std::string, int>;
+
+ 
+
+void show(const Ex& ex1, const Ex& ex2, std::string_view term = "\n")
+
+{
+
+    for (int i{}; i != 2; ++i)
+
+    {
+
+        std::cout << (i ? "ex2" : "ex1");
+
+        if (const Ex& ex = (i ? ex2 : ex1); ex.has_value())
+
+            std::cout << ".value() = " << *ex << "  ";
+
+        else
+
+            std::cout << ".error() = " << ex.error() << "  ";
+
+    }
+
+    std::cout << term;
+
+}
+
+ 
+
+int main()
+
+{
+
+    Ex ex1("\N{SMILING FACE WITH SUNGLASSES}");
+
+    Ex ex2{"\N{SLIGHTLY SMILING FACE}"};
+
+    show(ex1, ex2, "after swap(ex1, ex2):\n");
+
+    std::swap(ex1, ex2);
+
+    show(ex1, ex2, "\n\n");
+
+ 
+
+    ex2 = std::unexpected(13);
+
+    show(ex1, ex2, "after swap(ex1, ex2):\n");
+
+    std::swap(ex1, ex2);
+
+    show(ex1, ex2, "\n\n");
+
+ 
+
+    ex2 = std::unexpected(37);
+
+    show(ex1, ex2, "after swap(ex1, ex2):\n");
+
+    std::swap(ex1, ex2);
+
+    show(ex1, ex2);
+
+}
+
+Output:
+
+
+
+ex1.value() = 😎  ex2.value() = 🙂  after swap(ex1, ex2):
+
+ex1.value() = 🙂  ex2.value() = 😎  
+
+ 
+
+ex1.value() = 🙂  ex2.error() = 13  after swap(ex1, ex2):
+
+ex1.error() = 13  ex2.value() = 🙂  
+
+ 
+
+ex1.error() = 13  ex2.error() = 37  after swap(ex1, ex2):
+
+ex1.error() = 37  ex2.error() = 13
+
+
+
+[edit] See also
+
+
+
+
+
+  swap
+
+
+
+  exchanges the contents  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,373 @@
+std::unordered_multimap[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::unordered_multimap
+
+Member types
+
+Member functions
+
+
+
+unordered_multimap::unordered_multimap
+
+unordered_multimap::~unordered_multimap  
+
+unordered_multimap::operator=
+
+unordered_multimap::get_allocator
+
+Iterators
+
+unordered_multimap::beginunordered_multimap::cbegin
+
+unordered_multimap::endunordered_multimap::cend
+
+Capacity
+
+unordered_multimap::size
+
+unordered_multimap::max_size
+
+unordered_multimap::empty
+
+Modifiers
+
+unordered_multimap::clear
+
+unordered_multimap::insert
+
+unordered_multimap::insert_range(C++23)
+
+unordered_multimap::emplace
+
+unordered_multimap::emplace_hint
+
+unordered_multimap::erase
+
+unordered_multimap::swap
+
+unordered_multimap::extract(C++17)
+
+unordered_multimap::merge(C++17)
+
+
+
+Lookup
+
+unordered_multimap::count
+
+unordered_multimap::find
+
+unordered_multimap::contains(C++20)
+
+unordered_multimap::equal_range
+
+Bucket interface
+
+unordered_multimap::begin(size_type)unordered_multimap::cbegin(size_type)
+
+unordered_multimap::end(size_type)unordered_multimap::cend(size_type)
+
+unordered_multimap::bucket_count
+
+unordered_multimap::max_bucket_count
+
+unordered_multimap::bucket_size
+
+unordered_multimap::bucket
+
+Hash policy
+
+unordered_multimap::load_factor
+
+unordered_multimap::max_load_factor
+
+unordered_multimap::rehash
+
+unordered_multimap::reserve
+
+Observers
+
+unordered_multimap::hash_function
+
+unordered_multimap::key_eq
+
+
+
+Non-member functions
+
+
+
+std::swap(std::unordered_multimap)
+
+erase_if(std::unordered_multimap)(C++20)
+
+
+
+operator==operator!=(until C++20)
+
+
+
+Deduction guides (C++17)
+
+[edit] 
+
+
+
+
+
+template< container-compatible-range<value_type> R >
+
+void insert_range( R&& rg );
+
+ 
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+
+
+Inserts a copy of each element in the range rg.
+
+Each iterator in the range rg is dereferenced exactly once.
+
+If any of the following conditions is satisfied, the behavior is undefined:
+
+
+
+ value_type is not EmplaceConstructible into unordered_multimap from *ranges::begin(rg)
+
+ rg and *this overlap.
+
+
+
+If after the operation the new number of elements is greater than old max_load_factor() * bucket_count() a rehashing takes place.If rehashing occurs (due to the insertion), all iterators are invalidated. Otherwise (no rehashing), iterators are not invalidated.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Complexity
+
+3 Notes
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ rg
+
+
+
+ -
+
+
+
+ a container compatible range, that is, an input_range whose elements are convertible to T
+
+
+
+[edit] Complexity
+
+Average case \(\scriptsize N\)N, worst case \(\scriptsize O(N \cdot S + N)\)O(N·S+N), where \(\scriptsize S\)S is size() and \(\scriptsize N\)N is ranges::distance(rg).
+
+
+
+[edit] Notes
+
+
+
+
+
+Feature-test macro
+
+Value
+
+Std
+
+Feature
+
+
+
+
+
+__cpp_lib_containers_ranges
+
+202202L
+
+(C++23)
+
+Ranges-aware construction and insertion
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <unordered_map>
+
+#include <utility>
+
+ 
+
+void println(auto, const auto& container)
+
+{
+
+    for (const auto& [key, value] : container)
+
+        std::cout << '{' << key << ',' << value << '}' << ' ';
+
+    std::cout << '\n';
+
+}
+
+ 
+
+int main()
+
+{
+
+    auto container = std::unordered_multimap{std::pair{1, 11}, {3, 33}, {2, 22}, {4, 44}};
+
+    const auto rg = {std::pair{-1, -11}, {3, -33}, {-2, -22}};
+
+#ifdef __cpp_lib_containers_ranges
+
+    container.insert_range(rg);
+
+#else
+
+    container.insert(rg.begin(), rg.end());
+
+#endif
+
+    println("{}", container);
+
+}
+
+Possible output:
+
+
+
+{1,11} {-2,-22} {3,-33} {3,33} {2,22} {-1,-11} {4,44}
+
+
+
+[edit] See also
+
+
+
+
+
+  insert
+
+
+
+  inserts elements or nodes(since C++17)  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

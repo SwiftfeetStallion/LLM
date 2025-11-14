@@ -1,0 +1,167 @@
+std::char_traits[edit] Strings library
+
+Classes
+
+basic_string
+
+basic_string_view(C++17)
+
+char_traits
+
+[edit] std::char_traits
+
+Member functions
+
+char_traits::assign
+
+char_traits::eqchar_traits::lt
+
+char_traits::move
+
+char_traits::copy
+
+char_traits::compare
+
+char_traits::length
+
+char_traits::find
+
+char_traits::to_char_type
+
+char_traits::to_int_type
+
+char_traits::eq_int_type
+
+char_traits::eof
+
+char_traits::not_eof
+
+[edit] 
+
+
+
+
+
+ static std::size_t length( const char_type* s );
+
+ 
+
+ (constexpr since C++17) 
+
+
+
+
+
+
+
+Returns the length of the character sequence pointed to by s, that is, the position of the terminating null character (char_type()).
+
+See CharTraits for the general requirements on character traits for X::length.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Complexity
+
+4 Example
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ s
+
+
+
+ -
+
+
+
+ pointer to a character sequence to return length of
+
+
+
+[edit] Return value
+
+The length of character sequence pointed to by s.
+
+
+
+[edit] Complexity
+
+Linear.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iomanip>
+
+#include <iostream>
+
+#include <string>
+
+ 
+
+void print(const char* str)
+
+{
+
+    std::cout << std::quoted(str) << " has length = "
+
+              << std::char_traits<char>::length(str) << '\n';
+
+}
+
+ 
+
+int main()
+
+{
+
+    print("foo");
+
+ 
+
+    std::string s{"booo"};
+
+    print(s.c_str());
+
+}
+
+Output:
+
+
+
+"foo" has length = 3
+
+"booo" has length = 4
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

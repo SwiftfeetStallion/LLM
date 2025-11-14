@@ -1,0 +1,217 @@
+std::regex_iterator[edit] Text processing library
+
+Localization library
+
+Regular expressions library (C++11)
+
+Formatting library (C++20)
+
+Null-terminated sequence utilities
+
+Byte strings
+
+Multibyte strings
+
+Wide strings
+
+Primitive numeric conversions
+
+
+
+to_chars(C++17)
+
+to_chars_result(C++17)
+
+from_chars(C++17)
+
+from_chars_result(C++17)
+
+chars_format(C++17)
+
+
+
+Text encoding identifications
+
+
+
+text_encoding(C++26)
+
+
+
+[edit] Regular expressions library
+
+Classes
+
+basic_regex(C++11)
+
+sub_match(C++11)
+
+match_results(C++11)
+
+Algorithms
+
+regex_match(C++11)
+
+regex_search(C++11)
+
+regex_replace(C++11)
+
+Iterators
+
+regex_iterator(C++11)
+
+regex_token_iterator(C++11)
+
+Exceptions
+
+regex_error(C++11)
+
+Traits
+
+regex_traits(C++11)
+
+Constants
+
+syntax_option_type(C++11)
+
+match_flag_type(C++11)
+
+error_type(C++11)
+
+Regex Grammar
+
+Modified ECMAScript-262(C++11)
+
+[edit] std::regex_iterator
+
+Member functions
+
+regex_iterator::regex_iterator
+
+regex_iterator::operator=
+
+Comparisons
+
+regex_iterator::operator==regex_iterator::operator!=(until C++20)
+
+Observers
+
+regex_iterator::operator*regex_iterator::operator->
+
+Modifiers
+
+regex_iterator::operator++regex_iterator::operator++(int)
+
+[edit] 
+
+
+
+
+
+ bool operator==( const regex_iterator& rhs ) const;
+
+ (1) 
+
+ (since C++11) 
+
+
+
+
+
+ bool operator!=( const regex_iterator& rhs ) const;
+
+ (2) 
+
+ (since C++11) (until C++20) 
+
+
+
+
+
+
+
+Compares two regex_iterators.
+
+
+
+
+
+
+
+The != operator is synthesized from operator==.
+
+
+
+
+
+(since C++20)
+
+
+
+[edit] Parameters
+
+
+
+
+
+ rhs
+
+
+
+ -
+
+
+
+ a regex_iterator to compare to
+
+
+
+[edit] Return value
+
+For the sake of exposition, assume that regex_iterator contains the following members:
+
+
+
+ BidirIt begin;
+
+ BidirIt end;
+
+ const regex_type *pregex;
+
+ std::regex_constants::match_flag_type flags;
+
+ std::match_results<BidirIt> match;
+
+
+
+1) Returns true if *this and rhs are both end-of-sequence iterators, or if all of the following conditions are true:
+
+ begin == rhs.begin
+
+ end == rhs.end
+
+ pregex == rhs.pregex
+
+ flags == rhs.flags
+
+ match[0] == rhs.match[0]
+
+
+
+2) Returns !(*this == rhs).
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+
+
+
+
+ 
+
+
+
+
+
+                    

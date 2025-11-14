@@ -1,0 +1,1157 @@
+std::ranges::views::cache_latest, std::ranges::cache_latest_view
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Ranges library
+
+
+
+Range access
+
+
+
+begin
+
+cbegin 
+
+end
+
+cend
+
+
+
+rbegin
+
+crbegin 
+
+rend
+
+crend
+
+
+
+size
+
+ssize 
+
+data
+
+cdata
+
+
+
+reserve_hint(C++26)  
+
+empty
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range conversions
+
+std::from_range_tstd::from_range(C++23)(C++23)    
+
+to(C++23)
+
+
+
+
+
+
+
+Dangling iterator handling
+
+dangling
+
+borrowed_iterator_t
+
+borrowed_subrange_t
+
+
+
+
+
+
+
+
+
+
+
+Range primitives
+
+
+
+range_size_trange_difference_trange_value_t
+
+elements_of(C++23)    
+
+
+
+iterator_tconst_iterator_tsentinel_tconst_sentinel_t(C++23)(C++23)  
+
+
+
+range_reference_trange_const_reference_trange_rvalue_reference_trange_common_reference_t(C++23)
+
+
+
+
+
+
+
+Range concepts
+
+
+
+range
+
+borrowed_range  
+
+common_range
+
+
+
+sized_range
+
+viewable_range  
+
+view
+
+
+
+input_range
+
+output_range
+
+forward_range  
+
+
+
+bidirectional_range  
+
+random_access_range
+
+contiguous_range
+
+
+
+approximately_sized_range(C++26)
+
+constant_range(C++23)
+
+
+
+
+
+
+
+
+
+
+
+Views
+
+
+
+view_interface  
+
+
+
+subrange
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range factories
+
+
+
+empty_viewviews::empty  
+
+
+
+single_viewviews::single  
+
+
+
+basic_istream_viewviews::istream  
+
+
+
+iota_viewviews::iota  
+
+
+
+repeat_viewviews::repeat(C++23)(C++23)
+
+
+
+
+
+
+
+Range adaptors
+
+
+
+views::all_tviews::all
+
+as_rvalue_viewviews::as_rvalue(C++23)(C++23)  
+
+filter_viewviews::filter
+
+transform_viewviews::transform
+
+take_viewviews::take
+
+take_while_viewviews::take_while
+
+common_viewviews::common
+
+views::counted
+
+to_input_viewviews::to_input(C++26)(C++26)
+
+
+
+ref_view
+
+drop_viewviews::drop
+
+drop_while_viewviews::drop_while
+
+lazy_split_viewviews::lazy_split
+
+split_viewviews::split
+
+join_viewviews::join
+
+join_with_viewviews::join_with(C++23)(C++23)  
+
+concat_viewviews::concat(C++26)(C++26)
+
+cache_latest_viewviews::cache_latest(C++26)(C++26)  
+
+
+
+owning_view
+
+reverse_viewviews::reverse
+
+as_const_viewviews::as_const(C++23)(C++23)
+
+elements_viewviews::elements
+
+keys_viewviews::keys
+
+values_viewviews::values
+
+enumerate_viewviews::enumerate(C++23)(C++23)
+
+zip_viewviews::zip(C++23)(C++23)
+
+zip_transform_viewviews::zip_transform(C++23)(C++23)  
+
+
+
+adjacent_viewviews::adjacent(C++23)(C++23)
+
+views::pairwise(C++23)
+
+adjacent_transform_viewviews::adjacent_transform(C++23)(C++23)
+
+views::pairwise_transform(C++23)
+
+chunk_viewviews::chunk(C++23)(C++23)
+
+slide_viewviews::slide(C++23)(C++23)
+
+chunk_by_viewviews::chunk_by(C++23)(C++23)
+
+stride_viewviews::stride(C++23)(C++23)
+
+cartesian_product_viewviews::cartesian_product(C++23)(C++23)
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range generators
+
+std::generator(C++23)    
+
+
+
+Range adaptor closure objects
+
+range_adaptor_closure(C++23)    
+
+
+
+Range adaptor objects
+
+
+
+
+
+
+
+
+
+
+
+Helper items
+
+
+
+copyable-boxmovable-box(until C++23)  (C++23)
+
+
+
+simple-view
+
+non-propagating-cache
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] std::ranges::cache_latest_view
+
+Member functions
+
+cache_latest_view::cache_latest_view
+
+cache_latest_view::base
+
+cache_latest_view::begin
+
+cache_latest_view::end
+
+cache_latest_view::size
+
+Deduction guides
+
+Iterator
+
+Member functions
+
+cache_latest_view::iterator::iterator
+
+cache_latest_view::iterator::base
+
+cache_latest_view::iterator::operator*
+
+cache_latest_view::iterator::operator++cache_latest_view::iterator::operator++(int)
+
+Non-member functions
+
+iter_move(cache_latest_view::iterator)
+
+iter_swap(cache_latest_view::iterator)
+
+Sentinel
+
+Member functions
+
+cache_latest_view::sentinel::sentinel
+
+cache_latest_view::sentinel::base
+
+Non-member functions
+
+operator==(cache_latest_view::iterator, cache_latest_view::sentinel)
+
+operator-(cache_latest_view::iterator, cache_latest_view::sentinel)
+
+operator-(cache_latest_view::sentinel, cache_latest_view::iterator)
+
+[edit] 
+
+
+
+
+
+ Defined in header <ranges>
+
+
+
+
+
+
+
+
+
+
+
+ template< ranges::input_range V >
+
+    requires ranges::view<V>
+
+class cache_latest_view
+
+
+
+    : public ranges::view_interface<cache_latest_view<V>>
+
+ (1) 
+
+ (since C++26) 
+
+
+
+
+
+ namespace views {
+
+    inline constexpr /* unspecified */ cache_latest = /* unspecified */;
+
+
+
+}
+
+ (2) 
+
+ (since C++26) 
+
+
+
+
+
+ Call signature
+
+
+
+
+
+
+
+
+
+ template< ranges::viewable_range R >
+
+    requires /* see below */
+
+
+
+constexpr ranges::view auto cache_latest( R&& r );
+
+ 
+
+ (since C++26) 
+
+
+
+
+
+
+
+1) A range adaptor that caches the last-accessed element of its underlying view so that the element does not have to be recomputed on repeated access.
+
+2) RangeAdaptorObject. The expression views::cache_latest(e) is expression-equivalent to cache_latest_view(e) for any suitable subexpression e.
+
+cache_latest_view is an input_range-only that never models borrowed_range or common_range.
+
+
+
+Contents
+
+
+
+1 Nested types
+
+2 Data members
+
+3 Member functions
+
+
+
+3.1 Inherited from std::ranges::view_interface
+
+
+
+
+
+4 std::ranges::cache_latest_view::cache_latest_view
+
+
+
+4.1 Parameters
+
+
+
+
+
+5 std::ranges::cache_latest_view::base
+
+6 std::ranges::cache_latest_view::begin
+
+7 std::ranges::cache_latest_view::end
+
+8 std::ranges::cache_latest_view::size
+
+
+
+8.1 Deduction guides
+
+8.2 Nested classes
+
+8.3 Notes
+
+8.4 Example
+
+
+
+
+
+
+
+
+
+[edit] Nested types
+
+
+
+
+
+ Type
+
+
+
+ Definition
+
+
+
+
+
+ CacheT (private)
+
+
+
+ std::conditional_t<std::is_reference_v<ranges::range_reference_t<V>>,                   std::add_pointer_t<ranges::range_reference_t<V>>,                   ranges::range_reference_t<V>>(exposition-only member type*)
+
+
+
+
+
+[edit] Data members
+
+
+
+
+
+ Member
+
+
+
+ Description
+
+
+
+
+
+ V base_ (private)
+
+
+
+ the underlying view(exposition-only member object*)
+
+
+
+
+
+ non-propagating-cache<CacheT> cache_ (private)
+
+
+
+ an object that caches the result of the last indirection of the current iterator(exposition-only member object*)
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a cache_latest_view  (public member function)
+
+
+
+
+
+  base
+
+
+
+  returns a copy of the underlying (adapted) view  (public member function)
+
+
+
+
+
+  begin
+
+
+
+  returns an iterator to the beginning  (public member function)
+
+
+
+
+
+  end
+
+
+
+  returns an iterator or a sentinel to the end  (public member function)
+
+
+
+
+
+  size
+
+
+
+  returns the number of elements. Provided only if the underlying (adapted) range satisfies sized_range.  (public member function)
+
+
+
+
+
+   Inherited from std::ranges::view_interface 
+
+
+
+
+
+  empty
+
+
+
+  returns whether the derived view is empty, provided only if it satisfies sized_range or forward_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  cbegin(C++23)
+
+
+
+  returns a constant iterator to the beginning of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  cend(C++23)
+
+
+
+  returns a sentinel for the constant iterator of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  operator bool
+
+
+
+  returns whether the derived view is not empty, provided only if ranges::empty is applicable to it  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  data
+
+
+
+  gets the address of derived view's data, provided only if its iterator type satisfies contiguous_iterator  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  front
+
+
+
+  returns the first element in the derived view, provided if it satisfies forward_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  back
+
+
+
+  returns the last element in the derived view, provided only if it satisfies bidirectional_range and common_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  operator[]
+
+
+
+  returns the nth element in the derived view, provided only if it satisfies random_access_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+
+
+
+
+
+
+ std::ranges::cache_latest_view::cache_latest_view
+
+
+
+
+
+ cache_latest_view() requires std::default_initializable<V> = default;
+
+ (1) 
+
+ (since C++26) 
+
+
+
+
+
+ constexpr explicit cache_latest_view( V base );
+
+ (2) 
+
+ (since C++26) 
+
+
+
+
+
+
+
+1) Value-initializes base_ via its default member initializer (= V()).
+
+2) Initializes base_ with std::move(base).
+
+ Parameters
+
+
+
+
+
+ base
+
+
+
+ -
+
+
+
+ a view
+
+
+
+
+
+
+
+
+
+
+
+ std::ranges::cache_latest_view::base
+
+
+
+
+
+ constexpr V base() const& requires std::copy_constructible<V>;
+
+ (1) 
+
+ (since C++26) 
+
+
+
+
+
+ constexpr V base() &&;
+
+ (2) 
+
+ (since C++26) 
+
+
+
+
+
+
+
+1) Copy-constructs the result from the underlying view. Equivalent to return base_;.
+
+2) Move-constructs the result from the underlying view. Equivalent to return std::move(base_);.
+
+
+
+
+
+
+
+
+
+ std::ranges::cache_latest_view::begin
+
+
+
+
+
+ constexpr auto begin();
+
+ 
+
+ (since C++26) 
+
+
+
+
+
+
+
+Equivalent to return /*iterator*/(*this);.
+
+
+
+
+
+
+
+
+
+
+
+ std::ranges::cache_latest_view::end
+
+
+
+
+
+ constexpr auto end();
+
+ 
+
+ (since C++26) 
+
+
+
+
+
+
+
+Equivalent to return /*sentinel*/(*this);.
+
+
+
+
+
+
+
+
+
+
+
+ std::ranges::cache_latest_view::size
+
+
+
+
+
+ constexpr auto size() requires ranges::sized_range<V>;
+
+ (1) 
+
+ (since C++26) 
+
+
+
+
+
+ constexpr auto size() const requires ranges::sized_range<const V>;
+
+ (2) 
+
+ (since C++26) 
+
+
+
+
+
+
+
+1,2) Equivalent to return ranges::size(base_);
+
+
+
+[edit] Deduction guides
+
+
+
+
+
+ template< class R >
+
+cache_latest_view( R&& ) -> cache_latest_view<views::all_t<R>>;
+
+ 
+
+ (since C++26) 
+
+
+
+
+
+
+
+[edit] Nested classes
+
+
+
+
+
+ iterator
+
+
+
+ the iterator type(exposition-only member class template*)
+
+
+
+
+
+ sentinel
+
+
+
+ the sentinel type(exposition-only member class template*)
+
+
+
+
+
+[edit] Notes
+
+cache_latest_view is useful if the computation of the element to produce is expensive.
+
+
+
+
+
+
+
+Feature-test macro
+
+
+
+Value
+
+
+
+Std
+
+
+
+Feature
+
+
+
+
+
+__cpp_lib_ranges_cache_latest
+
+202411L
+
+(C++26)
+
+std::ranges::cache_latest_view
+
+
+
+[edit] Example
+
+Run this code
+
+#include <algorithm>
+
+#include <print>
+
+#include <ranges>
+
+ 
+
+int main()
+
+{
+
+    const auto v = {1, 2, 3, 4, 5};
+
+ 
+
+    auto square = [](int i)
+
+    {
+
+        std::print("transform: {} ", i);
+
+        return i * i;
+
+    };
+
+ 
+
+    auto is_even = [](int i)
+
+    {
+
+        std::print("filter: {} ", i);
+
+        return i % 2 == 0;
+
+    };
+
+ 
+
+    auto print = [](auto v)
+
+    {
+
+        std::ranges::for_each(v, [](int i){ std::println("Got: {}", i); });
+
+        std::println();
+
+    };
+
+ 
+
+    std::println("Without caching latest (note recalculations):");
+
+    auto even_squares = v
+
+        | std::views::transform(square)
+
+        | std::views::filter(is_even);
+
+    print(even_squares);
+
+ 
+
+    std::println("With caching latest:");
+
+    auto fast_even_squares = v
+
+        | std::views::transform(square)
+
+        | std::views::cache_latest
+
+        | std::views::filter(is_even);
+
+    print(fast_even_squares);
+
+}
+
+Output:
+
+
+
+Without caching latest (note recalculations):
+
+transform: 1 filter: 1 transform: 2 filter: 4 transform: 2 Got: 4
+
+transform: 3 filter: 9 transform: 4 filter: 16 transform: 4 Got: 16
+
+transform: 5 filter: 25 
+
+With caching latest:
+
+transform: 1 filter: 1 transform: 2 filter: 4 Got: 4
+
+transform: 3 filter: 9 transform: 4 filter: 16 Got: 16
+
+transform: 5 filter: 25
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

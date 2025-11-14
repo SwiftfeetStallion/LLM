@@ -1,0 +1,385 @@
+std::flat_multimap[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::flat_multimap
+
+Member types
+
+Member functions
+
+
+
+
+
+flat_multimap::flat_multimap  
+
+flat_multimap::operator=
+
+Modifiers
+
+flat_multimap::clear
+
+flat_multimap::erase
+
+flat_multimap::swap
+
+flat_multimap::extract
+
+flat_multimap::replace
+
+flat_multimap::insert
+
+flat_multimap::insert_range
+
+flat_multimap::emplace
+
+flat_multimap::emplace_hint
+
+Lookup
+
+flat_multimap::count
+
+flat_multimap::find
+
+flat_multimap::contains
+
+flat_multimap::equal_range
+
+flat_multimap::lower_bound
+
+flat_multimap::upper_bound
+
+
+
+Iterators
+
+flat_multimap::beginflat_multimap::cbegin
+
+flat_multimap::endflat_multimap::cend
+
+flat_multimap::rbeginflat_multimap::crbegin
+
+flat_multimap::rendflat_multimap::crend
+
+Capacity
+
+flat_multimap::size
+
+flat_multimap::max_size
+
+flat_multimap::empty
+
+Observers
+
+flat_multimap::key_comp
+
+flat_multimap::keys
+
+flat_multimap::value_comp
+
+flat_multimap::values
+
+
+
+
+
+Non-member functions
+
+
+
+
+
+swap(std::flat_multimap)
+
+erase_if(std::flat_multimap)   
+
+
+
+operator==operator<=>
+
+
+
+
+
+Helper classes
+
+
+
+
+
+uses_allocator<std::flat_multimap>
+
+
+
+
+
+Tags
+
+
+
+
+
+sorted_equivalent        
+
+
+
+sorted_equivalent_t
+
+
+
+
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+template< container-compatible-range<value_type> R >
+
+void insert_range( R&& rg );
+
+ 
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+
+
+Inserts a copy of each element in the range rg into underlying containers c as if by:
+
+
+
+for (const auto& e : rg)
+
+{
+
+    c.keys.insert(c.keys.end(), e.first);
+
+    c.values.insert(c.values.end(), e.second);
+
+}
+
+Then, sorts the range of newly inserted elements with respect to value_comp().
+
+Merges the resulting sorted range and the sorted range of pre-existing elements into a single sorted range.
+
+Each iterator in the range rg is dereferenced exactly once.
+
+If any of the following conditions is satisfied, the behavior is undefined:
+
+
+
+ value_type is not EmplaceConstructible into flat_multimap from *ranges::begin(rg)
+
+ rg and *this overlap.
+
+
+
+Information on iterator invalidation is copied from here 
+
+Contents
+
+
+
+1 Parameters
+
+2 Complexity
+
+3 Notes
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ rg
+
+
+
+ -
+
+
+
+ a container compatible range, that is, an input_range whose elements are convertible to T
+
+
+
+[edit] Complexity
+
+\(\scriptsize S + N \cdot \log(N)\)S+N·log(N), where \(\scriptsize S\)S is size() and \(\scriptsize N\)N is ranges::distance(rg).
+
+
+
+[edit] Notes
+
+Since insert_range performs an in-place merge operation, that may allocate memory.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <flat_map>
+
+#include <utility>
+
+ 
+
+void println(auto, const auto& container)
+
+{
+
+    for (const auto& [key, value] : container)
+
+        std::cout << '{' << key << ',' << value << '}' << ' ';
+
+    std::cout << '\n';
+
+}
+
+ 
+
+int main()
+
+{
+
+    auto container = std::flat_multimap{std::pair{1, 11}, {3, 33}, {2, 22}, {4, 44}};
+
+    const auto rg = {std::pair{-1, -11}, {3, -33}, {-2, -22}};
+
+#ifdef __cpp_lib_containers_ranges
+
+    container.insert_range(rg);
+
+#else
+
+    container.insert(rg.begin(), rg.end());
+
+#endif
+
+    println("{}", container);
+
+}
+
+Output:
+
+
+
+{-2,-22} {-1,-11} {1,11} {2,22} {3,33} {3,-33} {4,44}
+
+
+
+[edit] See also
+
+
+
+
+
+  insert
+
+
+
+  inserts elements   (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

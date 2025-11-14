@@ -1,0 +1,337 @@
+std::experimental::source_location
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals v2
+
+experimental::propagate_const
+
+experimental::not_fn
+
+experimental::observer_ptr
+
+experimental::make_array
+
+experimental::to_array
+
+experimental::ostream_joiner
+
+experimental::gcd
+
+experimental::lcm
+
+experimental::source_location
+
+experimental::randint
+
+detection idiom
+
+uniform container erasure
+
+logical operator type traits
+
+[edit] std::experimental::source_location
+
+Creation
+
+source_location::source_location
+
+source_location::current
+
+Field Access
+
+source_location::line
+
+source_location::column
+
+source_location::file_name
+
+source_location::function_name
+
+[edit] 
+
+
+
+
+
+
+
+
+
+ Merged into ISO C++ The functionality described on this page was merged into the mainline ISO C++ standard as of 7/2019, see std::source_location (since C++20) 
+
+
+
+
+
+
+
+
+
+ Defined in header <experimental/source_location>
+
+
+
+
+
+
+
+
+
+
+
+ struct source_location;
+
+ 
+
+ (library fundamentals TS v2) 
+
+
+
+
+
+
+
+The source_location class represents certain information about the source code, such as file names, line numbers, and function names. Previously, functions that desire to obtain this information about the call site (for logging, testing, or debugging purposes) must use macros so that predefined macros like __LINE__ and __FILE__ are expanded in the context of the caller. The source_location class provides a better alternative.
+
+
+
+Contents
+
+
+
+1 Member functions
+
+
+
+1.1 Creation
+
+1.2 Other special member functions
+
+1.3 Field access
+
+
+
+
+
+2 Example
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+   Creation 
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a new source_location with implementation-defined values  (public member function) [edit]
+
+
+
+
+
+  current[static]
+
+
+
+  constructs a new source_location  (public static member function) [edit]
+
+
+
+
+
+   Other special member functions 
+
+
+
+
+
+ (destructor)(implicitly declared)
+
+
+
+  destructs a source_location  (public member function) [edit]
+
+
+
+
+
+ operator=(implicitly declared)
+
+
+
+  implicitly declared copy/move assignment operators  (public member function) [edit]
+
+
+
+
+
+   Field access 
+
+
+
+
+
+  line
+
+
+
+  return the line number represented by this object  (public member function) [edit]
+
+
+
+
+
+  column
+
+
+
+  return the column number represented by this object  (public member function) [edit]
+
+
+
+
+
+  file_name
+
+
+
+  return the file name represented by this object  (public member function) [edit]
+
+
+
+
+
+  function_name
+
+
+
+  return the name of the function represented by this object, if any  (public member function) [edit]
+
+
+
+
+
+[edit] Example
+
+Run this code
+
+#include <experimental/source_location>
+
+#include <iostream>
+
+#include <string_view>
+
+ 
+
+void log(const std::string_view message,
+
+         const std::experimental::source_location location =
+
+               std::experimental::source_location::current())
+
+{
+
+    std::cout << "info:"
+
+              << location.file_name() << ':'
+
+              << location.line() << ' '
+
+              << message << '\n';
+
+}
+
+ 
+
+int main()
+
+{
+
+    log("Hello world!");
+
+}
+
+Possible output:
+
+
+
+info:main.cpp:15 Hello world!
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

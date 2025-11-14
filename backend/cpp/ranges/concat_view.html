@@ -1,0 +1,1053 @@
+std::ranges::views::concat, std::ranges::concat_view
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Ranges library
+
+
+
+Range access
+
+
+
+begin
+
+cbegin 
+
+end
+
+cend
+
+
+
+rbegin
+
+crbegin 
+
+rend
+
+crend
+
+
+
+size
+
+ssize 
+
+data
+
+cdata
+
+
+
+reserve_hint(C++26)  
+
+empty
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range conversions
+
+std::from_range_tstd::from_range(C++23)(C++23)    
+
+to(C++23)
+
+
+
+
+
+
+
+Dangling iterator handling
+
+dangling
+
+borrowed_iterator_t
+
+borrowed_subrange_t
+
+
+
+
+
+
+
+
+
+
+
+Range primitives
+
+
+
+range_size_trange_difference_trange_value_t
+
+elements_of(C++23)    
+
+
+
+iterator_tconst_iterator_tsentinel_tconst_sentinel_t(C++23)(C++23)  
+
+
+
+range_reference_trange_const_reference_trange_rvalue_reference_trange_common_reference_t(C++23)
+
+
+
+
+
+
+
+Range concepts
+
+
+
+range
+
+borrowed_range  
+
+common_range
+
+
+
+sized_range
+
+viewable_range  
+
+view
+
+
+
+input_range
+
+output_range
+
+forward_range  
+
+
+
+bidirectional_range  
+
+random_access_range
+
+contiguous_range
+
+
+
+approximately_sized_range(C++26)
+
+constant_range(C++23)
+
+
+
+
+
+
+
+
+
+
+
+Views
+
+
+
+view_interface  
+
+
+
+subrange
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range factories
+
+
+
+empty_viewviews::empty  
+
+
+
+single_viewviews::single  
+
+
+
+basic_istream_viewviews::istream  
+
+
+
+iota_viewviews::iota  
+
+
+
+repeat_viewviews::repeat(C++23)(C++23)
+
+
+
+
+
+
+
+Range adaptors
+
+
+
+views::all_tviews::all
+
+as_rvalue_viewviews::as_rvalue(C++23)(C++23)  
+
+filter_viewviews::filter
+
+transform_viewviews::transform
+
+take_viewviews::take
+
+take_while_viewviews::take_while
+
+common_viewviews::common
+
+views::counted
+
+to_input_viewviews::to_input(C++26)(C++26)
+
+
+
+ref_view
+
+drop_viewviews::drop
+
+drop_while_viewviews::drop_while
+
+lazy_split_viewviews::lazy_split
+
+split_viewviews::split
+
+join_viewviews::join
+
+join_with_viewviews::join_with(C++23)(C++23)  
+
+concat_viewviews::concat(C++26)(C++26)
+
+cache_latest_viewviews::cache_latest(C++26)(C++26)  
+
+
+
+owning_view
+
+reverse_viewviews::reverse
+
+as_const_viewviews::as_const(C++23)(C++23)
+
+elements_viewviews::elements
+
+keys_viewviews::keys
+
+values_viewviews::values
+
+enumerate_viewviews::enumerate(C++23)(C++23)
+
+zip_viewviews::zip(C++23)(C++23)
+
+zip_transform_viewviews::zip_transform(C++23)(C++23)  
+
+
+
+adjacent_viewviews::adjacent(C++23)(C++23)
+
+views::pairwise(C++23)
+
+adjacent_transform_viewviews::adjacent_transform(C++23)(C++23)
+
+views::pairwise_transform(C++23)
+
+chunk_viewviews::chunk(C++23)(C++23)
+
+slide_viewviews::slide(C++23)(C++23)
+
+chunk_by_viewviews::chunk_by(C++23)(C++23)
+
+stride_viewviews::stride(C++23)(C++23)
+
+cartesian_product_viewviews::cartesian_product(C++23)(C++23)
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range generators
+
+std::generator(C++23)    
+
+
+
+Range adaptor closure objects
+
+range_adaptor_closure(C++23)    
+
+
+
+Range adaptor objects
+
+
+
+
+
+
+
+
+
+
+
+Helper items
+
+
+
+copyable-boxmovable-box(until C++23)  (C++23)
+
+
+
+simple-view
+
+non-propagating-cache
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] std::ranges::concat_view
+
+Member functions
+
+concat_view::concat_view
+
+concat_view::begin
+
+concat_view::end
+
+concat_view::size
+
+Deduction guides
+
+Iterator
+
+Member functions
+
+concat_view::iterator::iterator
+
+concat_view::iterator::operator*
+
+concat_view::iterator::operator[]
+
+concat_view::iterator::operator++concat_view::iterator::operator++(int)concat_view::iterator::operator--concat_view::iterator::operator--(int)concat_view::iterator::operator+=concat_view::iterator::operator-=
+
+concat_view::iterator::satisfyconcat_view::iterator::prevconcat_view::iterator::advance-fwdconcat_view::iterator::advance-bwd
+
+Non-member functions
+
+operator==(concat_view::iterator)operator<(concat_view::iterator)operator>(concat_view::iterator)operator<=(concat_view::iterator)operator>=(concat_view::iterator)operator<=>(concat_view::iterator)
+
+operator+(concat_view::iterator)operator-(concat_view::iterator)
+
+iter_move(concat_view::iterator)
+
+iter_swap(concat_view::iterator)
+
+[edit] 
+
+
+
+
+
+ Defined in header <ranges>
+
+
+
+
+
+
+
+
+
+
+
+ template< ranges::input_range... Views >
+
+    requires (ranges::view<Views> && ...) && (sizeof...(Views) > 0) &&
+
+              /*concatable*/<Views...>
+
+class concat_view
+
+
+
+    : public ranges::view_interface<concat_view<Views...>>
+
+ (1) 
+
+ (since C++26) 
+
+
+
+
+
+ namespace views {
+
+    inline constexpr /* unspecified */ concat = /* unspecified */;
+
+
+
+}
+
+ (2) 
+
+ (since C++26) 
+
+
+
+
+
+ Call signature
+
+
+
+
+
+
+
+
+
+ template< ranges::viewable_range... Rs >
+
+    requires /* see below */
+
+
+
+constexpr ranges::view auto concat( Rs&&... rs );
+
+ 
+
+ (since C++26) 
+
+
+
+
+
+ Helper type aliases
+
+
+
+
+
+
+
+
+
+template< class... Rs >
+
+using /*concat-reference-t*/ =
+
+
+
+    ranges::common_reference_t<ranges::range_reference_t<Rs>...>;
+
+ (3)
+
+(exposition only*)
+
+
+
+
+
+template< class... Rs >
+
+using /*concat-value-t*/ = std::common_type_t<ranges::range_value_t<Rs>...>;
+
+ (4)
+
+(exposition only*)
+
+
+
+
+
+template< class... Rs >
+
+using /*concat-rvalue-reference-t*/ =
+
+
+
+    ranges::common_reference_t<ranges::range_rvalue_reference_t<Rs>...>;
+
+ (5)
+
+(exposition only*)
+
+
+
+
+
+ Helper concepts
+
+
+
+
+
+
+
+
+
+template< class Ref, class RRef, class It >
+
+concept /*concat-indirectly-readable-impl*/ = /* see description */;
+
+ (6)
+
+(exposition only*)
+
+
+
+
+
+template< class... Rs >
+
+concept /*concatable*/ = /* see description */;
+
+ (7)
+
+(exposition only*)
+
+
+
+
+
+
+
+concat_view presents a view factory that takes an arbitrary number of ranges as an argument list, and provides a view that starts at the first element of the first range, ends at the last element of the last range, with all range elements sequenced in between respectively in the order given in the arguments, effectively concatenating, or chaining together the argument ranges.
+
+
+
+1) The class template with a template parameter that is a non-empty pack of views each of which models at least input_range and is concatable (7).
+
+2) views::concat is a customization point object. 
+
+Given a pack of subexpressions exprs, the expression views::concat(exprs...) is expression-equivalent to
+
+
+
+ views::all(exprs...) if exprs is a pack with only one element whose type models input_range,
+
+ concat_view(exprs...) otherwise.
+
+
+
+3) Represents the reference type. An extra constraint is needed to make sure that each underlying range’s ranges::range_reference_t is convertible to ranges::common_reference_t.
+
+4) The iterator::value_type that additionally respects the underlying ranges’ value_type to support the cases when the underlying ranges have proxy iterators.
+
+5) The rvalue reference that also correctly supports the cases where underlying iterators customize iter_move.
+
+6) Defines the indirectly-readable concept for the iterator so that concat_view can model input_range.
+
+ Equivalent to: template< class... Rs >
+
+concept /*concat-indirectly-readable*/ = // exposition only
+
+    std::common_reference_with</*concat-reference-t*/<Rs...>&&,
+
+                               /*concat-value-t*/<Rs...>&> &&
+
+    std::common_reference_with</*concat-reference-t*/<Rs...>&&,
+
+                               /*concat-rvalue-reference-t*/<Rs...>&&> &&
+
+    std::common_reference_with</*concat-rvalue-reference-t*/<Rs...>&&,
+
+                               /*concat-value-t*/<Rs...> const&> &&
+
+    (/*concat-indirectly-readable-impl*/</*concat-reference-t*/<Rs...>,
+
+                                         /*concat-rvalue-reference-t*/<Rs...>,
+
+                                         ranges::iterator_t<Rs>> && ...);
+
+ where exposition-only concept /*concat-indirectly-readable-impl*/ is
+
+template< class Ref, class RRef, class It >
+
+concept /*concat-indirectly-readable-impl*/ = // exposition only
+
+    requires(const It it) {
+
+        { *it } -> std::convertible_to<Ref>;
+
+        { ranges::iter_move(it)} -> std::convertible_to<RRef>;
+
+    };
+
+7) Determines whether any two or more different ranges can be adapted into a sequence that itself models a range. Equivalent to: template< class... Rs >
+
+concept /*concatable*/ = requires { // exposition only
+
+        typename /*concat-reference-t*/<Rs...>;
+
+        typename /*concat-value-t*/<Rs...>;
+
+        typename /*concat-rvalue-reference-t*/<Rs...>;
+
+    } && /*concat-indirectly-readable*/<Rs...>;
+
+concat_view always models input_range, and models forward_range, bidirectional_range, random_access_range, or sized_range if each adapted view type models the corresponding concept.
+
+concat_view can be common_range if the last underlying range models common_range.
+
+
+
+Contents
+
+
+
+1 Customization point objects
+
+2 Data members
+
+3 Member functions
+
+
+
+3.1 Inherited from std::ranges::view_interface
+
+
+
+
+
+4 Deduction guides
+
+5 Nested classes
+
+6 Helper templates
+
+7 Notes
+
+8 Example
+
+9 References
+
+10 See also
+
+
+
+
+
+ Customization point objects
+
+The name views::concat denotes a customization point object, which is a const function object of a literal semiregular class type.  See CustomizationPointObject for details.
+
+
+
+[edit] Data members
+
+
+
+
+
+ Member
+
+
+
+ Description
+
+
+
+
+
+ std::tuple<Views...> views_
+
+
+
+ all adapted view objects(exposition-only member object*)
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a concat_view  (public member function) [edit]
+
+
+
+
+
+  begin
+
+
+
+  returns an iterator to the beginning  (public member function) [edit]
+
+
+
+
+
+  end
+
+
+
+  returns an iterator or a sentinel to the end  (public member function) [edit]
+
+
+
+
+
+  size
+
+
+
+  returns the number of elements, provided only if the underlying (adapted) range satisfies sized_range  (public member function) [edit]
+
+
+
+
+
+   Inherited from std::ranges::view_interface 
+
+
+
+
+
+  empty
+
+
+
+  returns whether the derived view is empty, provided only if it satisfies sized_range or forward_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  cbegin(C++23)
+
+
+
+  returns a constant iterator to the beginning of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  cend(C++23)
+
+
+
+  returns a sentinel for the constant iterator of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  operator bool
+
+
+
+  returns whether the derived view is not empty, provided only if ranges::empty is applicable to it  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  front
+
+
+
+  returns the first element in the derived view, provided if it satisfies forward_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  back
+
+
+
+  returns the last element in the derived view, provided only if it satisfies bidirectional_range and common_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  operator[]
+
+
+
+  returns the nth element in the derived view, provided only if it satisfies random_access_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+[edit] Deduction guides
+
+[edit] Nested classes
+
+
+
+
+
+ Class name
+
+
+
+ Definition
+
+
+
+
+
+ iterator
+
+
+
+ the iterator type(exposition-only member class template*)
+
+
+
+
+
+[edit] Helper templates
+
+There is no specialization of ranges::enable_borrowed_range for concat_view, because this would require the iterator implementation to contain a copy of all iterators and sentinels of all underlying ranges at all times.
+
+
+
+[edit] Notes
+
+No argument views::concat() is ill-formed, because there is no reasonable way to determine an element type T. Single argument views::concat(r) is expression equivalent to views::all(r).
+
+
+
+
+
+
+
+Feature-test macro
+
+Value
+
+Std
+
+Feature
+
+
+
+
+
+__cpp_lib_ranges_concat
+
+202403L
+
+(C++26)
+
+std::ranges::concat_view
+
+
+
+[edit] Example
+
+The preliminary version can be checked out on Compiler Explorer.Run this code
+
+#include <cassert>
+
+#include <list>
+
+#include <print>
+
+#include <ranges>
+
+#include <vector>
+
+ 
+
+int main()
+
+{
+
+    std::vector<int> v0{1, 2, 3}, v1{4, 5};
+
+    int a[]{6, 7};
+
+    int i{8};
+
+    auto ie{std::views::single(i)};
+
+ 
+
+    auto con = std::views::concat(v0, v1, a, ie);
+
+    assert(con.size() == v0.size() + v1.size() + std::size(a) + ie.size());
+
+    std::println("con.size(): {}", con.size());
+
+    std::println("con: {}", con);
+
+    con[6] = 42; // con is random_access_range, operator[] returns a reference
+
+    assert(a[1] == 42); // a[1] was modified via con[6]
+
+    std::println("con: {}", con);
+
+ 
+
+    std::list<int> l{7, 8}; // list is bidirectional range
+
+    auto cat = std::views::concat(v0, l);
+
+    std::println("cat: {}", cat);
+
+    // cat[0] = 13; // compile-time error: cat is bidirectional => no operator[]
+
+}
+
+Output:
+
+
+
+con.size(): 8
+
+con: [1, 2, 3, 4, 5, 6, 7, 8]
+
+con: [1, 2, 3, 4, 5, 6, 42, 8]
+
+cat: [1, 2, 3, 7, 8]
+
+
+
+[edit] References
+
+
+
+ C++26 standard (ISO/IEC 14882:2026): 
+
+
+
+ 26.7.18 Concat view [range.concat] 
+
+
+
+
+
+
+
+[edit] See also
+
+
+
+
+
+  ranges::join_viewviews::join(C++20)
+
+
+
+ a view consisting of the sequence obtained from flattening a view of ranges(class template) (range adaptor object)[edit]
+
+
+
+
+
+  ranges::join_with_viewviews::join_with(C++23)
+
+
+
+ a view consisting of the sequence obtained from flattening a view of ranges, with the delimiter in between elements(class template) (range adaptor object)[edit]
+
+
+
+
+
+  ranges::zip_viewviews::zip(C++23)
+
+
+
+ a view consisting of tuples of references to corresponding elements of the adapted views(class template) (customization point object)[edit]
+
+
+
+
+
+  ranges::cartesian_product_viewviews::cartesian_product(C++23)
+
+
+
+ a view consisting of tuples of results calculated by the n-ary cartesian product of the adapted views(class template) (customization point object)[edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

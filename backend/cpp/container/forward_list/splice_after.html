@@ -1,0 +1,573 @@
+std::forward_list[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::forward_list
+
+Member functions
+
+
+
+forward_list::forward_list
+
+forward_list::~forward_list
+
+forward_list::operator=
+
+forward_list::assign
+
+forward_list::assign_range(C++23)  
+
+forward_list::get_allocator
+
+Element access
+
+forward_list::front
+
+Iterators
+
+forward_list::before_beginforward_list::cbefore_begin
+
+forward_list::beginforward_list::cbegin
+
+forward_list::endforward_list::cend
+
+Capacity
+
+forward_list::empty
+
+forward_list::max_size
+
+
+
+Modifiers
+
+forward_list::clear
+
+forward_list::emplace_front
+
+forward_list::push_front
+
+forward_list::insert_after
+
+forward_list::emplace_after
+
+forward_list::erase_after
+
+forward_list::insert_range_after(C++23)
+
+forward_list::prepend_range(C++23)
+
+forward_list::pop_front
+
+forward_list::resize
+
+forward_list::swap
+
+Operations
+
+forward_list::merge
+
+forward_list::splice_after
+
+forward_list::removeforward_list::remove_if
+
+forward_list::reverse
+
+forward_list::unique
+
+forward_list::sort
+
+
+
+Non-member functions
+
+
+
+operator==operator<=>(C++20)
+
+swap(std::forward_list)
+
+erase(std::forward_list)erase_if(std::forward_list)(C++20)(C++20)
+
+
+
+operator!=operator<operator>operator<=operator>=(until C++20)(until C++20)(until C++20)(until C++20)(until C++20)
+
+
+
+Deduction guides (C++17)
+
+[edit] 
+
+
+
+
+
+void splice_after( const_iterator pos, forward_list& other );
+
+ (1)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+void splice_after( const_iterator pos, forward_list&& other );
+
+ (2)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+void splice_after( const_iterator pos, forward_list& other,
+
+                   const_iterator it );
+
+ (3)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+void splice_after( const_iterator pos, forward_list&& other,
+
+                   const_iterator it );
+
+ (4)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+void splice_after( const_iterator pos, forward_list& other,
+
+                   const_iterator first, const_iterator last );
+
+ (5)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+void splice_after( const_iterator pos, forward_list&& other,
+
+                   const_iterator first, const_iterator last );
+
+ (6)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+
+
+Transfers elements from other to *this. The elements are inserted after pos.
+
+If any of the following conditions is satisfied, the behavior is undefined:
+
+
+
+ pos is not in the range (before_begin(), end()).
+
+ get_allocator() == other.get_allocator() is false.
+
+
+
+1,2) Transfers all elements of other. other becomes empty after the operation.
+
+ If *this and other refer to the same object, the behavior is undefined.
+
+3,4) Transfers the element following it.
+
+ *this and other can refer to the same object. In this case, there is no effect if pos == it or pos == ++it is true.
+
+ If ++it is not in the range [begin(), end()), the behavior is undefined.
+
+5,6) Transfers elements in the range (first, last).
+
+ *this and other can refer to the same object.
+
+ If any of the following conditions is satisfied, the behavior is undefined:
+
+ (first, last) is not a valid range in other,
+
+ Any iterator in (first, last) is not dereferenceable.
+
+ pos is in (first, last).
+
+
+
+No iterators or references become invalidated. If *this and other refer to different objects, the iterators to the transferred elements now refer into *this, not into other.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Exceptions
+
+3 Complexity
+
+4 Example
+
+5 Defect reports
+
+6 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ pos
+
+
+
+ -
+
+
+
+ element after which the content will be inserted
+
+
+
+
+
+ other
+
+
+
+ -
+
+
+
+ another container to transfer the content from
+
+
+
+
+
+ it
+
+
+
+ -
+
+
+
+ iterator preceding the iterator to the element to transfer from other to *this
+
+
+
+
+
+ first, last
+
+
+
+ -
+
+
+
+ the pair of iterators defining the  range of elements to transfer from other to *this
+
+
+
+[edit] Exceptions
+
+1-4) Throws nothing.
+
+[edit] Complexity
+
+1,2) Linear in the size of other.
+
+3,4) Constant.
+
+5,6) Linear in std::distance(first, last).
+
+[edit] Example
+
+Run this code
+
+#include <cassert>
+
+#include <forward_list>
+
+ 
+
+int main()
+
+{
+
+    using F = std::forward_list<int>;
+
+ 
+
+    // Demonstrate the meaning of open range (first, last)
+
+    // in overload (5): the first element of l1 is not transferred.
+
+    F l1 = {1, 2, 3, 4, 5};
+
+    F l2 = {10, 11, 12};
+
+ 
+
+    l2.splice_after(l2.cbegin(), l1, l1.cbegin(), l1.cend());
+
+    // Not equivalent to l2.splice_after(l2.cbegin(), l1);
+
+    // which is equivalent to
+
+    // l2.splice_after(l2.cbegin(), l1, l1.cbefore_begin(), l1.end());
+
+ 
+
+    assert((l1 == F{1}));
+
+    assert((l2 == F{10, 2, 3, 4, 5, 11, 12}));
+
+ 
+
+    // Overload (1)
+
+    F x = {1, 2, 3, 4, 5};
+
+    F y = {10, 11, 12};
+
+    x.splice_after(x.cbegin(), y);
+
+    assert((x == F{1, 10, 11, 12, 2, 3, 4, 5}));
+
+    assert((y == F{}));
+
+ 
+
+    // Overload (3)
+
+    x = {1, 2, 3, 4, 5};
+
+    y = {10, 11, 12};
+
+    x.splice_after(x.cbegin(), y, y.cbegin());
+
+    assert((x == F{1, 11, 2, 3, 4, 5}));
+
+    assert((y == F{10, 12}));
+
+ 
+
+    // Overload (5)
+
+    x = {1, 2, 3, 4, 5};
+
+    y = {10, 11, 12};
+
+    x.splice_after(x.cbegin(), y, y.cbegin(), y.cend());
+
+    assert((x == F{1, 11, 12, 2, 3, 4, 5}));
+
+    assert((y == F{10}));
+
+}
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 2045
+
+
+
+C++11
+
+
+
+O(1) splicing could not be guaranteed ifget_allocator() != other.get_allocator()
+
+
+
+the behavior isundefined in this case
+
+
+
+
+
+LWG 2222
+
+
+
+C++11
+
+
+
+the element pointed to by it is not transferred, but pointers, references anditerators referring to it would refer to an element in *this after splicing
+
+
+
+still refer to theelement in other
+
+
+
+[edit] See also
+
+
+
+
+
+  merge
+
+
+
+  merges two sorted lists  (public member function) [edit]
+
+
+
+
+
+  removeremove_if
+
+
+
+  removes elements satisfying specific criteria  (public member function) [edit]
+
+
+
+
+
+  before_begincbefore_begin
+
+
+
+  returns an iterator to the element before beginning  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,309 @@
+std::span[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::span
+
+Member functions
+
+span::span
+
+span::operator=
+
+Element access
+
+span::front
+
+span::back
+
+span::at(C++26)
+
+span::operator[]
+
+span::data
+
+Iterators
+
+span::beginspan::cbegin(C++23)
+
+span::endspan::cend(C++23)
+
+span::rbeginspan::crbegin(C++23)
+
+span::rendspan::crend(C++23)
+
+Observers
+
+span::empty
+
+span::size
+
+span::size_bytes
+
+Subviews
+
+span::first
+
+span::last
+
+span::subspan
+
+Non-member functions
+
+as_bytesas_writable_bytes
+
+Non-member constant
+
+dynamic_extent
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+ constexpr iterator end() const noexcept;
+
+ (1) 
+
+ (since C++20) 
+
+
+
+
+
+ constexpr const_iterator cend() const noexcept;
+
+ (2) 
+
+ (since C++23) 
+
+
+
+
+
+
+
+Returns an iterator past the last element of *this.
+
+This returned iterator only acts as a sentinel. It is not guaranteed to be dereferenceable.
+
+
+
+
+
+
+
+
+
+
+
+Contents
+
+
+
+1 Return value
+
+2 Complexity
+
+3 Example
+
+4 See also
+
+
+
+
+
+[edit] Return value
+
+Iterator past the last element.
+
+
+
+[edit] Complexity
+
+Constant.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <span>
+
+ 
+
+void print(std::span<const int> array)
+
+{
+
+    std::cout << "array = ";
+
+    for (auto it = array.begin(); it != array.end(); ++it)
+
+        std::cout << *it << ' ';
+
+    std::cout << '\n';
+
+}
+
+ 
+
+void set_first_element(std::span<int> sp, int new_value)
+
+{
+
+    if (!sp.empty())
+
+    {
+
+        std::cout << "old *begin = " << *sp.begin() << '\n';
+
+        *sp.begin() = new_value;
+
+        std::cout << "new *begin = " << *sp.begin() << '\n';
+
+    }
+
+}
+
+ 
+
+int main()
+
+{
+
+    int array[]{1, 3, 4, 5};
+
+    print(array);
+
+    set_first_element(array, 2);
+
+    print(array);
+
+}
+
+Output:
+
+
+
+array = 1 3 4 5
+
+old *begin = 1
+
+new *begin = 2
+
+array = 2 3 4 5
+
+
+
+[edit] See also
+
+
+
+
+
+  begincbegin(C++23)
+
+
+
+  returns an iterator to the beginning  (public member function) [edit]
+
+
+
+
+
+  endcend(C++11)(C++14)
+
+
+
+  returns an iterator to the end of a container or array  (function template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

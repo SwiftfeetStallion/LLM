@@ -1,0 +1,165 @@
+std::experimental::scope_exit[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals v3
+
+experimental::scope_exit
+
+experimental::scope_fail
+
+experimental::scope_success
+
+experimental::unique_resource
+
+[edit] std::experimental::scope_exit
+
+Member functions
+
+scope_exit::scope_exit
+
+scope_exit::~scope_exit
+
+Modifiers
+
+scope_exit::release
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+ void release() noexcept;
+
+ 
+
+ (library fundamentals TS v3) 
+
+
+
+
+
+
+
+Makes the scope_exit inactive.
+
+Once a scope_exit is inactive, it cannot become active again, and will not call its exit function on destruction.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Notes
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+(none)
+
+
+
+[edit] Return value
+
+(none)
+
+
+
+[edit] Notes
+
+release may be either manually called or automatically called by scope_exit's move constructor.
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] See also
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a new scope_exit  (public member function) [edit]
+
+
+
+
+
+  (destructor)
+
+
+
+  calls the exit function when the scope is exited if the scope_exit is active, then destroys the scope_exit  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,335 @@
+std::experimental::ranges::identity
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Ranges
+
+Concepts
+
+General utilities
+
+Iterators
+
+Ranges
+
+Algorithms
+
+[edit] General utilities library
+
+ Utility components
+
+
+
+swap
+
+
+
+exchange
+
+
+
+ Function objects
+
+
+
+invoke
+
+identity
+
+
+
+equal_to
+
+not_equal_to
+
+
+
+greater
+
+less
+
+
+
+greater_equal
+
+less_equal
+
+
+
+ Metaprogramming and type traits
+
+
+
+is_swappable_withis_swappable
+
+
+
+is_nothrow_swappable_withis_nothrow_swappable
+
+
+
+common_reference
+
+common_type
+
+
+
+ Tagged pairs and tuples
+
+
+
+TagSpecifier
+
+TaggedType
+
+                          
+
+
+
+tagged
+
+ tag specifiers
+
+                                      
+
+
+
+tagged_pair
+
+make_tagged_pair
+
+                          
+
+
+
+tagged_tuple
+
+make_tagged_tuple
+
+
+
+
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/ranges/functional>
+
+
+
+
+
+
+
+
+
+
+
+ struct identity;
+
+ 
+
+ (ranges TS) 
+
+
+
+
+
+
+
+ranges::identity is a function object type whose operator() returns its argument unchanged. It is used as the default projection for all Ranges TS algorithms.
+
+
+
+Contents
+
+
+
+1 Nested types
+
+2 Member functions
+
+3 std::experimental::ranges::identity::operator()
+
+
+
+3.1 Parameters
+
+3.2 Return value
+
+3.3 Example
+
+
+
+
+
+
+
+
+
+[edit] Nested types
+
+
+
+
+
+ Nested type
+
+
+
+ Definition
+
+
+
+
+
+ is_transparent
+
+
+
+ unspecified
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  operator()
+
+
+
+  returns the argument unchanged  (public member function)
+
+
+
+
+
+
+
+ std::experimental::ranges::identity::operator()
+
+
+
+
+
+ template< class T >
+
+constexpr T&& operator()( T&& t ) const noexcept;
+
+ 
+
+ 
+
+
+
+
+
+
+
+Returns std::forward<T>(t).
+
+
+
+ Parameters
+
+
+
+
+
+ t
+
+
+
+ -
+
+
+
+ argument to return
+
+
+
+ Return value
+
+std::forward<T>(t).
+
+
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+
+
+
+
+ 
+
+
+
+
+
+                    

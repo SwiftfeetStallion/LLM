@@ -1,0 +1,283 @@
+std::experimental::ranges::Copyable
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Ranges
+
+Concepts
+
+General utilities
+
+Iterators
+
+Ranges
+
+Algorithms
+
+[edit] Concepts library
+
+ Core language concepts
+
+
+
+Same
+
+DerivedFrom
+
+ConvertibleTo
+
+
+
+CommonReference
+
+Common
+
+                              
+
+
+
+Integral
+
+SignedIntegral
+
+UnsignedIntegral
+
+
+
+Assignable
+
+SwappableSwappableWith
+
+
+
+ Object concepts
+
+
+
+Destructible
+
+Constructible
+
+DefaultConstructible
+
+
+
+MoveConstructible
+
+CopyConstructible
+
+                              
+
+
+
+Movable
+
+Copyable
+
+                              
+
+
+
+Semiregular
+
+Regular
+
+
+
+
+
+
+
+ Comparison concepts
+
+
+
+Boolean
+
+
+
+
+
+
+
+WeaklyEqualityComparableWith
+
+
+
+
+
+
+
+EqualityComparableEqualityComparableWith
+
+
+
+StrictTotallyOrderedStrictTotallyOrderedWith
+
+
+
+ Callable concepts
+
+
+
+InvocableRegularInvocable
+
+
+
+Predicate
+
+                                        
+
+
+
+Relation
+
+                              
+
+
+
+StrictWeakOrder
+
+
+
+
+
+
+
+ URNG concept
+
+
+
+UniformRandomNumberGenerator
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/ranges/concepts>
+
+
+
+
+
+
+
+
+
+
+
+ template< class T >
+
+concept bool Copyable =
+
+    CopyConstructible<T> &&
+
+    Movable<T> &&
+
+
+
+    Assignable<T&, const T&>;
+
+ 
+
+ (ranges TS) 
+
+
+
+
+
+
+
+The concept Copyable<T> specifies that T is an Movable object type that can also copied (that is, it supports copy construction and copy assignment).
+
+
+
+[edit] Notes
+
+It is intended that Copyable<T> also requires Assignable<T&, const T> (assignment from const rvalue) and Assignable<T&, T&> (assignment from non-const lvalue) to be satisfied.
+
+
+
+[edit] See also
+
+
+
+
+
+  Movable
+
+
+
+  specifies that an object of a type can be moved and swapped  (concept) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

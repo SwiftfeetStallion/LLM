@@ -1,0 +1,215 @@
+std::experimental::propagate_const[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals v2
+
+experimental::propagate_const
+
+experimental::not_fn
+
+experimental::observer_ptr
+
+experimental::make_array
+
+experimental::to_array
+
+experimental::ostream_joiner
+
+experimental::gcd
+
+experimental::lcm
+
+experimental::source_location
+
+experimental::randint
+
+detection idiom
+
+uniform container erasure
+
+logical operator type traits
+
+[edit] std::experimental::propagate_const
+
+Member functions
+
+propagate_const::propagate_const
+
+propagate_const::operator=
+
+propagate_const::swap
+
+Observers
+
+propagate_const::get
+
+propagate_const::operator bool
+
+propagate_const::operator*propagate_const::operator->
+
+propagate_const::operator element_type*propagate_const::operator const element_type*
+
+Non-member functions
+
+operator==operator!=operator<operator>operator<=operator>operator>=
+
+swap
+
+get_underlying
+
+Helper classes
+
+std::hash
+
+std::equal_tostd::not_equal_tostd::lessstd::greaterstd::less_equalstd::greater_equal
+
+[edit] 
+
+
+
+
+
+ constexpr element_type& operator*();
+
+ (1) 
+
+ (library fundamentals TS v2) 
+
+
+
+
+
+ constexpr const element_type& operator*() const;
+
+ (2) 
+
+ (library fundamentals TS v2) 
+
+
+
+
+
+ constexpr element_type* operator->();
+
+ (3) 
+
+ (library fundamentals TS v2) 
+
+
+
+
+
+ constexpr const element_type* operator->() const;
+
+ (4) 
+
+ (library fundamentals TS v2) 
+
+
+
+
+
+
+
+Provides access to the object pointed to by the pointer-like object *this wraps.
+
+The behavior of these functions is undefined if get() == nullptr.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Example
+
+4 See also
+
+
+
+
+
+[edit] Parameters
+
+(none)
+
+
+
+[edit] Return value
+
+1,2) The object pointed to by the wrapped pointer-like object, i.e., *get().
+
+3,4) A pointer to the object pointed to by the wrapped pointer-like object, i.e., get().
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] See also
+
+
+
+
+
+  get
+
+
+
+  returns a pointer to the object pointed to by the wrapped pointer  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

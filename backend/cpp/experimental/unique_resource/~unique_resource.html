@@ -1,0 +1,139 @@
+std::experimental::unique_resource[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals v3
+
+experimental::scope_exit
+
+experimental::scope_fail
+
+experimental::scope_success
+
+experimental::unique_resource
+
+[edit] std::experimental::unique_resource
+
+Member functions
+
+unique_resource::unique_resource
+
+unique_resource::~unique_resource
+
+unique_resource::operator=
+
+Modifiers
+
+unique_resource::release
+
+unique_resource::reset
+
+Observers
+
+unique_resource::get
+
+unique_resource::get_deleter
+
+unique_resource::operator*unique_resource::operator->
+
+Non-member functions
+
+make_unique_resource_checked
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+ ~unique_resource();
+
+ 
+
+ (library fundamentals TS v3) 
+
+
+
+
+
+
+
+Disposes the resource by calling the deleter with the underlying resource handle if the unique_resource owns it, equivalent to calling reset(). Then destroys the stored resource handle and the deleter.
+
+
+
+[edit] See also
+
+
+
+
+
+  reset
+
+
+
+  disposes or replaces the managed resource  (public member function) [edit]
+
+
+
+
+
+  (destructor)
+
+
+
+  destructs the managed object if such is present  (public member function of std::unique_ptr<T,Deleter>) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

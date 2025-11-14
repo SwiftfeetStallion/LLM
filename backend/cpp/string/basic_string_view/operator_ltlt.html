@@ -1,0 +1,303 @@
+operator[edit] Strings library
+
+Classes
+
+basic_string
+
+basic_string_view(C++17)
+
+char_traits
+
+[edit] std::basic_string_view
+
+
+
+Member functions
+
+basic_string_view::basic_string_view  
+
+basic_string_view::operator=
+
+Iterators
+
+basic_string_view::beginbasic_string_view::cbegin
+
+basic_string_view::endbasic_string_view::cend
+
+basic_string_view::rbeginbasic_string_view::crbegin
+
+basic_string_view::rendbasic_string_view::crend
+
+Capacity
+
+basic_string_view::sizebasic_string_view::length
+
+basic_string_view::max_size
+
+basic_string_view::empty
+
+Operations
+
+basic_string_view::copy
+
+basic_string_view::substr
+
+basic_string_view::compare
+
+basic_string_view::starts_with(C++20)
+
+basic_string_view::ends_with(C++20)
+
+basic_string_view::contains(C++23)
+
+basic_string_view::find
+
+basic_string_view::rfind
+
+basic_string_view::find_first_of
+
+basic_string_view::find_last_of
+
+basic_string_view::find_first_not_of
+
+basic_string_view::find_last_not_of
+
+
+
+Element access
+
+basic_string_view::at
+
+basic_string_view::operator[]
+
+basic_string_view::front
+
+basic_string_view::back
+
+basic_string_view::data
+
+Modifiers
+
+basic_string_view::remove_prefix
+
+basic_string_view::remove_suffix
+
+basic_string_view::swap
+
+Constants
+
+basic_string_view::npos
+
+Non-member functions
+
+operator==operator!=operator<operator>operator<=operator>=operator<=>(until C++20)(until C++20)(until C++20)(until C++20)(until C++20)(C++20)
+
+operator<<
+
+operator""sv
+
+Helper classes
+
+hash<std::string_view>hash<std::wstring_view>hash<std::u8string_view>hash<std::u16string_view>hash<std::u32string_view>(C++20)
+
+Deduction guides (C++20)
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <string_view>
+
+
+
+
+
+
+
+
+
+
+
+ template< class CharT, class Traits >
+
+std::basic_ostream<CharT, Traits>&
+
+    operator<<( std::basic_ostream<CharT, Traits>& os, 
+
+
+
+                std::basic_string_view<CharT, Traits> v );
+
+ 
+
+ (since C++17) 
+
+
+
+
+
+
+
+Behaves as a FormattedOutputFunction. After constructing and checking the sentry object, determines the output format padding.
+
+Then stores each character from the resulting sequence seq (the contents of v with padding) to the output stream os as if by calling os.rdbuf()->sputn(seq, n), where n is std::max(os.width(), str.size()).
+
+Finally, calls os.width(0) to cancel the effects of std::setw, if any.
+
+
+
+Contents
+
+
+
+1 Exceptions
+
+2 Parameters
+
+3 Return value
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Exceptions
+
+May throw std::ios_base::failure if an exception is thrown during output.
+
+
+
+[edit] Parameters
+
+
+
+
+
+ os
+
+
+
+ -
+
+
+
+ a character output stream
+
+
+
+
+
+ v
+
+
+
+ -
+
+
+
+ the view to be inserted
+
+
+
+[edit] Return value
+
+os
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iomanip>
+
+#include <iostream>
+
+#include <string_view>
+
+ 
+
+int main()
+
+{
+
+    constexpr std::string_view s{"abc"};
+
+    constexpr int width{5};
+
+ 
+
+    // fill/left/right properties are kept until changed
+
+    std::cout << std::setfill('-');
+
+    std::cout << std::left;
+
+ 
+
+    std::cout << '[' << std::setw(width) << s << "]\n";
+
+    std::cout << '[' << std::setw(width) << s << "]\n";
+
+ 
+
+    std::cout << std::right;
+
+    std::cout << '[' << std::setw(width) << s << "]\n";
+
+ 
+
+    // width is reset after each call
+
+    std::cout << '[' << s << "]\n";
+
+}
+
+Output:
+
+
+
+[abc--]
+
+[abc--]
+
+[--abc]
+
+[abc]
+
+
+
+[edit] See also
+
+
+
+
+
+  operator<<operator>>
+
+
+
+  performs stream input and output on strings  (function template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

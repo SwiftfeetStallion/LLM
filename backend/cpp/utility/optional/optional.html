@@ -1,0 +1,933 @@
+std::optional[edit] Utilities library
+
+
+
+Language support
+
+Type support (basic types, RTTI)
+
+Library feature-test macros (C++20)
+
+Program utilities
+
+Variadic functions
+
+initializer_list(C++11)
+
+is_constant_evaluated(C++20)
+
+is_within_lifetime(C++26)
+
+source_location(C++20)
+
+Coroutine support (C++20)
+
+Contract support (C++26)
+
+Three-way comparison
+
+three_way_comparablethree_way_comparable_with(C++20)(C++20)
+
+strong_ordering(C++20)
+
+weak_ordering(C++20)
+
+partial_ordering(C++20)
+
+common_comparison_category(C++20)
+
+compare_three_way_result(C++20)
+
+compare_three_way(C++20)
+
+strong_order(C++20)
+
+weak_order(C++20)
+
+partial_order(C++20)
+
+compare_strong_order_fallback(C++20)
+
+compare_weak_order_fallback(C++20)
+
+compare_partial_order_fallback(C++20)  
+
+
+
+
+
+is_eqis_ltis_lteq(C++20)(C++20)(C++20)  
+
+
+
+is_neqis_gtis_gteq(C++20)(C++20)(C++20)
+
+
+
+
+
+
+
+
+
+
+
+General utilities
+
+
+
+Function objects
+
+Bit manipulation (C++20)
+
+C-style bit manipulation (C++26)
+
+bitset
+
+hash(C++11)
+
+
+
+Relational operators (deprecated in C++20)
+
+
+
+
+
+rel_ops::operator!=rel_ops::operator>  
+
+
+
+rel_ops::operator<=rel_ops::operator>=
+
+
+
+Integer comparison functions
+
+
+
+cmp_equalcmp_lesscmp_less_than(C++20)(C++20)(C++20)  
+
+
+
+cmp_not_equalcmp_greatercmp_greater_than(C++20)(C++20)(C++20)
+
+
+
+in_range(C++20)
+
+Swap and type operations
+
+
+
+swap
+
+ranges::swap(C++20)
+
+exchange(C++14)
+
+declval(C++11)
+
+to_underlying(C++23)
+
+
+
+forward(C++11)
+
+forward_like(C++23)
+
+move(C++11)
+
+move_if_noexcept(C++11)
+
+as_const(C++17)
+
+
+
+Common vocabulary types
+
+
+
+pair
+
+tuple(C++11)
+
+optional(C++17)
+
+any(C++17)
+
+variant(C++17)
+
+
+
+tuple_size(C++11)
+
+tuple_element(C++11)
+
+apply(C++17)
+
+make_from_tuple(C++17)
+
+expected(C++23)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] std::optional
+
+Member functions
+
+optional::optional
+
+optional::~optional
+
+optional::operator=
+
+Observers
+
+optional::operator->optional::operator*
+
+optional::operator booloptional::has_value
+
+optional::value
+
+optional::value_or
+
+Iterators
+
+optional::begin(C++26)
+
+optional::end(C++26)
+
+Monadic operations
+
+optional::and_then(C++23)
+
+optional::transform(C++23)
+
+optional::or_else(C++23)
+
+Modifiers
+
+optional::emplace
+
+optional::swap
+
+optional::reset
+
+Non-member functions
+
+operator==operator!=operator<operator<=operator>operator>=operator<=>(C++20)
+
+make_optional
+
+swap(std::optional)
+
+Deduction guides
+
+Helper classes
+
+hash<std::optional>
+
+nullopt_t
+
+in_place_t
+
+bad_optional_access
+
+Helper objects
+
+nullopt
+
+in_place
+
+[edit] 
+
+
+
+
+
+constexpr optional() noexcept;
+
+ (1)
+
+(since C++17)
+
+
+
+
+
+constexpr optional( std::nullopt_t ) noexcept;
+
+ (2)
+
+(since C++17)
+
+
+
+
+
+constexpr optional( const optional& other );
+
+ (3)
+
+(since C++17)
+
+
+
+
+
+constexpr optional( optional&& other ) noexcept(/* see below */);
+
+ (4)
+
+(since C++17)
+
+
+
+
+
+template< class U >
+
+optional( const optional<U>& other );
+
+ (5)
+
+(since C++17) (constexpr since C++20) (conditionally explicit)
+
+
+
+
+
+template< class U >
+
+optional( optional<U>&& other );
+
+ (6)
+
+(since C++17) (constexpr since C++20) (conditionally explicit)
+
+
+
+
+
+template< class... Args >
+
+constexpr explicit optional( std::in_place_t, Args&&... args );
+
+ (7)
+
+(since C++17)
+
+
+
+
+
+template< class U, class... Args >
+
+constexpr explicit optional( std::in_place_t,
+
+                             std::initializer_list<U> ilist,
+
+
+
+                             Args&&... args );
+
+ (8)
+
+(since C++17)
+
+
+
+
+
+template< class U = std::remove_cv_t<T> >
+
+constexpr optional( U&& value );
+
+ (9)
+
+(since C++17) (conditionally explicit)
+
+
+
+
+
+
+
+Constructs a new optional object.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Effects
+
+3 Constraints and supplement information
+
+4 Exceptions
+
+5 Deduction guides
+
+6 Notes
+
+7 Example
+
+8 Defect reports
+
+9 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ other
+
+
+
+ -
+
+
+
+ another optional object whose contained value is copied
+
+
+
+
+
+ value
+
+
+
+ -
+
+
+
+ value with which to initialize the contained value
+
+
+
+
+
+ args...
+
+
+
+ -
+
+
+
+ arguments with which to initialize the contained value
+
+
+
+
+
+ ilist
+
+
+
+ -
+
+
+
+ initializer list with which to initialize the contained value
+
+
+
+[edit] Effects
+
+
+
+
+
+ Overload 
+
+
+
+Initialization method
+
+
+
+Initializer for the contained value
+
+
+
+has_value() after construction
+
+
+
+
+
+(1)
+
+
+
+ N/A
+
+
+
+ -
+
+
+
+false
+
+
+
+
+
+(2)
+
+
+
+
+
+(3)
+
+
+
+Direct (non-list)
+
+
+
+*other
+
+
+
+other.has_value()
+
+ If false, the contained value is not initialized.
+
+
+
+
+
+
+
+(4)
+
+
+
+std::move(*other)
+
+
+
+
+
+(5)
+
+
+
+*other
+
+
+
+
+
+(6)
+
+
+
+std::move(*other)
+
+
+
+
+
+(7)
+
+
+
+std::forward<Args>(args)...
+
+
+
+true
+
+
+
+
+
+(8)
+
+
+
+ilist, std::forward<Args>(args)...
+
+
+
+
+
+(9)
+
+
+
+std::forward<U>(value)
+
+
+
+[edit] Constraints and supplement information
+
+3) If std::is_copy_constructible_v<T> is false, the constructor is defined as deleted.
+
+ If std::is_trivially_copy_constructible_v<T> is true, the constructor is trivial.
+
+4) This overload participates in overload resolution only if std::is_move_constructible_v<T> is true.
+
+ If std::is_trivially_move_constructible_v<T> is true, the constructor is trivial.
+
+5) This overload participates in overload resolution only if all following conditions are satisfied:
+
+ std::is_constructible_v<T, const U&> is true.
+
+ If T is not (possibly cv-qualified) bool, the following 8 values are all false[1]:
+
+ std::is_constructible_v<T, std::optional<U>&>
+
+ std::is_constructible_v<T, const std::optional<U>&>
+
+ std::is_constructible_v<T, std::optional<U>&&>
+
+ std::is_constructible_v<T, const std::optional<U>&&>
+
+ std::is_convertible_v<std::optional<U>&, T>
+
+ std::is_convertible_v<const std::optional<U>&, T>
+
+ std::is_convertible_v<std::optional<U>&&, T>
+
+ std::is_convertible_v<const std::optional<U>&&, T>
+
+
+
+
+
+ This overload is declared as if with explicit(!std::is_convertible_v<const U&, T>).
+
+6) This overload participates in overload resolution only if all following conditions are satisfied:
+
+ std::is_constructible_v<T, U> is true.
+
+ If T is not (possibly cv-qualified) bool, the following 8 values are all false[1]:
+
+ std::is_constructible_v<T, std::optional<U>&>
+
+ std::is_constructible_v<T, const std::optional<U>&>
+
+ std::is_constructible_v<T, std::optional<U>&&>
+
+ std::is_constructible_v<T, const std::optional<U>&&>
+
+ std::is_convertible_v<std::optional<U>&, T>
+
+ std::is_convertible_v<const std::optional<U>&, T>
+
+ std::is_convertible_v<std::optional<U>&&, T>
+
+ std::is_convertible_v<const std::optional<U>&&, T>
+
+
+
+
+
+ This overload is declared as if with explicit(!std::is_convertible_v<U, T>).
+
+7) This overload participates in overload resolution only if std::is_constructible_v<T, Args...> is true.
+
+ If T’s constructor selected for the initialization is a constexpr constructor, this constructor is also a constexpr constructor.
+
+8) This overload participates in overload resolution only if std::is_constructible_v<T, std::initializer_list<U>&, Args...> is true.
+
+ If T’s constructor selected for the initialization is a constexpr constructor, this constructor is also a constexpr constructor.
+
+9) This overload participates in overload resolution only if all following conditions are satisfied:
+
+ std::is_constructible_v<T, U> is true.
+
+ std::decay_t<U>(until C++20)std::remove_cvref_t<U>(since C++20) is neither std::in_place_t nor std::optional<T>.
+
+ If T is (possibly cv-qualified) bool, std::decay_t<U>(until C++20)std::remove_cvref_t<U>(since C++20) is not a specialization of std::optional.
+
+
+
+ This overload is declared as if with explicit(!std::is_convertible_v<U, T>).
+
+ If T’s constructor selected for the initialization is a constexpr constructor, this constructor is also a constexpr constructor.
+
+
+
+↑ 1.0 1.1 In other words, T is neither constructible nor convertible from any expression of type (possibly const-qualified) std::optional<U>
+
+
+
+
+
+[edit] Exceptions
+
+3) Throws any exception thrown by the constructor of T.
+
+4) Throws any exception thrown by the constructor of T. Has the following noexcept specification:  
+
+noexcept(std::is_nothrow_move_constructible<T>::value)
+
+5-9) Throws any exception thrown by the constructor of T.
+
+[edit] Deduction guides
+
+[edit] Notes
+
+Before the resolution of LWG issue 3836, constructing an std::optional<bool> from std::optional<U> would select overload (9) instead of overloads (5,6) if U is not bool. This is because overloads (5,6) did not participate in overload resolution if T (bool in this case) can be constructed or converted from std::optional<U>, but std::optional::operator bool makes the conversion possible for any U.
+
+As a result, the constructed std::optional<bool> always contains a value. That value is determined by whether the provided std::optional<U> object contains a value, rather than the bool value direct-initialized from the contained value:
+
+
+
+std::optional<bool> op_false(false);
+
+std::optional<int> op_zero(0);
+
+ 
+
+std::optional<int> from_bool(op_false); // OK: contains 0 (initialized from false)
+
+std::optional<bool> from_int(op_zero);  // DEFECT (LWG 3836): contains true because
+
+                                        // op_zero contains a value, even if initializing
+
+                                        // bool from that value gives false
+
+
+
+
+
+Feature-test macro
+
+
+
+Value
+
+
+
+Std
+
+
+
+Feature
+
+
+
+
+
+__cpp_lib_optional
+
+202106L
+
+(C++20)(DR20)
+
+Fully constexpr (5,6)
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <optional>
+
+#include <string>
+
+ 
+
+int main()
+
+{
+
+    std::optional<int> o1, // empty
+
+                       o2 = 1, // init from rvalue
+
+                       o3 = o2; // copy-constructor
+
+ 
+
+    // calls std::string( initializer_list<CharT> ) constructor
+
+    std::optional<std::string> o4(std::in_place, {'a', 'b', 'c'});
+
+ 
+
+    // calls std::string( size_type count, CharT ch ) constructor
+
+    std::optional<std::string> o5(std::in_place, 3, 'A');
+
+ 
+
+    // Move-constructed from std::string using deduction guide to pick the type
+
+ 
+
+    std::optional o6(std::string{"deduction"});
+
+ 
+
+    std::cout << *o2 << ' ' << *o3 << ' ' << *o4 << ' ' << *o5  << ' ' << *o6 << '\n';
+
+}
+
+Output:
+
+
+
+1 1 abc AAA deduction
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 3836
+
+
+
+C++17
+
+
+
+when constructing an std::optional<bool>from std::optional<U>, the overload resolutionwould select overload (9) if U is not bool
+
+
+
+always selects theconverting copy/moveconstructor in this case
+
+
+
+
+
+LWG 3886
+
+
+
+C++17
+
+
+
+the default template argument of overload (9) was T
+
+
+
+changed to std::remove_cv_t<T>
+
+
+
+
+
+P0602R4
+
+
+
+C++17
+
+
+
+copy/move constructors might not be trivialeven if underlying constructor is trivial
+
+
+
+required topropagate triviality
+
+
+
+
+
+P2231R1
+
+
+
+C++20
+
+
+
+overloads (5,6) from another std::optional was not constexpr
+
+
+
+made constexpr
+
+
+
+[edit] See also
+
+
+
+
+
+  make_optional(C++17)
+
+
+
+  creates an optional object  (function template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

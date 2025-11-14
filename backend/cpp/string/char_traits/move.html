@@ -1,0 +1,203 @@
+std::char_traits[edit] Strings library
+
+Classes
+
+basic_string
+
+basic_string_view(C++17)
+
+char_traits
+
+[edit] std::char_traits
+
+Member functions
+
+char_traits::assign
+
+char_traits::eqchar_traits::lt
+
+char_traits::move
+
+char_traits::copy
+
+char_traits::compare
+
+char_traits::length
+
+char_traits::find
+
+char_traits::to_char_type
+
+char_traits::to_int_type
+
+char_traits::eq_int_type
+
+char_traits::eof
+
+char_traits::not_eof
+
+[edit] 
+
+
+
+
+
+ static char_type*
+
+    move( char_type* dest, const char_type* src, std::size_t count );
+
+ 
+
+ (constexpr since C++20) 
+
+
+
+
+
+
+
+Copies count characters from the character string pointed to by src to the character string pointed to by dest.
+
+Performs correctly even if the ranges [src, src + count) and [dest, dest + count) overlap.
+
+See CharTraits for the general requirements on character traits for X::move.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Exceptions
+
+4 Complexity
+
+5 Defect reports
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ dest
+
+
+
+ -
+
+
+
+ pointer to a character string to copy to
+
+
+
+
+
+ src
+
+
+
+ -
+
+
+
+ pointer to a character string to copy from
+
+
+
+
+
+ count
+
+
+
+ -
+
+
+
+ the number of characters to copy
+
+
+
+[edit] Return value
+
+dest
+
+
+
+[edit] Exceptions
+
+Throws nothing.
+
+
+
+[edit] Complexity
+
+Linear in count.
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 7
+
+
+
+C++98
+
+
+
+the copy was guaranteed to perform correctly ifsrc is in [dest, dest + count), but not the otherway round (i.e. dest is in [src, src + count))
+
+
+
+also guaranteed
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

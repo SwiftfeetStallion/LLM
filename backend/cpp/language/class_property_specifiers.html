@@ -1,0 +1,809 @@
+class property specifiers (since C++26)
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] C++ language
+
+
+
+General topics
+
+
+
+Preprocessor
+
+Comments
+
+
+
+Keywords
+
+Escape sequences
+
+
+
+Flow control
+
+Conditional execution statements
+
+
+
+if
+
+
+
+switch
+
+
+
+Iteration statements (loops)
+
+
+
+for
+
+range-for (C++11)
+
+
+
+while
+
+do-while
+
+
+
+Jump statements
+
+
+
+continue - break
+
+
+
+goto - return
+
+
+
+Functions
+
+Function declaration
+
+Lambda function expression
+
+inline specifier
+
+Dynamic exception specifications (until C++17*)
+
+noexcept specifier (C++11)
+
+Exceptions
+
+
+
+throw-expression
+
+try block
+
+
+
+
+
+
+
+catch handler
+
+
+
+Namespaces
+
+
+
+Namespace declaration  
+
+
+
+Namespace aliases
+
+
+
+Types
+
+
+
+Fundamental types
+
+Enumeration types
+
+Function types
+
+
+
+Class/struct types
+
+Union types
+
+
+
+
+
+
+
+Specifiers
+
+
+
+const/volatile
+
+decltype (C++11)
+
+auto (C++11)
+
+
+
+constexpr (C++11)
+
+consteval (C++20)
+
+constinit (C++20)
+
+
+
+Storage duration specifiers
+
+Initialization
+
+
+
+Default-initialization
+
+Value-initialization
+
+Zero-initialization
+
+Copy-initialization
+
+Direct-initialization
+
+
+
+Aggregate initialization
+
+List-initialization (C++11)  
+
+Constant initialization
+
+Reference initialization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Expressions
+
+
+
+Value categories
+
+Order of evaluation
+
+
+
+Operators
+
+Operator precedence
+
+
+
+Alternative representations
+
+Literals
+
+Boolean - Integer - Floating-point
+
+Character - String - nullptr (C++11)
+
+User-defined (C++11)
+
+Utilities
+
+Attributes (C++11)
+
+Types
+
+typedef declaration
+
+Type alias declaration (C++11)
+
+Casts
+
+
+
+Implicit conversions
+
+static_cast
+
+const_cast
+
+
+
+Explicit conversions
+
+dynamic_cast
+
+reinterpret_cast
+
+
+
+Memory allocation
+
+
+
+new expression
+
+
+
+delete expression
+
+
+
+Classes
+
+
+
+Class declaration
+
+Constructors
+
+this pointer
+
+
+
+Access specifiers
+
+friend specifier
+
+
+
+
+
+
+
+Class-specific function properties
+
+
+
+Virtual function
+
+override specifier (C++11)  
+
+final specifier (C++11)
+
+
+
+explicit (C++11)
+
+static
+
+
+
+
+
+
+
+Special member functions
+
+
+
+Default constructor
+
+Copy constructor
+
+Move constructor (C++11)
+
+
+
+Copy assignment
+
+Move assignment (C++11)
+
+Destructor
+
+
+
+Templates
+
+
+
+Class template
+
+Function template
+
+
+
+Template specialization
+
+Parameter packs (C++11)
+
+
+
+Miscellaneous
+
+
+
+Inline assembly
+
+
+
+History of C++
+
+
+
+
+
+[edit]  Classes
+
+
+
+General
+
+Overview
+
+class/struct types
+
+union types
+
+Injected-class-name
+
+Class property specifiers (C++26)
+
+Members
+
+Data members
+
+Static members
+
+The this pointer
+
+Nested classes
+
+Member templates
+
+Bit-fields
+
+using-declarations
+
+Member functions
+
+Member access specifiers
+
+Constructors and member initializer lists
+
+Default member initializer (C++11)
+
+friend specifier
+
+explicit specifier
+
+Converting constructor
+
+Special member functions
+
+Default constructor
+
+Copy constructor
+
+Move constructor (C++11)
+
+Copy assignment operator
+
+Move assignment operator (C++11)
+
+Destructor
+
+Inheritance
+
+Base and derived classes
+
+Empty base optimization (EBO)
+
+Virtual member functions
+
+Pure virtual functions and abstract classes
+
+override specifier (C++11)
+
+final specifier (C++11)
+
+
+
+[edit] 
+
+Specifies that a class is replaceable ﻿ (replaceable_if_eligible), trivially relocatable ﻿ (trivially_relocatable_if_eligible), or that a class cannot be derived from (final).
+
+
+
+Contents
+
+
+
+1 Syntax
+
+2 Explanation
+
+
+
+2.1 final specifier
+
+2.2 replaceable_if_eligible specifier
+
+2.3 trivially_relocatable_if_eligible specifier
+
+2.4 Replaceability
+
+2.5 Eligibility for replacement
+
+2.6 Trivial relocatability
+
+2.7 Eligibility for trivial relocation
+
+2.8 Default movability
+
+
+
+
+
+3 Keywords
+
+4 Note
+
+5 Example
+
+6 References
+
+7 See also
+
+
+
+
+
+[edit] Syntax
+
+Class property specifiers appear at the beginning of the class definition, immediately after the name of the class, and cannot appear in a class declaration.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ class-key attr ﻿(optional) class-head-name class-prop-specifier-seq ﻿(optional) base-clause ﻿(optional)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ class-prop-specifier-seq
+
+
+
+ -
+
+
+
+ one or more class-prop-specifier ﻿s, but each can appear at most once.
+
+
+
+
+
+ class-prop-specifier
+
+
+
+ -
+
+
+
+ one of final, replaceable_if_eligible and trivially_relocatable_if_eligible.
+
+
+
+Before (C++26), there was the class-virt-specifier ﻿(optional) in place of class-prop-specifier-seq ﻿(optional), which only allowed the final for final specifier (since C++11).
+
+
+
+[edit] Explanation
+
+final, replaceable_if_eligible and trivially_relocatable_if_eligible are identifiers with a special meaning when used in a class head. In other contexts, it is not reserved and may be used to name objects and functions.
+
+
+
+[edit] final specifier
+
+final specifies that this class may not appear in the base-specifier-list of another class definition (in other words, cannot be derived from). The program is ill-formed otherwise (a compile-time error is generated). final can also be used with a union definition, in which case it has no effect (other than on the outcome of std::is_final)(since C++14), since unions cannot be derived from.
+
+
+
+[edit] replaceable_if_eligible specifier
+
+replaceable_if_eligible specifies that this class is replaceable ﻿  if it is eligible for replacement ﻿.
+
+
+
+[edit] trivially_relocatable_if_eligible specifier
+
+trivially_relocatable_if_eligible specifies that this class is trivially relocatable ﻿ if it is eligible for trivial relocation ﻿.
+
+
+
+[edit] Replaceability
+
+A class C is replaceable ﻿ if it is eligible for replacement ﻿ and either:
+
+
+
+ has the replaceable_if_eligible class-prop-specifier
+
+ is a union with no user-declared special member functions
+
+ is default movable ﻿.
+
+
+
+[edit] Eligibility for replacement
+
+A class C is eligible for replacement ﻿ unless either:
+
+
+
+ it has a base class that is not a replaceable ﻿ class
+
+ it has a non-static data member that is not of a replaceable ﻿ type
+
+ overload resolution fails or selects a deleted constructor when direct-initializing an object of type C from an xvalue of type C
+
+ overload resolution fails or selects a deleted assignment operator function when assigning to an lvalue of type C from an xvalue of type C
+
+ it has a deleted destructor.
+
+
+
+[edit] Trivial relocatability
+
+A class is trivially relocatable ﻿ if it is eligible for trivial relocation ﻿ and either:
+
+
+
+ has the trivially_relocatable_if_eligible class-prop-specifier
+
+ is a union with no user-declared special member functions
+
+ is default movable ﻿.
+
+
+
+[edit] Eligibility for trivial relocation
+
+A class is eligible for trivial relocation ﻿ unless it has either:
+
+
+
+ any virtual base classes
+
+ a base class that is not a trivially relocatable ﻿ class
+
+ a non-static data member of an object type that is not of a trivially relocatable ﻿ type
+
+ a deleted destructor
+
+
+
+except that it is implementation-defined whether an otherwise-eligible union having one or more subobjects of polymorphic class type is eligible for trivial relocation ﻿.
+
+
+
+[edit] Default movability
+
+A class C is default movable ﻿ if all following conditions are met:
+
+
+
+ overload resolution for direct-initializing an object of type C from an xvalue of type C selects a constructor that is a direct member of C and is neither user-provided nor deleted
+
+ overload resolution for assigning to an lvalue of type C from an xvalue of type C selects an assignment operator function that is a direct member of C and is neither user-provided nor deleted
+
+ C has a destructor that is neither user-provided nor deleted.
+
+
+
+[edit] Keywords
+
+final,
+
+replaceable_if_eligible,
+
+trivially_relocatable_if_eligible.
+
+
+
+[edit] Note
+
+ Not all TriviallyCopyable classes are replaceable ﻿ or trivially relocatable ﻿.
+
+ Accessibility of the special member functions is not considered when establishing trivial relocatability ﻿ or replaceability ﻿.
+
+ A class with const-qualified or reference non-static data members can be trivially relocatable ﻿.
+
+ unions with no user-declared special member functions and default movable ﻿ classes are both replaceable ﻿ and trivially relocatable ﻿, even when defined without class property specifiers.
+
+
+
+
+
+
+
+Feature-test macro
+
+Value
+
+Std
+
+Feature
+
+
+
+
+
+__cpp_trivial_relocatability
+
+202502L
+
+(C++26)
+
+Trivial relocatability
+
+
+
+[edit] Example
+
+Run this code
+
+struct final;      // OK; declares a class named 'final',
+
+                   // does not use class property specifiers.
+
+struct IF final;   // Ill-formed: class property specifiers
+
+                   // cannot appear at function declaration.
+
+struct F final {}; // OK; specifier marks class F as non-derivable.
+
+struct D: F {};    // Ill-formed: class F cannot be derived from.
+
+ 
+
+// OK; specifier marks class R as 𝘳𝘦𝘱𝘭𝘢𝘤𝘦𝘢𝘣𝘭𝘦 if eligible.
+
+struct R replaceable_if_eligible {};
+
+ 
+
+// OK; specifier marks class T as 𝘵𝘳𝘪𝘷𝘪𝘢𝘭𝘭𝘺 𝘳𝘦𝘭𝘰𝘤𝘢𝘵𝘢𝘣𝘭𝘦 if eligible.
+
+struct T trivially_relocatable_if_eligible {};
+
+ 
+
+// OK; a class can be marked with multiple class property specifiers.
+
+struct FRT final replaceable_if_eligible trivially_relocatable_if_eligible {};
+
+ 
+
+// Ill-formed: each class property specifier can appear at most once.
+
+struct FRF final replaceable_if_eligible final {};
+
+ 
+
+int main() {}
+
+
+
+[edit] References
+
+
+
+ C++26 standard (ISO/IEC 14882:2026): 
+
+
+
+ 6.8.1 Trivially relocatable and replaceable types [basic.types.general] 
+
+
+
+
+
+
+
+[edit] See also
+
+
+
+
+
+ final specifier (C++11)
+
+
+
+ declares that a method cannot be overridden or a class be derived from[edit]
+
+
+
+
+
+  is_final(C++14)
+
+
+
+   checks if a type is a final class type   (class template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

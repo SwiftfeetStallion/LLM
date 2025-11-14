@@ -1,0 +1,329 @@
+std::flat_set[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::flat_set
+
+Member types
+
+Member functions
+
+
+
+
+
+flat_set::flat_set
+
+flat_set::operator=
+
+Iterators
+
+flat_set::beginflat_set::cbegin
+
+flat_set::endflat_set::cend
+
+flat_set::rbeginflat_set::crbegin
+
+flat_set::rendflat_set::crend
+
+Capacity
+
+flat_set::size
+
+flat_set::max_size
+
+flat_set::empty
+
+Observers
+
+flat_set::key_comp
+
+flat_set::value_comp    
+
+
+
+Modifiers
+
+flat_set::clear
+
+flat_set::insert
+
+flat_set::insert_range
+
+flat_set::emplace
+
+flat_set::emplace_hint
+
+flat_set::erase
+
+flat_set::swap
+
+flat_set::extract
+
+flat_set::replace
+
+Lookup
+
+flat_set::count
+
+flat_set::find
+
+flat_set::contains
+
+flat_set::equal_range
+
+flat_set::lower_bound
+
+flat_set::upper_bound
+
+
+
+Non-member functions
+
+
+
+operator==operator<=>
+
+
+
+swap(std::flat_set)
+
+erase_if(std::flat_set)
+
+
+
+
+
+Helper classes
+
+uses_allocator<std::flat_set>
+
+Tags
+
+
+
+
+
+sorted_unique    
+
+
+
+sorted_unique_t
+
+
+
+
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+size_type count( const Key& key ) const;
+
+ (1)
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+template< class K >
+
+size_type count( const K& x ) const;
+
+ (2)
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+
+
+Returns the number of elements with key that compares equivalent to the specified argument.
+
+
+
+1) Returns the number of elements with key key.This is either 1 or ​0​ since keys are always unique.
+
+2) Returns the number of elements with key that compares equivalent to x.
+
+ This overload participates in overload resolution only if Compare is transparent. It allows calling this function without constructing an instance of Key.
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Complexity
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ key
+
+
+
+ -
+
+
+
+ key value of the elements to count
+
+
+
+
+
+ x
+
+
+
+ -
+
+
+
+ alternative value to compare to the keys
+
+
+
+[edit] Return value
+
+Number of elements with key that compares equivalent to key or x.
+
+
+
+[edit] Complexity
+
+Logarithmic in the size of the container plus linear in the number of elements found.
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] See also
+
+
+
+
+
+  find
+
+
+
+  finds element with specific key  (public member function) [edit]
+
+
+
+
+
+  equal_range
+
+
+
+  returns range of elements matching a specific key  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,943 @@
+std::span[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::span
+
+Member functions
+
+span::span
+
+span::operator=
+
+Element access
+
+span::front
+
+span::back
+
+span::at(C++26)
+
+span::operator[]
+
+span::data
+
+Iterators
+
+span::beginspan::cbegin(C++23)
+
+span::endspan::cend(C++23)
+
+span::rbeginspan::crbegin(C++23)
+
+span::rendspan::crend(C++23)
+
+Observers
+
+span::empty
+
+span::size
+
+span::size_bytes
+
+Subviews
+
+span::first
+
+span::last
+
+span::subspan
+
+Non-member functions
+
+as_bytesas_writable_bytes
+
+Non-member constant
+
+dynamic_extent
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+constexpr span() noexcept;
+
+ (1)
+
+(since C++20)
+
+
+
+
+
+template< class It >
+
+explicit(extent != std::dynamic_extent)
+
+
+
+constexpr span( It first, size_type count );
+
+ (2)
+
+(since C++20)
+
+
+
+
+
+template< class It, class End >
+
+explicit(extent != std::dynamic_extent)
+
+
+
+constexpr span( It first, End last );
+
+ (3)
+
+(since C++20)
+
+
+
+
+
+template< std::size_t N >
+
+constexpr span( std::type_identity_t<element_type> (&arr)[N] ) noexcept;
+
+ (4)
+
+(since C++20)
+
+
+
+
+
+template< class U, std::size_t N >
+
+constexpr span( std::array<U, N>& arr ) noexcept;
+
+ (5)
+
+(since C++20)
+
+
+
+
+
+template< class U, std::size_t N >
+
+constexpr span( const std::array<U, N>& arr ) noexcept;
+
+ (6)
+
+(since C++20)
+
+
+
+
+
+template< class R >
+
+explicit(extent != std::dynamic_extent)
+
+
+
+constexpr span( R&& r );
+
+ (7)
+
+(since C++20)
+
+
+
+
+
+explicit(extent != std::dynamic_extent)
+
+constexpr span( std::initializer_list<value_type> il ) noexcept;
+
+ (8)
+
+(since C++26)
+
+
+
+
+
+template< class U, std::size_t N >
+
+explicit(extent != std::dynamic_extent && N == std::dynamic_extent)
+
+
+
+constexpr span( const std::span<U, N>& source ) noexcept;
+
+ (9)
+
+(since C++20)
+
+
+
+
+
+constexpr span( const span& other ) noexcept = default;
+
+ (10)
+
+(since C++20)
+
+
+
+
+
+
+
+Constructs a span.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Effects
+
+3 Constraints and supplement information
+
+
+
+3.1 Size requirements
+
+3.2 Conversion requirements
+
+3.3 Concept requirements
+
+3.4 Other constraints
+
+
+
+
+
+4 Exceptions
+
+5 Notes
+
+6 Example
+
+7 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ first
+
+
+
+ -
+
+
+
+ iterator to the first element of the sequence
+
+
+
+
+
+ count
+
+
+
+ -
+
+
+
+ number of elements in the sequence
+
+
+
+
+
+ last
+
+
+
+ -
+
+
+
+ iterator past the last element of the sequence or another sentinel
+
+
+
+
+
+ arr
+
+
+
+ -
+
+
+
+ array to construct a view for
+
+
+
+
+
+ r
+
+
+
+ -
+
+
+
+ range to construct a view for
+
+
+
+
+
+ source
+
+
+
+ -
+
+
+
+ another span to convert from
+
+
+
+
+
+ other
+
+
+
+ -
+
+
+
+ another span to copy from
+
+
+
+[edit] Effects
+
+
+
+
+
+ Overload 
+
+
+
+ data() after construction 
+
+
+
+ size() after construction 
+
+
+
+
+
+(1)
+
+
+
+nullptr
+
+
+
+​0​
+
+
+
+
+
+(2)
+
+
+
+std::to_address(first)
+
+
+
+count
+
+
+
+
+
+(3)
+
+
+
+last - first
+
+
+
+
+
+(4)
+
+
+
+std::data(arr)
+
+
+
+N
+
+
+
+
+
+(5)
+
+
+
+
+
+(6)
+
+
+
+
+
+(7)
+
+
+
+ranges::data(r)
+
+
+
+ranges::size(r)
+
+
+
+
+
+(8)
+
+
+
+il.begin()
+
+
+
+il.size()
+
+
+
+
+
+(9)
+
+
+
+source.data()
+
+
+
+source.size()
+
+
+
+
+
+(10)
+
+
+
+other.data()
+
+
+
+other.size()
+
+
+
+[edit] Constraints and supplement information
+
+[edit] Size requirements
+
+If extent is not std::dynamic_extent and the size of the source range is different from extent, the span object cannot be constructed.
+
+These overloads participate in overload resolution only if the result of the following expression is true:
+
+
+
+1) extent == std::dynamic_extent || extent == 0
+
+4-6) extent == std::dynamic_extent || extent == N
+
+9) extent == std::dynamic_extent || N == std::dynamic_extent || extent == N
+
+
+
+
+
+
+
+
+
+If the result of the following expression is false, the behavior is undefined.
+
+
+
+
+
+(until C++26)
+
+
+
+If the result of the following expression is false:
+
+
+
+ If the implementation is hardened, a contract violation occurs. Moreover, if the contract-violation handler returns under “observe” evaluation semantic, the behavior is undefined.
+
+ If the implementation is not hardened, the behavior is undefined.
+
+
+
+
+
+(since C++26)
+
+
+
+2) extent == std::dynamic_extent || extent == count
+
+3) extent == std::dynamic_extent || extent == last - first
+
+7) extent == std::dynamic_extent || extent == ranges::size(r)
+
+8) extent == std::dynamic_extent || extent == il.size()
+
+9) extent == std::dynamic_extent || extent == source.size()
+
+[edit] Conversion requirements
+
+If element_type is different from the element type of the source range, and the latter cannot be converted to the former by qualification conversion, the span object cannot be constructed.
+
+These overloads participate in overload resolution only if std::is_convertible_v<U(*)[], element_type(*)[]> is true, where U is defined as follows:
+
+
+
+2,3) std::remove_reference_t<std::iter_reference_t<It>>
+
+4-6) std::remove_pointer_t<decltype(std::data(arr))>
+
+7) std::remove_reference_t<ranges::range_reference_t<R>>
+
+9) U
+
+[edit] Concept requirements
+
+If any template argument does not model certain concept(s), the span object cannot be constructed.
+
+These overloads participate in overload resolution only if the template argument corresponding to the specified template parameter satisfies the corresponding concept(s). If it does not meet the semantic requirements of any corresponding concept, the behavior is undefined:
+
+
+
+
+
+
+
+ Overload 
+
+
+
+Template parameter 
+
+
+
+Concept
+
+
+
+Remark
+
+
+
+
+
+(2)
+
+
+
+It
+
+
+
+contiguous_iterator
+
+
+
+
+
+
+
+
+
+(3)
+
+
+
+It
+
+
+
+contiguous_iterator
+
+
+
+
+
+
+
+
+
+End
+
+
+
+ sized_sentinel_for<It> 
+
+
+
+
+
+
+
+
+
+(7)
+
+
+
+R
+
+
+
+contiguous_range
+
+
+
+
+
+
+
+
+
+sized_range
+
+
+
+
+
+
+
+
+
+borrowed_range
+
+
+
+only required if std::is_const_v<element_type> is false
+
+
+
+[edit] Other constraints
+
+2) If [first, first + count) is not a valid range, the behavior is undefined.
+
+3) This overload participates in overload resolution only if std::is_convertible_v<End, std::size_t> is false.
+
+ If [first, last) is not a valid range, the behavior is undefined.
+
+7) This overload participates in overload resolution only if all following conditions are satisfied:
+
+ std::remove_cvref_t<R> is not a specialization of std::span or std::array.
+
+ std::is_array_v<std::remove_cvref_t<R>> is false.
+
+
+
+8) This overload participates in overload resolution only if std::is_const_v<element_type> is true.
+
+[edit] Exceptions
+
+2) Throws nothing.
+
+3) Throws what and when last - first throws.
+
+7) Throws what and when std::ranges::size(r) and std::ranges::data(r) throw.
+
+[edit] Notes
+
+
+
+
+
+Feature-test macro
+
+
+
+Value
+
+
+
+Std
+
+
+
+Feature
+
+
+
+
+
+__cpp_lib_span_initializer_list
+
+202311L
+
+(C++26)
+
+Constructing std::span from a std::initializer_list, (8)
+
+
+
+[edit] Example
+
+Run this code
+
+#include <array>
+
+#include <iostream>
+
+#include <span>
+
+#include <vector>
+
+ 
+
+void print_span(std::span<const int> s)
+
+{
+
+    for (int n : s)
+
+        std::cout << n << ' ';
+
+    std::cout << '\n';
+
+}
+
+ 
+
+int main()
+
+{
+
+    int c[]{1, 2, 3};
+
+    print_span(c); // constructs from array
+
+ 
+
+    std::array a{4, 5, 6};
+
+    print_span(a); // constructs from std::array
+
+ 
+
+    std::vector v{7, 8, 9};
+
+    print_span(v); // constructs from std::vector
+
+ 
+
+#if __cpp_lib_span_initializer_list
+
+    print_span({0, 1, 2}); // constructs from initializer_list
+
+#else
+
+    print_span({{0, 1, 2}}); // ditto, a workaround
+
+#endif
+
+}
+
+Output:
+
+
+
+1 2 3 
+
+4 5 6
+
+7 8 9
+
+0 1 2
+
+
+
+[edit] See also
+
+
+
+
+
+  data
+
+
+
+  direct access to the underlying contiguous storage  (public member function) [edit]
+
+
+
+
+
+  size
+
+
+
+  returns the number of elements  (public member function) [edit]
+
+
+
+
+
+  operator=
+
+
+
+  assigns a span  (public member function) [edit]
+
+
+
+
+
+  sizessize(C++17)(C++20)
+
+
+
+  returns the size of a container or array  (function template) [edit]
+
+
+
+
+
+  data(C++17)
+
+
+
+  obtains the pointer to the underlying array  (function template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

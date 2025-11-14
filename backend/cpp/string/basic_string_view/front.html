@@ -1,0 +1,271 @@
+std::basic_string_view[edit] Strings library
+
+Classes
+
+basic_string
+
+basic_string_view(C++17)
+
+char_traits
+
+[edit] std::basic_string_view
+
+
+
+Member functions
+
+basic_string_view::basic_string_view  
+
+basic_string_view::operator=
+
+Iterators
+
+basic_string_view::beginbasic_string_view::cbegin
+
+basic_string_view::endbasic_string_view::cend
+
+basic_string_view::rbeginbasic_string_view::crbegin
+
+basic_string_view::rendbasic_string_view::crend
+
+Capacity
+
+basic_string_view::sizebasic_string_view::length
+
+basic_string_view::max_size
+
+basic_string_view::empty
+
+Operations
+
+basic_string_view::copy
+
+basic_string_view::substr
+
+basic_string_view::compare
+
+basic_string_view::starts_with(C++20)
+
+basic_string_view::ends_with(C++20)
+
+basic_string_view::contains(C++23)
+
+basic_string_view::find
+
+basic_string_view::rfind
+
+basic_string_view::find_first_of
+
+basic_string_view::find_last_of
+
+basic_string_view::find_first_not_of
+
+basic_string_view::find_last_not_of
+
+
+
+Element access
+
+basic_string_view::at
+
+basic_string_view::operator[]
+
+basic_string_view::front
+
+basic_string_view::back
+
+basic_string_view::data
+
+Modifiers
+
+basic_string_view::remove_prefix
+
+basic_string_view::remove_suffix
+
+basic_string_view::swap
+
+Constants
+
+basic_string_view::npos
+
+Non-member functions
+
+operator==operator!=operator<operator>operator<=operator>=operator<=>(until C++20)(until C++20)(until C++20)(until C++20)(until C++20)(C++20)
+
+operator<<
+
+operator""sv
+
+Helper classes
+
+hash<std::string_view>hash<std::wstring_view>hash<std::u8string_view>hash<std::u16string_view>hash<std::u32string_view>(C++20)
+
+Deduction guides (C++20)
+
+
+
+[edit] 
+
+
+
+
+
+ constexpr const_reference front() const;
+
+ 
+
+ (since C++17) 
+
+
+
+
+
+
+
+Returns reference to the first character in the view.
+
+
+
+
+
+
+
+If empty() is true, the behavior is undefined.
+
+
+
+
+
+(until C++26)
+
+
+
+If empty() is true:
+
+
+
+ If the implementation is hardened, a contract violation occurs. Moreover, if the contract-violation handler returns under “observe” evaluation semantic, the behavior is undefined.
+
+ If the implementation is not hardened, the behavior is undefined.
+
+
+
+
+
+(since C++26)
+
+
+
+Contents
+
+
+
+1 Return value
+
+2 Complexity
+
+3 Example
+
+4 See also
+
+
+
+
+
+[edit] Return value
+
+data_[0]
+
+
+
+[edit] Complexity
+
+Constant.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <string_view>
+
+ 
+
+int main()
+
+{
+
+    for (std::string_view str{"ABCDEF"}; !str.empty(); str.remove_prefix(1))
+
+        std::cout << str.front() << ' ' << str << '\n';
+
+}
+
+Output:
+
+
+
+A ABCDEF
+
+B BCDEF
+
+C CDEF
+
+D DEF
+
+E EF
+
+F F
+
+
+
+[edit] See also
+
+
+
+
+
+  back
+
+
+
+  accesses the last character  (public member function) [edit]
+
+
+
+
+
+  empty
+
+
+
+  checks whether the view is empty  (public member function) [edit]
+
+
+
+
+
+  front(DR*)
+
+
+
+  accesses the first character  (public member function of std::basic_string<CharT,Traits,Allocator>) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,365 @@
+std::multiset[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::multiset
+
+Member functions
+
+
+
+
+
+multiset::multiset
+
+multiset::~multiset       
+
+
+
+multiset::operator=
+
+multiset::get_allocator
+
+
+
+
+
+
+
+
+
+Iterators
+
+multiset::beginmultiset::cbegin(C++11)
+
+multiset::endmultiset::cend(C++11)
+
+multiset::rbeginmultiset::crbegin(C++11)    
+
+multiset::rendmultiset::crend(C++11)
+
+Capacity
+
+multiset::size
+
+multiset::max_size
+
+multiset::empty
+
+Observers
+
+multiset::key_comp
+
+multiset::value_comp
+
+
+
+Modifiers
+
+multiset::clear
+
+multiset::erase
+
+multiset::swap
+
+multiset::extract(C++17)
+
+multiset::merge(C++17)
+
+multiset::insert
+
+multiset::insert_range(C++23)
+
+multiset::emplace(C++11)
+
+multiset::emplace_hint(C++11)
+
+Lookup
+
+multiset::count
+
+multiset::find
+
+multiset::contains(C++20)
+
+multiset::equal_range
+
+multiset::lower_bound
+
+multiset::upper_bound
+
+
+
+
+
+Non-member functions
+
+
+
+
+
+std::swap(std::multiset)
+
+erase_if(std::multiset)(C++20)  
+
+operator==operator<=>(C++20)
+
+
+
+
+
+
+
+operator!=operator<operator>operator<=operator>=(until C++20)(until C++20)(until C++20)(until C++20)(until C++20)
+
+
+
+
+
+Deduction guides(C++17)
+
+[edit] 
+
+
+
+
+
+void clear();
+
+ 
+
+(noexcept since C++11) (constexpr since C++26)
+
+
+
+
+
+
+
+Erases all elements from the container. After this call, size() returns zero.
+
+Invalidates any references, pointers, and iterators referring to contained elements.
+
+Any past-the-end iterator remains valid.
+
+
+
+Contents
+
+
+
+1 Complexity
+
+2 Example
+
+3 Defect reports
+
+4 See also
+
+
+
+
+
+[edit] Complexity
+
+Linear in the size of the container, i.e., the number of elements.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <string_view>
+
+#include <set>
+
+ 
+
+void print_info(std::string_view rem, const std::multiset<int>& v)
+
+{
+
+    std::cout << rem << "{ ";
+
+    for (const auto& value : v)
+
+        std::cout << value << ' ';
+
+    std::cout << "}\n";
+
+    std::cout << "Size=" << v.size() << '\n';
+
+}
+
+ 
+
+int main()
+
+{
+
+    std::multiset<int> container{1, 2, 3};
+
+    print_info("Before clear: ", container);
+
+    container.clear();
+
+    print_info("After clear: ", container);
+
+}
+
+Output:
+
+
+
+Before clear: { 1 2 3 }
+
+Size=3
+
+After clear: { }
+
+Size=0
+
+
+
+ Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 224
+
+
+
+C++98
+
+
+
+the complexity was log(size()) + N, but N was not defined
+
+
+
+corrected to 'linear in size()'
+
+
+
+[edit] See also
+
+
+
+
+
+  erase
+
+
+
+  erases elements  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,567 @@
+std::memcpy
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Text processing library
+
+Localization library
+
+Regular expressions library (C++11)
+
+Formatting library (C++20)
+
+Null-terminated sequence utilities
+
+Byte strings
+
+Multibyte strings
+
+Wide strings
+
+Primitive numeric conversions
+
+
+
+to_chars(C++17)
+
+to_chars_result(C++17)
+
+from_chars(C++17)
+
+from_chars_result(C++17)
+
+chars_format(C++17)
+
+
+
+Text encoding identifications
+
+
+
+text_encoding(C++26)
+
+
+
+[edit] Null-terminated byte strings
+
+Functions
+
+Character classification
+
+
+
+isalnum
+
+isalpha
+
+islower
+
+isupper
+
+isdigit
+
+isxdigit
+
+
+
+isblank(C++11)
+
+iscntrl
+
+isgraph
+
+isspace
+
+isprint
+
+ispunct
+
+
+
+Character manipulation
+
+
+
+tolower
+
+
+
+toupper
+
+
+
+Conversions to numeric formats
+
+
+
+atof
+
+atoiatolatoll(C++11)
+
+strtolstrtoll(C++11)  
+
+
+
+
+
+
+
+strtoulstrtoull(C++11)
+
+strtofstrtodstrtold(C++11)(C++11)
+
+strtoimaxstrtouimax(C++11)(C++11)
+
+
+
+String manipulation
+
+
+
+strcpy
+
+strncpy
+
+strxfrm
+
+
+
+strcat
+
+strncat
+
+
+
+
+
+
+
+String examination
+
+
+
+strlen
+
+strcmp
+
+strncmp
+
+strcoll
+
+strchr
+
+strrchr
+
+
+
+strspn
+
+strcspn
+
+strpbrk
+
+strstr
+
+strtok
+
+
+
+
+
+
+
+Character array functions
+
+
+
+memchr
+
+memcmp
+
+memset
+
+
+
+memcpy
+
+memmove
+
+
+
+
+
+
+
+Miscellaneous
+
+
+
+strerror
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <cstring>
+
+
+
+
+
+
+
+
+
+
+
+ void* memcpy( void* dest, const void* src, std::size_t count );
+
+ 
+
+ 
+
+
+
+
+
+
+
+Performs the following operations in order:
+
+
+
+Implicitly creates objects at dest.
+
+ Copies count characters (as if of type unsigned char) from the object pointed to by src into the object pointed to by dest.
+
+
+
+If any of the following conditions is satisfied, the behavior is undefined:
+
+
+
+ dest or src is a null pointer or invalid pointer.
+
+ Copying takes place between objects that overlap.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Notes
+
+4 Example
+
+5 Defect reports
+
+6 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ dest
+
+
+
+ -
+
+
+
+ pointer to the memory location to copy to
+
+
+
+
+
+ src
+
+
+
+ -
+
+
+
+ pointer to the memory location to copy from
+
+
+
+
+
+ count
+
+
+
+ -
+
+
+
+ number of bytes to copy
+
+
+
+[edit] Return value
+
+If there is a suitable created object, returns a pointer to it; otherwise returns dest.
+
+
+
+[edit] Notes
+
+std::memcpy is meant to be the fastest library routine for memory-to-memory copy. It is usually more efficient than std::strcpy, which must scan the data it copies or std::memmove, which must take precautions to handle overlapping inputs.
+
+Several C++ compilers transform suitable memory-copying loops to std::memcpy calls.
+
+Where strict aliasing prohibits examining the same memory as values of two different types, std::memcpy may be used to convert the values.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <cstdint>
+
+#include <cstring>
+
+#include <iostream>
+
+ 
+
+int main()
+
+{
+
+    // simple usage
+
+    char source[] = "once upon a daydream...", dest[4];
+
+    std::memcpy(dest, source, sizeof dest);
+
+    std::cout << "dest[4] = {";
+
+    for (int n{}; char c : dest)
+
+        std::cout << (n++ ? ", " : "") << '\'' << c << "'";
+
+    std::cout << "};\n";
+
+ 
+
+    // reinterpreting
+
+    double d = 0.1;
+
+//  std::int64_t n = *reinterpret_cast<std::int64_t*>(&d); // aliasing violation
+
+    std::int64_t n;
+
+    std::memcpy(&n, &d, sizeof d); // OK
+
+ 
+
+    std::cout << std::hexfloat << d << " is " << std::hex << n
+
+              << " as a std::int64_t\n" << std::dec;
+
+ 
+
+    // object creation in destination buffer
+
+    struct S
+
+    {
+
+        int x{42};
+
+        void print() const { std::cout << '{' << x << "}\n"; }
+
+    } s;
+
+    alignas(S) char buf[sizeof(S)];
+
+    S* ps = new (buf) S; // placement new
+
+    std::memcpy(ps, &s, sizeof s);
+
+    ps->print();
+
+}
+
+Output:
+
+
+
+dest[4] = {'o', 'n', 'c', 'e'};
+
+0x1.999999999999ap-4 is 3fb999999999999a as a std::int64_t
+
+{42}
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 4064
+
+
+
+C++98
+
+
+
+it was unclear whether the returned pointer points to a suitable created object
+
+
+
+made clear
+
+
+
+[edit] See also
+
+
+
+
+
+  memmove
+
+
+
+  moves one buffer to another  (function) [edit]
+
+
+
+
+
+  memset
+
+
+
+  fills a buffer with a character  (function) [edit]
+
+
+
+
+
+  wmemcpy
+
+
+
+  copies a certain amount of wide characters between two non-overlapping arrays  (function) [edit]
+
+
+
+
+
+  copy
+
+
+
+  copies characters  (public member function of std::basic_string<CharT,Traits,Allocator>) [edit]
+
+
+
+
+
+  copycopy_if(C++11)
+
+
+
+  copies a range of elements to a new location  (function template) [edit]
+
+
+
+
+
+  copy_backward
+
+
+
+  copies a range of elements in backwards order  (function template) [edit]
+
+
+
+
+
+  is_trivially_copyable(C++11)
+
+
+
+   checks if a type is trivially copyable   (class template) [edit]
+
+
+
+
+
+ C documentation for memcpy
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

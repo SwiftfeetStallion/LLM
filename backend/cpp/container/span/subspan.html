@@ -1,0 +1,373 @@
+std::span[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::span
+
+Member functions
+
+span::span
+
+span::operator=
+
+Element access
+
+span::front
+
+span::back
+
+span::at(C++26)
+
+span::operator[]
+
+span::data
+
+Iterators
+
+span::beginspan::cbegin(C++23)
+
+span::endspan::cend(C++23)
+
+span::rbeginspan::crbegin(C++23)
+
+span::rendspan::crend(C++23)
+
+Observers
+
+span::empty
+
+span::size
+
+span::size_bytes
+
+Subviews
+
+span::first
+
+span::last
+
+span::subspan
+
+Non-member functions
+
+as_bytesas_writable_bytes
+
+Non-member constant
+
+dynamic_extent
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+ template< std::size_t Offset,
+
+          std::size_t Count = std::dynamic_extent >
+
+constexpr std::span<element_type, /* see below */>
+
+
+
+    subspan() const;
+
+ (1) 
+
+ (since C++20) 
+
+
+
+
+
+ constexpr std::span<element_type, std::dynamic_extent>
+
+    subspan( size_type offset,
+
+
+
+             size_type count = std::dynamic_extent ) const;
+
+ (2) 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Obtains a subview over some consecutive elements of this span, the elements to be included are determined by an element count and an offset.
+
+
+
+1) The element count and offset are provided as template arguments, and the subview has a dynamic extent only if both Count and Offset are std::dynamic_extent.
+
+ If Count is std::dynamic_extent, the subview contains all elements starting from the Offsetth.
+
+ Otherwise, the subview contains Count elements starting from the Offsetth.
+
+
+
+ Denote the second template argument of the return type as FinalExtent, it is defined as Count != std::dynamic_extent    ? Count    : (Extent != std::dynamic_extent        ? Extent - Offset        : std::dynamic_extent).
+
+ If Offset <= Extent && (Count == std::dynamic_extent || Count <= Extent - Offset) is false, the program is ill-formed.
+
+ 
+
+
+
+If Offset <= size() && (Count == std::dynamic_extent || Count <= size() - Offset) is false, the behavior is undefined.
+
+
+
+
+
+(until C++26)
+
+
+
+If Offset <= size() && (Count == std::dynamic_extent || Count <= size() - Offset) is false:
+
+
+
+ If the implementation is hardened, a contract violation occurs. Moreover, if the contract-violation handler returns under “observe” evaluation semantic, the behavior is undefined.
+
+ If the implementation is not hardened, the behavior is undefined.
+
+
+
+
+
+(since C++26)
+
+
+
+
+
+
+
+2) The element count and offset are provided as function arguments, and the subview always has a dynamic extent.
+
+ If count is std::dynamic_extent, the subview contains all elements starting from the offsetth.
+
+ Otherwise, the subview contains count elements starting from the offsetth.
+
+
+
+ 
+
+
+
+If offset <= size() && (count == std::dynamic_extent || count <= size() - offset) is false, the behavior is undefined.
+
+
+
+
+
+(until C++26)
+
+
+
+If offset <= size() && (count == std::dynamic_extent || count <= size() - offset) is false:
+
+
+
+ If the implementation is hardened, a contract violation occurs. Moreover, if the contract-violation handler returns under “observe” evaluation semantic, the behavior is undefined.
+
+ If the implementation is not hardened, the behavior is undefined.
+
+
+
+
+
+(since C++26)
+
+
+
+[edit] Return value
+
+1) std::span<element_type, FinalExtent>    (data() + Offset, Count != std::dynamic_extent ? Count : size() - Offset))
+
+2) std::span<element_type, std::dynamic_extent>    (data() + offset, count != std::dynamic_extent ? count : size() - offset))
+
+[edit] Example
+
+Run this code
+
+#include <algorithm>
+
+#include <cstdio>
+
+#include <numeric>
+
+#include <ranges>
+
+#include <span>
+
+ 
+
+void display(std::span<const char> abc)
+
+{
+
+    const auto columns{20U};
+
+    const auto rows{abc.size() - columns + 1};
+
+ 
+
+    for (auto offset{0U}; offset < rows; ++offset)
+
+    {
+
+        std::ranges::for_each(abc.subspan(offset, columns), std::putchar);
+
+        std::puts("");
+
+    }
+
+}
+
+ 
+
+int main()
+
+{
+
+    char abc[26];
+
+    std::ranges::iota(abc, 'A');
+
+    display(abc);
+
+}
+
+Output:
+
+
+
+ABCDEFGHIJKLMNOPQRST
+
+BCDEFGHIJKLMNOPQRSTU
+
+CDEFGHIJKLMNOPQRSTUV
+
+DEFGHIJKLMNOPQRSTUVW
+
+EFGHIJKLMNOPQRSTUVWX
+
+FGHIJKLMNOPQRSTUVWXY
+
+GHIJKLMNOPQRSTUVWXYZ
+
+
+
+[edit] See also
+
+
+
+
+
+  first
+
+
+
+  obtains a subspan consisting of the first N elements of the sequence  (public member function) [edit]
+
+
+
+
+
+  last
+
+
+
+  obtains a subspan consisting of the last N elements of the sequence  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

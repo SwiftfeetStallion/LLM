@@ -1,0 +1,1099 @@
+Resource inclusion (since C++26)
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] C++ language
+
+
+
+General topics
+
+
+
+Preprocessor
+
+Comments
+
+
+
+Keywords
+
+Escape sequences
+
+
+
+Flow control
+
+Conditional execution statements
+
+
+
+if
+
+
+
+switch
+
+
+
+Iteration statements (loops)
+
+
+
+for
+
+range-for (C++11)
+
+
+
+while
+
+do-while
+
+
+
+Jump statements
+
+
+
+continue - break
+
+
+
+goto - return
+
+
+
+Functions
+
+Function declaration
+
+Lambda function expression
+
+inline specifier
+
+Dynamic exception specifications (until C++17*)
+
+noexcept specifier (C++11)
+
+Exceptions
+
+
+
+throw-expression
+
+try block
+
+
+
+
+
+
+
+catch handler
+
+
+
+Namespaces
+
+
+
+Namespace declaration  
+
+
+
+Namespace aliases
+
+
+
+Types
+
+
+
+Fundamental types
+
+Enumeration types
+
+Function types
+
+
+
+Class/struct types
+
+Union types
+
+
+
+
+
+
+
+Specifiers
+
+
+
+const/volatile
+
+decltype (C++11)
+
+auto (C++11)
+
+
+
+constexpr (C++11)
+
+consteval (C++20)
+
+constinit (C++20)
+
+
+
+Storage duration specifiers
+
+Initialization
+
+
+
+Default-initialization
+
+Value-initialization
+
+Zero-initialization
+
+Copy-initialization
+
+Direct-initialization
+
+
+
+Aggregate initialization
+
+List-initialization (C++11)  
+
+Constant initialization
+
+Reference initialization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Expressions
+
+
+
+Value categories
+
+Order of evaluation
+
+
+
+Operators
+
+Operator precedence
+
+
+
+Alternative representations
+
+Literals
+
+Boolean - Integer - Floating-point
+
+Character - String - nullptr (C++11)
+
+User-defined (C++11)
+
+Utilities
+
+Attributes (C++11)
+
+Types
+
+typedef declaration
+
+Type alias declaration (C++11)
+
+Casts
+
+
+
+Implicit conversions
+
+static_cast
+
+const_cast
+
+
+
+Explicit conversions
+
+dynamic_cast
+
+reinterpret_cast
+
+
+
+Memory allocation
+
+
+
+new expression
+
+
+
+delete expression
+
+
+
+Classes
+
+
+
+Class declaration
+
+Constructors
+
+this pointer
+
+
+
+Access specifiers
+
+friend specifier
+
+
+
+
+
+
+
+Class-specific function properties
+
+
+
+Virtual function
+
+override specifier (C++11)  
+
+final specifier (C++11)
+
+
+
+explicit (C++11)
+
+static
+
+
+
+
+
+
+
+Special member functions
+
+
+
+Default constructor
+
+Copy constructor
+
+Move constructor (C++11)
+
+
+
+Copy assignment
+
+Move assignment (C++11)
+
+Destructor
+
+
+
+Templates
+
+
+
+Class template
+
+Function template
+
+
+
+Template specialization
+
+Parameter packs (C++11)
+
+
+
+Miscellaneous
+
+
+
+Inline assembly
+
+
+
+History of C++
+
+
+
+
+
+[edit] Preprocessor
+
+#if#ifdef#ifndef#else#elif#elifdef#elifndef#endif(C++23)(C++23)
+
+#define#undef#,## operators
+
+#include__has_include(C++17)
+
+#error#warning(C++23)
+
+#pragma_Pragma(C++11)
+
+#line
+
+#embed(C++26)
+
+[edit] 
+
+#embed is a preprocessor directive to include resources.
+
+
+
+Contents
+
+
+
+1 Syntax
+
+2 Explanation
+
+3 Resources
+
+4 Embedding resources
+
+5 Embed parameters
+
+
+
+5.1 limit parameter
+
+5.2 prefix parameter
+
+5.3 suffix parameter
+
+5.4 if_empty parameter
+
+
+
+
+
+6 Notes
+
+7 Example
+
+8 References
+
+9 See also
+
+
+
+
+
+[edit] Syntax
+
+
+
+
+
+
+
+
+
+
+
+ #embed < h-char-sequence > pp-tokens new-line
+
+
+
+ (1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ #embed " q-char-sequence " pp-tokens new-line
+
+
+
+ (2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ #embed pp-tokens new-line
+
+
+
+ (3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ __has_embed ( balanced-pp-tokens )
+
+
+
+ (4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+1) Searches for a resource identified uniquely by h-char-sequence and replaces the directive by the entire contents of the resource.
+
+2) Searches for a resource identified by q-char-sequence and replaces the directive by the entire contents of the source file. It may fallback to (1) and treat q-char-sequence as a resource identifier.
+
+3) If neither (1) nor (2) is matched, pp-tokens will undergo macro replacement. The directive after replacement will be tried to match with (1) or (2) again.
+
+4) Checks whether a resource is available for inclusion with given embed parameters.
+
+
+
+
+
+ new-line
+
+
+
+ -
+
+
+
+ The new-line character
+
+
+
+
+
+ h-char-sequence
+
+
+
+ -
+
+
+
+ A sequence of one or more h-char ﻿s (see #include)
+
+
+
+
+
+ q-char-sequence
+
+
+
+ -
+
+
+
+ A sequence of one or more q-char ﻿s (see #include)
+
+
+
+
+
+ pp-tokens
+
+
+
+ -
+
+
+
+ A sequence of one or more preprocessing tokens
+
+
+
+
+
+ balanced-pp-tokens
+
+
+
+ -
+
+
+
+ A sequence of one or more preprocessing tokens, where all (, [ and { are properly closed
+
+
+
+[edit] Explanation
+
+1) Searches a sequence of places for a resource identified uniquely by h-char-sequence ﻿, and causes the replacement of that directive by the entire contents of the header. How the places are specified or the header identified is implementation-defined.
+
+2) Causes the replacement of that directive by the entire contents of the resource identified by q-char-sequence ﻿. The named resource is searched for in an implementation-defined manner.
+
+ If this search is not supported, or if the search fails, the directive is reprocessed as if it reads syntax (1) with the identical contained sequence (including > characters, if any) from the original directive.
+
+3) The preprocessing tokens after embed in the directive are processed just as in normal text (i.e., each identifier currently defined as a macro name is replaced by its replacement list of preprocessing tokens).
+
+ If the directive resulting after all replacements does not match one of the two previous forms, the behavior is undefined.
+
+ The method by which a sequence of preprocessing tokens between a < and a > preprocessing token pair or a pair of " characters is combined into a single resource name preprocessing token is implementation-defined.
+
+4) Searches for a resource identified by an invented #embed directive of syntax (3), using balanced-pp-tokens as its pp-tokens.
+
+ If such a directive would not satisfy the syntactic requirements of an #embed directive, the program is ill-formed.
+
+ Otherwise, if the search for the resource succeeds and all the given embed parameters in the invented directive are supported, the __has_embed expression evaluates to __STDC_EMBED_FOUND__ if the resource is not empty, and to __STDC_EMBED_EMPTY__ if the resource is empty.
+
+ Otherwise, the __has_embed expression evaluates to __STDC_EMBED_NOT_FOUND__.
+
+
+
+[edit] Resources
+
+A resource is a source of data accessible from the translation environment. A resource has an implementation-resource-width ﻿, which is the implementation-defined size in bits of the resource. If the implementation-resource-width is not an integral multiple of CHAR_BIT, the program is ill-formed.
+
+Let implementation-resource-count be implementation-resource-width divided by CHAR_BIT. Every resource also has a resource-count ﻿, which is the implementation-resource-count, unless the limit embed parameter is provided.
+
+A resource is empty if the resource-count is zero.
+
+
+
+// ill-formed if the implementation-resource-width is 6 bits
+
+#embed "6_bits.bin"
+
+[edit] Embedding resources
+
+Unless otherwise modified, the #embed directive is replaced by a comma-delimited list of integer literals of type int.
+
+The integer literals in the comma-delimited list correspond to resource-count consecutive calls to std::fgetc from the resource, as a binary file. If any call to std::fgetc returns EOF, the program is ill-formed.
+
+
+
+int i =
+
+{
+
+#embed "i.dat"
+
+}; // well-formed if i.dat produces a single value
+
+ 
+
+int i2 =
+
+#embed "i.dat"
+
+; // also well-formed if i.dat produces a single value
+
+ 
+
+struct T
+
+{
+
+    double a, b, c;
+
+    struct { double e, f, g; } x;
+
+    double h, i, j;
+
+};
+
+T x =
+
+{
+
+// well-formed if the directive produces nine or fewer values
+
+#embed "s.dat"
+
+};
+
+[edit] Embed parameters
+
+If pp-tokens is present in syntax (1) or syntax (2), it is processed just as in normal text. The processed pp-tokens should form a sequence of embed parameters ﻿, otherwise the program is ill-formed. Embed parameters have the following syntax:
+
+
+
+
+
+
+
+
+
+
+
+
+
+ limit ( balanced-pp-tokens )
+
+
+
+ (1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ prefix ( balanced-pp-tokens ﻿(optional) )
+
+
+
+ (2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ suffix ( balanced-pp-tokens ﻿(optional) )
+
+
+
+ (3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ if_empty ( balanced-pp-tokens ﻿(optional) )
+
+
+
+ (4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ identifier :: identifier
+
+
+
+ (5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ identifier :: identifier ( balanced-pp-tokens ﻿(optional) )
+
+
+
+ (6)
+
+
+
+
+
+
+
+
+
+
+
+
+
+1-4) Standard embed parameters.
+
+1) Limits the resource-count of the resource to be embedded.
+
+2) Adds prefix to the embedded non-empty resource.
+
+3) Adds suffix to the embedded non-empty resource.
+
+4) Replaces the embedded resource if it is empty.
+
+5,6) Non-standard embed parameters. Any such parameter is conditionally-supported, with implementation-defined semantics.
+
+
+
+
+
+[edit] limit parameter
+
+An embed parameter of the form limit ( balanced-pp-tokens ) can only appear at most once in each #embed directive.
+
+balanced-pp-tokens are processed just as in normal text to form a constant expression, but defined, __has_include, __has_cpp_attribute and __has_embed expressions are not evaluated.
+
+The constant expression must be an integral constant expression whose value is greater than or equal to zero:
+
+
+
+ If the value of the constant expression is greater than implementation-resource-count, the resource-count is still the implementation-resource-count.
+
+ Otherwise, the resource-count becomes the value of the constant expression.
+
+
+
+constexpr unsigned char sound_signature[] =
+
+{
+
+// a hypothetical resource capable of expanding to four or more elements
+
+#embed <sdk/jump.wav> limit(2 + 2)
+
+};
+
+ 
+
+static_assert(sizeof(sound_signature) == 4);
+
+ 
+
+// equivalent to #embed <data.dat> limit(10)
+
+#define DATA_LIMIT 10
+
+#embed <data.dat> limit(DATA_LIMIT)
+
+ 
+
+// ill-formed
+
+#embed <data.dat> limit(__has_include("a.h"))
+
+
+
+
+
+[edit] prefix parameter
+
+An embed parameter of the form prefix ( balanced-pp-tokens ﻿(optional) ) can only appear at most once in each #embed directive.
+
+If the resource is empty, this embed parameter is ignored. Otherwise, balanced-pp-tokens is placed immediately before the comma-delimited list of integral literals.
+
+
+
+
+
+[edit] suffix parameter
+
+An embed parameter of the form suffix ( balanced-pp-tokens ﻿(optional) ) can only appear at most once in each #embed directive.
+
+If the resource is empty, this embed parameter is ignored. Otherwise, balanced-pp-tokens is placed immediately after the comma-delimited list of integral literals.
+
+
+
+constexpr unsigned char whl[] =
+
+{
+
+#embed "chess.glsl" \
+
+    prefix(0xEF, 0xBB, 0xBF, ) /∗ a sequence of bytes ∗/ \
+
+    suffix(,)
+
+    0
+
+};
+
+ 
+
+// always null-terminated, contains the sequence if not empty
+
+ 
+
+constexpr bool is_empty = sizeof(whl) == 1 && whl[0] == '\0';
+
+ 
+
+constexpr bool is_not_empty = sizeof(whl) >= 4
+
+    && whl[sizeof(whl) - 1] == '\0'
+
+    && whl[0] == '\xEF' && whl[1] == '\xBB' && whl[2] == '\xBF';
+
+ 
+
+static_assert(is_empty || is_not_empty);
+
+
+
+
+
+[edit] if_empty parameter
+
+An embed parameter of the form if_empty ( balanced-pp-tokens ﻿(optional) ) can only appear at most once in each #embed directive.
+
+If the resource is not empty, this embed parameter is ignored. Otherwise, the #embed directive is replaced by balanced-pp-tokens.
+
+
+
+// always expands to 42203 regardless of the content of /owo/uwurandom
+
+#embed </owo/uwurandom> if_empty(42203) limit(0)
+
+[edit] Notes
+
+
+
+
+
+Feature-test macro
+
+Value
+
+Std
+
+Feature
+
+
+
+
+
+__cpp_pp_embed
+
+202502L
+
+(C++26)
+
+The #embed directive
+
+
+
+[edit] Example
+
+Demonstrate the effect of #embed. If data.dat can be embedded as a resource in the translation environment, no assert in this program should fail.
+
+
+
+Run this code
+
+#include <cassert>
+
+#include <cstddef>
+
+#include <cstring>
+
+#include <fstream>
+
+#include <vector>
+
+ 
+
+int main()
+
+{
+
+    constexpr unsigned char d[]
+
+    {
+
+#embed <data.dat>
+
+    };
+
+ 
+
+    const std::vector<unsigned char> vec_d
+
+    {
+
+#embed <data.dat>
+
+    };
+
+ 
+
+    constexpr std::size_t expected_size = sizeof(d);
+
+    // same file in execution environment as was embedded
+
+    std::ifstream f_source("data.dat", std::ios_base::binary | std::ios_base::in);
+
+    unsigned char runtime_d[expected_size];
+
+ 
+
+    char* ifstream_ptr = reinterpret_cast<char*>(runtime_d);
+
+    assert(!f_source.read(ifstream_ptr, expected_size));
+
+ 
+
+    std::size_t ifstream_size = f_source.gcount();
+
+    assert(ifstream_size == expected_size);
+
+ 
+
+    int is_same = std::memcmp(&d[0], ifstream_ptr, ifstream_size);
+
+    assert(is_same == 0);
+
+ 
+
+    int is_same_vec = std::memcmp(vec_d.data(), ifstream_ptr, ifstream_size);
+
+    assert(is_same_vec == 0);
+
+}
+
+
+
+[edit] References
+
+
+
+ C++26 standard (ISO/IEC 14882:2026): 
+
+
+
+ 15.4 Resource inclusion [cpp.embed] 
+
+
+
+
+
+
+
+[edit] See also
+
+
+
+ Source file inclusion
+
+
+
+
+
+ C documentation for Binary resource inclusion (since C23)
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

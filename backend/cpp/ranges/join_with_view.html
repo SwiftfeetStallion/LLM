@@ -1,0 +1,957 @@
+std::ranges::views::join_with, std::ranges::join_with_view
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Ranges library
+
+
+
+Range access
+
+
+
+begin
+
+cbegin 
+
+end
+
+cend
+
+
+
+rbegin
+
+crbegin 
+
+rend
+
+crend
+
+
+
+size
+
+ssize 
+
+data
+
+cdata
+
+
+
+reserve_hint(C++26)  
+
+empty
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range conversions
+
+std::from_range_tstd::from_range(C++23)(C++23)    
+
+to(C++23)
+
+
+
+
+
+
+
+Dangling iterator handling
+
+dangling
+
+borrowed_iterator_t
+
+borrowed_subrange_t
+
+
+
+
+
+
+
+
+
+
+
+Range primitives
+
+
+
+range_size_trange_difference_trange_value_t
+
+elements_of(C++23)    
+
+
+
+iterator_tconst_iterator_tsentinel_tconst_sentinel_t(C++23)(C++23)  
+
+
+
+range_reference_trange_const_reference_trange_rvalue_reference_trange_common_reference_t(C++23)
+
+
+
+
+
+
+
+Range concepts
+
+
+
+range
+
+borrowed_range  
+
+common_range
+
+
+
+sized_range
+
+viewable_range  
+
+view
+
+
+
+input_range
+
+output_range
+
+forward_range  
+
+
+
+bidirectional_range  
+
+random_access_range
+
+contiguous_range
+
+
+
+approximately_sized_range(C++26)
+
+constant_range(C++23)
+
+
+
+
+
+
+
+
+
+
+
+Views
+
+
+
+view_interface  
+
+
+
+subrange
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range factories
+
+
+
+empty_viewviews::empty  
+
+
+
+single_viewviews::single  
+
+
+
+basic_istream_viewviews::istream  
+
+
+
+iota_viewviews::iota  
+
+
+
+repeat_viewviews::repeat(C++23)(C++23)
+
+
+
+
+
+
+
+Range adaptors
+
+
+
+views::all_tviews::all
+
+as_rvalue_viewviews::as_rvalue(C++23)(C++23)  
+
+filter_viewviews::filter
+
+transform_viewviews::transform
+
+take_viewviews::take
+
+take_while_viewviews::take_while
+
+common_viewviews::common
+
+views::counted
+
+to_input_viewviews::to_input(C++26)(C++26)
+
+
+
+ref_view
+
+drop_viewviews::drop
+
+drop_while_viewviews::drop_while
+
+lazy_split_viewviews::lazy_split
+
+split_viewviews::split
+
+join_viewviews::join
+
+join_with_viewviews::join_with(C++23)(C++23)  
+
+concat_viewviews::concat(C++26)(C++26)
+
+cache_latest_viewviews::cache_latest(C++26)(C++26)  
+
+
+
+owning_view
+
+reverse_viewviews::reverse
+
+as_const_viewviews::as_const(C++23)(C++23)
+
+elements_viewviews::elements
+
+keys_viewviews::keys
+
+values_viewviews::values
+
+enumerate_viewviews::enumerate(C++23)(C++23)
+
+zip_viewviews::zip(C++23)(C++23)
+
+zip_transform_viewviews::zip_transform(C++23)(C++23)  
+
+
+
+adjacent_viewviews::adjacent(C++23)(C++23)
+
+views::pairwise(C++23)
+
+adjacent_transform_viewviews::adjacent_transform(C++23)(C++23)
+
+views::pairwise_transform(C++23)
+
+chunk_viewviews::chunk(C++23)(C++23)
+
+slide_viewviews::slide(C++23)(C++23)
+
+chunk_by_viewviews::chunk_by(C++23)(C++23)
+
+stride_viewviews::stride(C++23)(C++23)
+
+cartesian_product_viewviews::cartesian_product(C++23)(C++23)
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range generators
+
+std::generator(C++23)    
+
+
+
+Range adaptor closure objects
+
+range_adaptor_closure(C++23)    
+
+
+
+Range adaptor objects
+
+
+
+
+
+
+
+
+
+
+
+Helper items
+
+
+
+copyable-boxmovable-box(until C++23)  (C++23)
+
+
+
+simple-view
+
+non-propagating-cache
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] std::ranges::join_with_view
+
+Member functions
+
+join_with_view::join_with_view
+
+join_with_view::base
+
+join_with_view::begin
+
+join_with_view::end
+
+Deduction guides
+
+Iterator
+
+Member functions
+
+join_with_view::iterator::iterator
+
+join_with_view::iterator::operator*
+
+join_with_view::iterator::operator++join_with_view::iterator::operator++(int)join_with_view::iterator::operator--join_with_view::iterator::operator--(int)
+
+Non-member functions
+
+operator==(join_with_view::iterator)(C++23)
+
+iter_move(join_with_view::iterator)(C++23)
+
+iter_swap(join_with_view::iterator)(C++23)
+
+Sentinel
+
+join_with_view::sentinel::sentinel
+
+operator==(join_with_view::sentinel)(C++23)
+
+[edit] 
+
+
+
+
+
+ Defined in header <ranges>
+
+
+
+
+
+
+
+
+
+
+
+ template< ranges::input_range V, ranges::forward_range Pattern >
+
+  requires ranges::view<V> &&
+
+           ranges::input_range<ranges::range_reference_t<V>> &&
+
+           ranges::view<Pattern> &&
+
+           /*concatable*/<ranges::range_reference_t<V>, Pattern>
+
+class join_with_view : 
+
+
+
+    ranges::view_interface<join_with_view<V, Pattern>>
+
+ (1) 
+
+ (since C++23) 
+
+
+
+
+
+ namespace views {
+
+    inline constexpr /* unspecified */ join_with = /* unspecified */;
+
+
+
+}
+
+ (2) 
+
+ (since C++23) 
+
+
+
+
+
+ Call signature
+
+
+
+
+
+
+
+
+
+ template< ranges::viewable_range R, class Pattern >
+
+    requires /* see below */
+
+
+
+constexpr ranges::view auto join_with( R&& r, Pattern&& pattern );
+
+ 
+
+ (since C++23) 
+
+
+
+
+
+ template< class Pattern >
+
+constexpr /* range adaptor closure */ join_with( Pattern&& pattern );
+
+ 
+
+ (since C++23) 
+
+
+
+
+
+
+
+1) A range adaptor that represents view consisting of the sequence obtained from flattening a view of ranges, with every element of the delimiter inserted in between elements of the view. The delimiter can be a single element or a view of elements.
+
+ For the definition of /*concatable*/, see std::ranges::concat_view.
+
+2) RangeAdaptorObject. The expression views::join_with(e, f) is expression-equivalent to join_with_view(e, f) for any suitable subexpressions e and f.
+
+join_with_view models input_range.
+
+join_with_view models forward_range when:
+
+
+
+ ranges::range_reference_t<V> is a reference, and
+
+ V and ranges::range_reference_t<V> each model forward_range.
+
+
+
+join_with_view models bidirectional_range when:
+
+
+
+ ranges::range_reference_t<V> is a reference,
+
+ V, ranges::range_reference_t<V>, and Pattern each models bidirectional_range, and
+
+ ranges::range_reference_t<V> and Pattern each model common_range.
+
+
+
+join_with_view models common_range when:
+
+
+
+ ranges::range_reference_t<V> is a reference, and
+
+ V and ranges::range_reference_t<V> each model forward_range and common_range.
+
+
+
+Contents
+
+
+
+1 Nested types
+
+2 Data members
+
+3 Member functions
+
+
+
+3.1 Inherited from std::ranges::view_interface
+
+
+
+
+
+4 Deduction guides
+
+5 Nested classes
+
+6 Notes
+
+7 Example
+
+8 Defect reports
+
+9 See also
+
+
+
+
+
+[edit] Nested types
+
+
+
+
+
+ Type
+
+
+
+ Definition
+
+
+
+
+
+ InnerRng
+
+
+
+ ranges::range_reference_t<V>(exposition-only member type*)
+
+
+
+
+
+[edit] Data members
+
+
+
+
+
+ Member
+
+
+
+ Definition
+
+
+
+
+
+ V base_
+
+
+
+ the underlying (adapted) view(exposition-only member object*)
+
+
+
+
+
+ Pattern pattern_
+
+
+
+ the pattern object(exposition-only member object*)
+
+
+
+
+
+ non-propagating-cache ﻿<ranges::iterator_t<V>> outer_it_ (present only if V does not model forward_range)
+
+
+
+ the cache of the outer iterator(exposition-only member object*)
+
+
+
+
+
+ non-propagating-cache ﻿<std::remove_cv_t<InnerRng ﻿>> inner_ (present only if std::is_reference_v<InnerRng ﻿> is false)
+
+
+
+ the cache of the inner range(exposition-only member object*)
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a join_with_view  (public member function) [edit]
+
+
+
+
+
+  base
+
+
+
+  returns a copy of the underlying (adapted) view  (public member function) [edit]
+
+
+
+
+
+  begin
+
+
+
+  returns an iterator to the beginning  (public member function) [edit]
+
+
+
+
+
+  end
+
+
+
+  returns an iterator or a sentinel to the end  (public member function) [edit]
+
+
+
+
+
+   Inherited from std::ranges::view_interface 
+
+
+
+
+
+  empty
+
+
+
+  returns whether the derived view is empty, provided only if it satisfies sized_range or forward_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  cbegin(C++23)
+
+
+
+  returns a constant iterator to the beginning of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  cend(C++23)
+
+
+
+  returns a sentinel for the constant iterator of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  operator bool
+
+
+
+  returns whether the derived view is not empty, provided only if ranges::empty is applicable to it  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  front
+
+
+
+  returns the first element in the derived view, provided if it satisfies forward_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  back
+
+
+
+  returns the last element in the derived view, provided only if it satisfies bidirectional_range and common_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+[edit] Deduction guides
+
+[edit] Nested classes
+
+
+
+
+
+ iterator
+
+
+
+ the iterator type(exposition-only member class template*)
+
+
+
+
+
+ sentinel
+
+
+
+ the sentinel type(exposition-only member class template*)
+
+
+
+
+
+[edit] Notes
+
+
+
+
+
+Feature-test macro
+
+
+
+Value
+
+
+
+Std
+
+
+
+Feature
+
+
+
+
+
+__cpp_lib_ranges_join_with
+
+202202L
+
+(C++23)
+
+std::ranges::join_with_view
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <ranges>
+
+#include <string_view>
+
+#include <vector>
+
+ 
+
+int main()
+
+{
+
+    using namespace std::literals;
+
+ 
+
+    std::vector v{"This"sv, "is"sv, "a"sv, "test."sv};
+
+    auto joined = v | std::views::join_with(' ');
+
+ 
+
+    for (auto c : joined)
+
+        std::cout << c;
+
+    std::cout << '\n';
+
+}
+
+Output:
+
+
+
+This is a test.
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 4074
+
+
+
+C++23
+
+
+
+join_with_view was underconstrained
+
+
+
+updated the constraints
+
+
+
+[edit] See also
+
+
+
+
+
+  ranges::join_viewviews::join(C++20)
+
+
+
+ a view consisting of the sequence obtained from flattening a view of ranges(class template) (range adaptor object)[edit]
+
+
+
+
+
+  ranges::concat_viewviews::concat(C++26)
+
+
+
+ a view consisting of concatenation of the adapted views(class template) (customization point object)[edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

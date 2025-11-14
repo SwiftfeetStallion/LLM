@@ -1,0 +1,267 @@
+std::filesystem::directory_options
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Filesystem library
+
+Classes
+
+
+
+filesystem::path
+
+filesystem::filesystem_error
+
+filesystem::directory_entry
+
+filesystem::directory_iterator
+
+filesystem::recursive_directory_iterator  
+
+filesystem::file_status
+
+filesystem::space_info
+
+
+
+filesystem::file_type
+
+filesystem::file_time_type
+
+filesystem::perms
+
+filesystem::perm_options
+
+filesystem::copy_options
+
+filesystem::directory_options
+
+
+
+Functions
+
+
+
+filesystem::absolute
+
+filesystem::canonicalfilesystem::weakly_canonical
+
+filesystem::relativefilesystem::proximate
+
+filesystem::copy
+
+filesystem::copy_file
+
+filesystem::copy_symlink
+
+filesystem::create_directoryfilesystem::create_directories
+
+filesystem::create_hard_link
+
+filesystem::create_symlinkfilesystem::create_directory_symlink
+
+filesystem::current_path
+
+filesystem::temp_directory_path
+
+
+
+filesystem::exists
+
+filesystem::equivalent
+
+filesystem::file_size
+
+filesystem::hard_link_count
+
+filesystem::last_write_time
+
+filesystem::permissions
+
+filesystem::read_symlink
+
+filesystem::removefilesystem::remove_all
+
+filesystem::rename
+
+filesystem::resize_file
+
+filesystem::space
+
+filesystem::statusfilesystem::symlink_status
+
+
+
+File types
+
+
+
+filesystem::is_block_file
+
+filesystem::is_character_file
+
+filesystem::is_directory
+
+filesystem::is_empty
+
+filesystem::status_known
+
+
+
+filesystem::is_fifo
+
+filesystem::is_other
+
+filesystem::is_regular_file
+
+filesystem::is_socket
+
+filesystem::is_symlink
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <filesystem>
+
+
+
+
+
+
+
+
+
+
+
+ enum class directory_options {
+
+    none = /* unspecified */,
+
+    follow_directory_symlink = /* unspecified */,
+
+    skip_permission_denied = /* unspecified */
+
+
+
+};
+
+ 
+
+ (since C++17) 
+
+
+
+
+
+
+
+This type represents available options that control the behavior of the directory_iterator and recursive_directory_iterator.
+
+directory_options satisfies the requirements of BitmaskType (which means the bitwise operators operator&, operator|, operator^, operator~, operator&=, operator|=, and operator^= are defined for this type). none represents the empty bitmask; every other enumerator represents a distinct bitmask element.
+
+
+
+[edit] Constants
+
+
+
+
+
+ Enumerator
+
+
+
+ Meaning
+
+
+
+
+
+ none
+
+
+
+ (default) skip directory symlinks, “permission denied” is error
+
+
+
+
+
+ follow_directory_symlink
+
+
+
+ follow rather than skip directory symlinks
+
+
+
+
+
+ skip_permission_denied
+
+
+
+ skip directories that would otherwise result in “permission denied” errors
+
+
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] See also
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a directory iterator  (public member function of std::filesystem::directory_iterator) [edit]
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a recursive directory iterator  (public member function of std::filesystem::recursive_directory_iterator) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

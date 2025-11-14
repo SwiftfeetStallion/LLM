@@ -1,0 +1,703 @@
+std::mdspan[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::mdspan
+
+
+
+Member functions
+
+mdspan::mdspan
+
+mdspan::operator=
+
+Element access
+
+mdspan::operator[]
+
+Observers
+
+mdspan::rank
+
+mdspan::rank_dynamic
+
+mdspan::static_extent
+
+mdspan::extent
+
+mdspan::size
+
+mdspan::empty
+
+mdspan::stride
+
+mdspan::extents
+
+mdspan::data_handle
+
+mdspan::mapping
+
+mdspan::accessor
+
+mdspan::is_uniquemdspan::is_exhaustivemdspan::is_stridedmdspan::is_always_uniquemdspan::is_always_exhaustivemdspan::is_always_strided  
+
+
+
+
+
+
+
+Non-member functions
+
+swap(std::mdspan)
+
+Subviews
+
+submdspan(C++26)
+
+submdspan_extents(C++26)
+
+Helper types and templates
+
+extentsdextents
+
+dims(C++26)
+
+default_accessor
+
+aligned_accessor(C++26)
+
+Layout mapping policies
+
+layout_left
+
+layout_right
+
+layout_stride
+
+layout_left_padded(C++26)
+
+layout_right_padded(C++26)
+
+Subviews helpers
+
+full_extent(C++26)
+
+strided_slice(C++26)
+
+submdspan_mapping_result(C++26)
+
+Deduction guides
+
+
+
+[edit] 
+
+
+
+
+
+constexpr mdspan();
+
+ (1)
+
+(since C++23)
+
+
+
+
+
+template< class... OtherIndexTypes >
+
+    constexpr explicit mdspan( data_handle_type p, OtherIndexTypes... exts );
+
+ (2)
+
+(since C++23)
+
+
+
+
+
+template< class OtherIndexType, std::size_t N >
+
+    constexpr explicit(N != rank_dynamic())
+
+
+
+        mdspan( data_handle_type p, std::span<OtherIndexType, N> exts );
+
+ (3)
+
+(since C++23)
+
+
+
+
+
+template< class OtherIndexType, std::size_t N >
+
+    constexpr explicit(N != rank_dynamic())
+
+        mdspan( data_handle_type p,
+
+
+
+                const std::array<OtherIndexType, N>& exts );
+
+ (4)
+
+(since C++23)
+
+
+
+
+
+constexpr mdspan( data_handle_type p, const extents_type& ext );
+
+ (5)
+
+(since C++23)
+
+
+
+
+
+constexpr mdspan( data_handle_type p, const mapping_type& m );
+
+ (6)
+
+(since C++23)
+
+
+
+
+
+constexpr mdspan( data_handle_type p, const mapping_type& m,
+
+                  const accessor_type& a );
+
+ (7)
+
+(since C++23)
+
+
+
+
+
+template< class OtherElementType, class OtherExtents,
+
+          class OtherLayoutPolicy, class OtherAccessor >
+
+    constexpr explicit(/* see below */)
+
+        mdspan( const mdspan<OtherElementType, OtherExtents,
+
+
+
+                             OtherLayoutPolicy, OtherAccessor>& other );
+
+ (8)
+
+(since C++23)
+
+
+
+
+
+constexpr mdspan( const mdspan& rhs ) = default;
+
+ (9)
+
+(since C++23)
+
+
+
+
+
+constexpr mdspan( mdspan&& rhs ) = default;
+
+ (10)
+
+(since C++23)
+
+
+
+
+
+
+
+Constructs an mdspan, optionally using user-supplied data handle p, layout mapping m, and accessor a. If extents exts or ext are supplied, they are converted to extents_type and used to initialize the layout mapping.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Effects
+
+3 Constraints and supplement information
+
+4 Example
+
+5 References
+
+6 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ p
+
+
+
+ -
+
+
+
+ a handle to the underlying data
+
+
+
+
+
+ m
+
+
+
+ -
+
+
+
+ a layout mapping
+
+
+
+
+
+ a
+
+
+
+ -
+
+
+
+ an accessor
+
+
+
+
+
+ ext
+
+
+
+ -
+
+
+
+ a std::extents object
+
+
+
+
+
+ exts
+
+
+
+ -
+
+
+
+ represents a multi-dimensional extents
+
+
+
+
+
+ other
+
+
+
+ -
+
+
+
+ another mdspan to convert from
+
+
+
+
+
+ rhs
+
+
+
+ -
+
+
+
+ another mdspan to copy or move from
+
+
+
+[edit] Effects
+
+For the data members listed in the table below:
+
+
+
+ If the corresponding initializer is empty, the data member is value-initialized.
+
+ If the corresponding intiializer is not empty, the data member is direct-non-list-initialized with that initializer.
+
+
+
+
+
+
+
+ Overload 
+
+
+
+Initializer for...
+
+
+
+
+
+ptr_
+
+
+
+map_
+
+
+
+acc_
+
+
+
+
+
+(1)
+
+
+
+(empty)
+
+
+
+
+
+(2)
+
+
+
+std::move(p)
+
+
+
+extents_type    (static_cast<index_type>         (std::move(exts))...)
+
+
+
+(empty)
+
+
+
+
+
+(3)
+
+
+
+extents_type(exts)
+
+
+
+
+
+(4)
+
+
+
+
+
+(5)
+
+
+
+ext
+
+
+
+
+
+(6)
+
+
+
+m
+
+
+
+
+
+(7)
+
+
+
+a
+
+
+
+
+
+(8)
+
+
+
+other.ptr_
+
+
+
+other.map_
+
+
+
+other.acc_
+
+
+
+[edit] Constraints and supplement information
+
+1) This overload participates in overload resolution only if all following values are true:
+
+ rank_dynamic() > 0
+
+ std::is_default_constructible_v<data_handle_type>
+
+ std::is_default_constructible_v<mapping_type>
+
+ std::is_default_constructible_v<accessor_type>
+
+
+
+ If [​0​, map_ ﻿.required_span_size()) is not an accessible range of ptr_ and acc_ for the values of map_ and acc_ after the invocation of this constructor, the behavior is undefined.
+
+2) This overload participates in overload resolution only if all following values are true:
+
+ (std::is_convertible_v<OtherIndexTypes, index_type> && ...)
+
+ (std::is_nothrow_constructible<index_type, OtherIndexTypes> && ...)
+
+ sizeof...(OtherIndexTypes) == rank() || sizeof...(OtherIndexTypes) == rank_dynamic()
+
+ std::is_constructible_v<mapping_type, extents_type>
+
+ std::is_default_constructible_v<accessor_type>
+
+
+
+ If [​0​, map_ ﻿.required_span_size()) is not an accessible range of p and acc_ for the values of map_ and acc_ after the invocation of these constructors, the behavior is undefined.
+
+3,4) These overloads participate in overload resolution only if all following values are true:
+
+ std::is_convertible_v<const OtherIndexType&, index_type>
+
+ std::is_nothrow_constructible_v<index_type, const OtherIndexType&>
+
+ N == rank() || N == rank_dynamic()
+
+ std::is_constructible_v<mapping_type, extents_type>
+
+ std::is_default_constructible_v<accessor_type>
+
+
+
+ If [​0​, map_ ﻿.required_span_size()) is not an accessible range of p and acc_ for the values of map_ and acc_ after the invocation of these constructors, the behavior is undefined.
+
+5) This overload participates in overload resolution only if all following values are true:
+
+ std::is_constructible_v<mapping_type, const extents_type&>
+
+ std::is_default_constructible_v<accessor_type>
+
+
+
+ If [​0​, map_ ﻿.required_span_size()) is not an accessible range of p and acc_ for the values of map_ and acc_ after the invocation of these constructors, the behavior is undefined.
+
+6) This overload participates in overload resolution only if std::is_default_constructible_v<accessor_type> is true.
+
+ If [​0​, m.required_span_size()) is an accessible range of p and acc_ for the value of acc_ after the invocation of this constructor, the behavior is undefined.
+
+7) If [​0​, m.required_span_size()) is not an accessible range of p and a, the behavior is undefined.
+
+8) The expression inside explicit is equivalent to !std::is_convertible_v<const OtherLayoutPolicy::template mapping<OtherExtents>&,                       mapping_type>    || !std::is_convertible_v<const OtherAccessor&, accessor_type>.
+
+ This overload participates in overload resolution only if all following values are true:
+
+ std::is_constructible_v    <mapping_type, const OtherLayoutPolicy::template mapping<OtherExtents>&>
+
+ std::is_default_constructible_v<accessor_type>
+
+
+
+ If any of the following values is false, the program is ill-formed:
+
+ std::is_constructible_v<data_handle_type, const OtherAccessor::data_handle_type&>
+
+ std::is_constructible_v<extents_type, OtherExtents>
+
+
+
+ If [​0​, map_ ﻿.required_span_size()) is not an accessible range of ptr_ and acc_ for the values of ptr_, map_ and acc_ after the invocation of this constructor, the behavior is undefined.
+
+ 
+
+
+
+If static_extent(r) == std::dynamic_extent    || static_extent(r) == other.extent(r) is false for some rank index r of extents_type, the behavior is undefined.
+
+
+
+
+
+(until C++26)
+
+
+
+If static_extent(r) == std::dynamic_extent    || static_extent(r) == other.extent(r) is false for some rank index r of extents_type:
+
+
+
+ If the implementation is hardened, a contract violation occurs. Moreover, if the contract-violation handler returns under “observe” evaluation semantic, the behavior is undefined.
+
+ If the implementation is not hardened, the behavior is undefined.
+
+
+
+
+
+(since C++26)
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] References
+
+
+
+ C++23 standard (ISO/IEC 14882:2024): 
+
+
+
+ 24.7.3.6.2 Constructors [mdspan.mdspan.cons] 
+
+
+
+
+
+
+
+[edit] See also
+
+This section is incomplete 
+
+
+
+
+
+ 
+
+
+
+
+
+                    

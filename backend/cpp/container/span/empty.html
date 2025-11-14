@@ -1,0 +1,235 @@
+std::span[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::span
+
+Member functions
+
+span::span
+
+span::operator=
+
+Element access
+
+span::front
+
+span::back
+
+span::at(C++26)
+
+span::operator[]
+
+span::data
+
+Iterators
+
+span::beginspan::cbegin(C++23)
+
+span::endspan::cend(C++23)
+
+span::rbeginspan::crbegin(C++23)
+
+span::rendspan::crend(C++23)
+
+Observers
+
+span::empty
+
+span::size
+
+span::size_bytes
+
+Subviews
+
+span::first
+
+span::last
+
+span::subspan
+
+Non-member functions
+
+as_bytesas_writable_bytes
+
+Non-member constant
+
+dynamic_extent
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+ constexpr bool empty() const noexcept;
+
+ 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Checks if the span is empty. Equivalent to return size() == 0;.
+
+
+
+[edit] Return value
+
+true if the span is empty; false otherwise.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iomanip>
+
+#include <iostream>
+
+#include <span>
+
+ 
+
+int main()
+
+{
+
+    std::span<const char> span{"ABCDEF"};
+
+ 
+
+    while (!span.empty())
+
+    {
+
+        std::cout << std::quoted(span.data()) << '\n';
+
+        span = span.last(span.size() - 1);
+
+    }
+
+}
+
+Output:
+
+
+
+"ABCDEF"
+
+"BCDEF"
+
+"CDEF"
+
+"DEF"
+
+"EF"
+
+"F"
+
+""
+
+
+
+[edit] See also
+
+
+
+
+
+  size(C++20)
+
+
+
+  returns the number of elements in the sequence  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

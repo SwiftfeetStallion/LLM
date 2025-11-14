@@ -1,0 +1,719 @@
+operator==,!=,[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::array
+
+Member types
+
+Member functions
+
+
+
+Element access
+
+array::at
+
+array::operator[]  
+
+array::front
+
+array::back
+
+array::data
+
+Operations
+
+array::fill
+
+array::swap
+
+
+
+Iterators
+
+array::beginarray::cbegin
+
+array::endarray::cend
+
+array::rbeginarray::crbegin  
+
+array::rendarray::crend
+
+
+
+Capacity
+
+array::empty
+
+array::size
+
+array::max_size
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Non-member functions
+
+
+
+operator==operator<=>(C++20)
+
+get(std::array)
+
+swap(std::array)
+
+to_array(C++20)
+
+
+
+operator|=operator<operator>operator<=operator>=(until C++20)(until C++20)(until C++20)(until C++20)(until C++20)
+
+
+
+Helper classes
+
+tuple_size<std::array>
+
+tuple_element<std::array>
+
+Deduction guides (C++17)
+
+[edit] 
+
+
+
+
+
+ Defined in header <array>
+
+
+
+
+
+
+
+
+
+
+
+template< class T, std::size_t N >
+
+bool operator==( const std::array<T, N>& lhs,
+
+
+
+                 const std::array<T, N>& rhs );
+
+ (1)
+
+(since C++11) (constexpr since C++20)
+
+
+
+
+
+ template< class T, std::size_t N >
+
+bool operator!=( const std::array<T, N>& lhs,
+
+
+
+                 const std::array<T, N>& rhs );
+
+ (2) 
+
+ (since C++11) (until C++20) 
+
+
+
+
+
+ template< class T, std::size_t N >
+
+bool operator< ( const std::array<T, N>& lhs,
+
+
+
+                 const std::array<T, N>& rhs );
+
+ (3) 
+
+ (since C++11) (until C++20) 
+
+
+
+
+
+ template< class T, std::size_t N >
+
+bool operator<=( const std::array<T, N>& lhs,
+
+
+
+                 const std::array<T, N>& rhs );
+
+ (4) 
+
+ (since C++11) (until C++20) 
+
+
+
+
+
+ template< class T, std::size_t N >
+
+bool operator> ( const std::array<T, N>& lhs,
+
+
+
+                 const std::array<T, N>& rhs );
+
+ (5) 
+
+ (since C++11) (until C++20) 
+
+
+
+
+
+ template< class T, std::size_t N >
+
+bool operator>=( const std::array<T, N>& lhs,
+
+
+
+                 const std::array<T, N>& rhs );
+
+ (6) 
+
+ (since C++11) (until C++20) 
+
+
+
+
+
+template< class T, std::size_t N >
+
+constexpr /* see below */
+
+    operator<=>( const std::array<T, N>& lhs,
+
+
+
+                 const std::array<T, N>& rhs );
+
+ (7)
+
+(since C++20)
+
+
+
+
+
+
+
+Compares the contents of two arrays.
+
+Let value_type be the value type of array (i.e., typename array::value_type):
+
+
+
+1,2) Checks if the contents of lhs and rhs are equal, that is, they have the same number of elements and each element in lhs compares equal with the element in rhs at the same position.
+
+ Equivalent to:
+
+
+
+
+
+return std::distance(lhs.begin(), lhs.end())               == std::distance(rhs.begin(), rhs.end())           && std::equal(lhs.begin(), lhs.end(), rhs.begin());
+
+
+
+
+
+(until C++14)
+
+
+
+return std::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+
+
+
+
+
+(since C++14)
+
+
+
+ If value_type is not EqualityComparable, the behavior is undefined.
+
+3-7) Compares the contents of lhs and rhs lexicographically.
+
+3-6) Equivalent to return std::lexicographical_compare(lhs.begin(), lhs.end(),                                    rhs.begin(), rhs.end());.
+
+ If any of the following conditions is satisfied, the behavior is undefined:
+
+ value_type is not LessThanComparable.
+
+ operator< does not establish total order.
+
+
+
+7) Equivalent to return std::lexicographical_compare_three_way(lhs.begin(), lhs.end(),                                              rhs.begin(), rhs.end(),                                              synth-three-way).
+
+ The return type is the return type of synth-three-way (i.e., synth-three-way-result ﻿<value_type>).
+
+ If any of the following conditions is satisfied, the behavior is undefined:
+
+ T does not model three_way_comparable.
+
+ operator< is not defined for values of type (possibly const-qualified) value_type.
+
+ operator< does not establish total order.
+
+
+
+
+
+
+
+The <, <=, >, >=, and != operators are synthesized from operator<=> and operator== respectively.
+
+
+
+
+
+(since C++20)
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Complexity
+
+4 Notes
+
+5 Example
+
+6 Defect reports
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ lhs, rhs
+
+
+
+ -
+
+
+
+ arrays whose contents to compare
+
+
+
+[edit] Return value
+
+
+
+
+
+Operator
+
+
+
+lhs and rhsare equal
+
+
+
+lhs is lexicographically greater 
+
+
+
+rhs is lexicographically greater 
+
+
+
+
+
+operator==
+
+
+
+true
+
+
+
+false
+
+
+
+
+
+operator!=
+
+
+
+false
+
+
+
+true
+
+
+
+
+
+operator<
+
+
+
+false
+
+
+
+false
+
+
+
+true
+
+
+
+
+
+operator<=
+
+
+
+true
+
+
+
+
+
+operator>
+
+
+
+false
+
+
+
+true
+
+
+
+false
+
+
+
+
+
+operator>=
+
+
+
+true
+
+
+
+
+
+ operator<=> 
+
+
+
+ a value equal to ​0​ 
+
+
+
+a value greater then ​0​
+
+
+
+a value less than ​0​
+
+
+
+[edit] Complexity
+
+Linear in the size of the array.
+
+
+
+[edit] Notes
+
+
+
+
+
+The relational operators are defined in terms of value_type's operator<.
+
+
+
+
+
+(until C++20)
+
+
+
+The relational operators are not defined. The rewritten candidate operator<=> will be selected by overload resolution.
+
+operator<=> uses value_type's operator<=> if possible, or value_type's operator< otherwise. Notably, if the value_type does not itself provide operator<=>, but is implicitly convertible to a three-way comparable type, that conversion will be used instead of operator<.
+
+
+
+
+
+(since C++20)
+
+
+
+[edit] Example
+
+Run this code
+
+#include <cassert>
+
+#include <compare>
+
+#include <array>
+
+ 
+
+int main()
+
+{
+
+    const std::array
+
+        a{1, 2, 3},
+
+        b{1, 2, 3},
+
+        c{7, 8, 9};
+
+ 
+
+    assert
+
+    (""
+
+        "Compare equal containers:" &&
+
+        (a != b) == false &&
+
+        (a == b) == true &&
+
+        (a < b) == false &&
+
+        (a <= b) == true &&
+
+        (a > b) == false &&
+
+        (a >= b) == true &&
+
+        (a <=> b) != std::weak_ordering::less &&
+
+        (a <=> b) != std::weak_ordering::greater &&
+
+        (a <=> b) == std::weak_ordering::equivalent &&
+
+        (a <=> b) >= 0 &&
+
+        (a <=> b) <= 0 &&
+
+        (a <=> b) == 0 &&
+
+ 
+
+        "Compare non equal containers:" &&
+
+        (a != c) == true &&
+
+        (a == c) == false &&
+
+        (a < c) == true &&
+
+        (a <= c) == true &&
+
+        (a > c) == false &&
+
+        (a >= c) == false &&
+
+        (a <=> c) == std::weak_ordering::less &&
+
+        (a <=> c) != std::weak_ordering::equivalent &&
+
+        (a <=> c) != std::weak_ordering::greater &&
+
+        (a <=> c) < 0 &&
+
+        (a <=> c) != 0 &&
+
+        (a <=> c) <= 0 &&
+
+    "");
+
+}
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 3431
+
+
+
+C++20
+
+
+
+operator<=> did not require Tto model three_way_comparable
+
+
+
+requires
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

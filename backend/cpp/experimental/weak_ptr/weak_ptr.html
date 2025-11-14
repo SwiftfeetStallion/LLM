@@ -1,0 +1,239 @@
+std::experimental::weak_ptr[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals
+
+experimental::optional
+
+experimental::any
+
+experimental::basic_string_view
+
+experimental::sample
+
+experimental::shared_ptr
+
+experimental::weak_ptr
+
+experimental::apply
+
+experimental::invocation_typeexperimental::raw_invocation_type
+
+experimental::search
+
+experimental::default_searcherexperimental::make_default_searcher
+
+experimental::boyer_moore_searcherexperimental::make_boyer_moore_searcher
+
+experimental::boyer_moore_horspool_searcherexperimental::make_boyer_moore_horspool_searcher
+
+Type-erased and polymorphic allocators
+
+Variable templates for type traits
+
+[edit] std::experimental::weak_ptr
+
+weak_ptr::weak_ptr
+
+Members and non-members identical to those of std::weak_ptr
+
+[edit] 
+
+
+
+
+
+ constexpr weak_ptr() noexcept;
+
+ (1) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ weak_ptr( const weak_ptr& r ) noexcept;
+
+ (2) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ template< class Y > 
+
+weak_ptr( const weak_ptr<Y>& r ) noexcept;
+
+ (2) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ template< class Y > 
+
+weak_ptr( const std::experimental::shared_ptr<Y>& r ) noexcept;
+
+ (2) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ weak_ptr( weak_ptr&& r ) noexcept;
+
+ (3) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ template< class Y > 
+
+weak_ptr( weak_ptr<Y>&& r ) noexcept;
+
+ (3) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+
+
+Constructs a new weak_ptr that potentially shares an object with r.
+
+
+
+1) Default constructor. Constructs empty weak_ptr.
+
+2) Constructs new weak_ptr which shares an object managed by r. If r manages no object, *this manages no object too. The templated overloads don't participate in overload resolution unless either Y* is implicitly convertible to T*, or Y is the type "array of N U" for some type U and some number N, and T is the type "array of unknown bound of (possibly cv-qualified) U". 
+
+3) Move constructors. Moves a weak_ptr instance from r into *this. After this, r is empty and r.use_count() == 0. The templated overload doesn't participate in overload resolution unless either Y* is implicitly convertible to T*, or Y is the type "array of N U" for some type U and some number N, and T is the type "array of unknown bound of (possibly cv-qualified) U".
+
+Contents
+
+
+
+1 Parameters
+
+2 Exceptions
+
+3 Example
+
+4 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ r
+
+
+
+ -
+
+
+
+ a std::experimental::shared_ptr or std::experimental::weak_ptr that will be viewed by this std::experimental::weak_ptr
+
+
+
+[edit] Exceptions
+
+noexcept specification:  noexcept  
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] See also
+
+
+
+
+
+  (constructor)
+
+
+
+  creates a new weak_ptr  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+  operator=
+
+
+
+  assigns the weak_ptr  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,281 @@
+std::uses_allocator[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals
+
+experimental::optional
+
+experimental::any
+
+experimental::basic_string_view
+
+experimental::sample
+
+experimental::shared_ptr
+
+experimental::weak_ptr
+
+experimental::apply
+
+experimental::invocation_typeexperimental::raw_invocation_type
+
+experimental::search
+
+experimental::default_searcherexperimental::make_default_searcher
+
+experimental::boyer_moore_searcherexperimental::make_boyer_moore_searcher
+
+experimental::boyer_moore_horspool_searcherexperimental::make_boyer_moore_horspool_searcher
+
+Type-erased and polymorphic allocators
+
+Variable templates for type traits
+
+[edit] Polymorphic allocator library
+
+polymorphic_allocator
+
+Convenience aliases for containers using polymorphic_allocator
+
+Memory resource classes
+
+memory_resource
+
+synchronized_pool_resource
+
+unsynchronized_pool_resource
+
+monotonic_buffer_resource
+
+resource_adaptor
+
+Global memory resources
+
+new_delete_resource
+
+null_memory_resource
+
+get_default_resource
+
+set_default_resource
+
+Type-erased allocator support for existing classes
+
+function
+
+packaged_task
+
+promise
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/future>
+
+
+
+
+
+
+
+
+
+
+
+ template< class R, class Alloc >
+
+struct uses_allocator<std::experimental::packaged_task<R>, Alloc> 
+
+
+
+    : std::true_type {};
+
+ 
+
+ (library fundamentals TS) 
+
+
+
+
+
+
+
+This specialization of std::uses_allocator informs other library components that all objects of type std::experimental::packaged_task support uses-allocator construction.
+
+
+
+
+
+Contents
+
+
+
+1 Inherited from  std::integral_constant
+
+
+
+1.1 Member constants
+
+1.2 Member functions
+
+1.3 Member types
+
+1.4 See also
+
+
+
+
+
+
+
+
+
+ Inherited from  std::integral_constant
+
+ Member constants
+
+
+
+
+
+ value[static]
+
+
+
+ true  (public static member constant)
+
+
+
+
+
+ Member functions
+
+
+
+
+
+ operator bool
+
+
+
+   converts the object to bool, returns value  (public member function)
+
+
+
+
+
+ operator()(C++14)
+
+
+
+   returns value  (public member function)
+
+
+
+
+
+ Member types
+
+
+
+
+
+  Type
+
+
+
+  Definition
+
+
+
+
+
+ value_type
+
+
+
+ bool
+
+
+
+
+
+ type
+
+
+
+ std::integral_constant<bool, value>
+
+
+
+
+
+
+
+[edit] See also
+
+
+
+
+
+  uses_allocator(C++11)
+
+
+
+  checks if the specified type supports uses-allocator construction  (class template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

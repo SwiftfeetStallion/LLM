@@ -1,0 +1,283 @@
+std::inplace_vector[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::inplace_vector
+
+Member types
+
+Member functions
+
+
+
+inplace_vector::inplace_vector
+
+inplace_vector::~inplace_vector  
+
+inplace_vector::operator=
+
+inplace_vector::assign
+
+inplace_vector::assign_range
+
+Size and capacity
+
+inplace_vector::empty
+
+inplace_vector::size
+
+inplace_vector::max_size
+
+inplace_vector::capacity
+
+inplace_vector::resize
+
+inplace_vector::reserve
+
+inplace_vector::shrink_to_fit
+
+Iterators
+
+inplace_vector::begininplace_vector::cbegin
+
+inplace_vector::endinplace_vector::cend
+
+inplace_vector::rbegininplace_vector::crbegin
+
+inplace_vector::rendinplace_vector::crend
+
+
+
+Element access
+
+inplace_vector::at
+
+inplace_vector::operator[]
+
+inplace_vector::front
+
+inplace_vector::back
+
+inplace_vector::data
+
+Modifiers
+
+inplace_vector::clear
+
+inplace_vector::erase
+
+inplace_vector::swap
+
+inplace_vector::insert
+
+inplace_vector::insert_range
+
+inplace_vector::emplace
+
+inplace_vector::emplace_back
+
+inplace_vector::try_emplace_back
+
+inplace_vector::unchecked_emplace_back
+
+inplace_vector::push_back
+
+inplace_vector::try_push_back
+
+inplace_vector::unchecked_push_back
+
+inplace_vector::pop_back
+
+inplace_vector::append_range
+
+inplace_vector::try_append_range
+
+
+
+Non-member functions
+
+
+
+erase(std::inplace_vector)erase_if(std::inplace_vector)
+
+swap(std::inplace_vector)
+
+
+
+operator==operator<=>
+
+
+
+
+
+
+
+[edit] 
+
+
+
+
+
+constexpr void pop_back();
+
+ 
+
+
+
+
+
+
+
+
+
+Removes the last element of the container.
+
+If empty() is true:
+
+
+
+ If the implementation is hardened, a contract violation occurs. Moreover, if the contract-violation handler returns under “observe” evaluation semantic, the behavior is undefined.
+
+ If the implementation is not hardened, the behavior is undefined.
+
+
+
+Iterators and references to the last element are invalidated. The end() iterator is also invalidated.
+
+
+
+[edit] Complexity
+
+Constant.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <inplace_vector>
+
+#include <print>
+
+ 
+
+int main()
+
+{
+
+    std::inplace_vector<int, 4> numbers{1, 2, 3};
+
+    for (; not numbers.empty(); numbers.pop_back())
+
+        std::println("{}", numbers);
+
+}
+
+Output:
+
+
+
+[1, 2, 3]
+
+[1, 2]
+
+[1]
+
+
+
+[edit] See also
+
+
+
+
+
+  push_back
+
+
+
+  adds an element to the end  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

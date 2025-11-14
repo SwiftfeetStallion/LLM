@@ -1,0 +1,311 @@
+std::experimental::pmr::memory_resource
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Library fundamentals
+
+experimental::optional
+
+experimental::any
+
+experimental::basic_string_view
+
+experimental::sample
+
+experimental::shared_ptr
+
+experimental::weak_ptr
+
+experimental::apply
+
+experimental::invocation_typeexperimental::raw_invocation_type
+
+experimental::search
+
+experimental::default_searcherexperimental::make_default_searcher
+
+experimental::boyer_moore_searcherexperimental::make_boyer_moore_searcher
+
+experimental::boyer_moore_horspool_searcherexperimental::make_boyer_moore_horspool_searcher
+
+Type-erased and polymorphic allocators
+
+Variable templates for type traits
+
+[edit] Polymorphic allocator library
+
+polymorphic_allocator
+
+Convenience aliases for containers using polymorphic_allocator
+
+Memory resource classes
+
+memory_resource
+
+synchronized_pool_resource
+
+unsynchronized_pool_resource
+
+monotonic_buffer_resource
+
+resource_adaptor
+
+Global memory resources
+
+new_delete_resource
+
+null_memory_resource
+
+get_default_resource
+
+set_default_resource
+
+Type-erased allocator support for existing classes
+
+function
+
+packaged_task
+
+promise
+
+[edit] std::experimental::pmr::memory_resource
+
+memory_resource::memory_resource
+
+Public member functions
+
+memory_resource::allocate
+
+memory_resource::deallocate
+
+memory_resource::is_equal
+
+Protected member functions
+
+memory_resource::do_allocate
+
+memory_resource::do_deallocate
+
+memory_resource::do_is_equal
+
+Non-member functions
+
+operator==operator!=
+
+[edit] 
+
+
+
+
+
+
+
+
+
+ Merged into ISO C++ The functionality described on this page was merged into the mainline ISO C++ standard as of 3/2016, see std::pmr::memory_resource (since C++17) 
+
+
+
+
+
+
+
+
+
+ Defined in header <experimental/memory_resource>
+
+
+
+
+
+
+
+
+
+
+
+ class memory_resource;
+
+ 
+
+ (library fundamentals TS) 
+
+
+
+
+
+
+
+The class std::experimental::pmr::memory_resource is an abstract interface to an unbounded set of classes encapsulating memory resources.
+
+
+
+Contents
+
+
+
+1 Member functions
+
+
+
+1.1 Public member functions
+
+1.2 Protected member functions
+
+
+
+
+
+2 Non-member-functions
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  (constructor)(implicitly declared)
+
+
+
+  constructs a new memory_resource  (public member function) [edit]
+
+
+
+
+
+ (destructor)[virtual]
+
+
+
+  destructs a memory_resource  (virtual public member function) [edit]
+
+
+
+
+
+ operator=(implicitly declared)
+
+
+
+  implicitly declared copy assignment operator  (public member function) [edit]
+
+
+
+
+
+   Public member functions 
+
+
+
+
+
+  allocate
+
+
+
+  allocates memory  (public member function) [edit]
+
+
+
+
+
+  deallocate
+
+
+
+  deallocates memory  (public member function) [edit]
+
+
+
+
+
+  is_equal
+
+
+
+  compare for equality with another memory_resource  (public member function) [edit]
+
+
+
+
+
+   Protected member functions 
+
+
+
+
+
+  do_allocate[virtual]
+
+
+
+  allocates memory  (virtual protected member function) [edit]
+
+
+
+
+
+  do_deallocate[virtual]
+
+
+
+  deallocates memory  (virtual protected member function) [edit]
+
+
+
+
+
+  do_is_equal[virtual]
+
+
+
+  compare for equality with another memory_resource  (virtual protected member function) [edit]
+
+
+
+
+
+[edit] Non-member-functions
+
+
+
+
+
+  operator==operator!=
+
+
+
+  compare two memory_resources  (function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

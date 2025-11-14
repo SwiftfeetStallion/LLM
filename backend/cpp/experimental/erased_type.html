@@ -1,0 +1,137 @@
+std::experimental::erased_type
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals
+
+experimental::optional
+
+experimental::any
+
+experimental::basic_string_view
+
+experimental::sample
+
+experimental::shared_ptr
+
+experimental::weak_ptr
+
+experimental::apply
+
+experimental::invocation_typeexperimental::raw_invocation_type
+
+experimental::search
+
+experimental::default_searcherexperimental::make_default_searcher
+
+experimental::boyer_moore_searcherexperimental::make_boyer_moore_searcher
+
+experimental::boyer_moore_horspool_searcherexperimental::make_boyer_moore_horspool_searcher
+
+Type-erased and polymorphic allocators
+
+Variable templates for type traits
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/utility>
+
+
+
+
+
+
+
+
+
+
+
+ struct erased_type { };
+
+ 
+
+ (library fundamentals TS) (removed in library fundamentals TS v3) 
+
+
+
+
+
+
+
+The class erased_type is an empty struct that serves as a placeholder for a type in situations where the actual type is determined at runtime. For example, in classes that use type-erased allocators, the nested typedef allocator_type is an alias for erased_type.
+
+
+
+[edit] Notes
+
+erased_type is removed in LFTS v3 because std::pmr::polymorphic_allocator<> is preferable for type erasure.
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

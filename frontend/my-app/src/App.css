@@ -1,0 +1,154 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  background-color: rgb(15, 17, 26);
+}
+
+.question_blk {
+  height: 250px;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+}
+
+.main_blk {
+  height: 70vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.messages {
+  height: 70vh;
+  width: 80vw;
+  overflow: scroll;
+  margin-top: 5vh;
+  white-space: pre-line;
+}
+
+.introduction {
+  width: 80%;
+  height: 200px;
+  padding-left: 9%;
+  text-align: center;
+}
+
+.question, .response {
+  height: fit-content;
+  width: 80%;
+  margin-left: 9%;
+  margin-top: 10px;
+  border: solid 2px rgb(85, 84, 84);
+  border-radius: 10px;
+  overflow: scroll;
+  padding: 10px;
+  background-color: rgb(29, 29, 46);
+}
+
+.del_btn, .gen_btn {
+  height: 30px;
+  width: 70px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-family: cursive;
+  background-color: rgb(44, 44, 71);
+  text-align: center;
+  padding: 0;
+  margin-right: 10px;
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+p {
+  color: white;
+  font-family: cursive;
+  max-width: 80%;
+}
+
+h1 {
+  color: white;
+  font-family: cursive;
+}
+
+.c {
+  font-weight: bold;
+  font-size: 50px;
+
+}
+
+.textarea_blk {
+  height: 63%;
+  width: 70%;
+  margin-top: 40px;
+  border: solid 1px rgb(85, 84, 84);
+  border-radius: 10px;
+  background-color: rgb(29, 29, 46);
+}
+
+textarea {
+  resize: none;
+  height: 70%;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  overflow-x: hidden;
+  background-color: rgb(29, 29, 46);
+  border: 0;
+  outline: 0;
+  color: white;
+  font-size: large;
+  font-family:cursive;
+  padding:10px
+}
+
+.btn_blk { 
+  display: flex;
+  justify-content: flex-end;
+}
+
+.send_btn, .not_allowed, .active {
+  height: 30px;
+  width: 30px;
+  border-radius: 20px;
+  margin-right: 10px;
+  background-color: rgb(184, 137, 228);
+  border: 0;
+  margin-top: 7px;
+  background-image: url("arrow.jpg");
+  background-size: cover;
+  background-blend-mode: overlay;
+
+}
+
+.not_allowed, .active {
+  background-color: rgba(107, 33, 176, 0.441);
+}
+
+.send_btn:hover {
+  cursor: pointer;
+  background-color: rgb(161, 121, 198);
+}
+
+.not_allowed:hover {
+  cursor: not-allowed;
+}
+
+textarea::-webkit-scrollbar,
+.messages::-webkit-scrollbar,
+.question::-webkit-scrollbar, 
+.response::-webkit-scrollbar {
+    display: none;
+}
+
+.del_btn:hover, .gen_btn:hover {
+  cursor: pointer;
+  background-color: rgb(55, 55, 81);
+}

@@ -1,0 +1,365 @@
+std::experimental::ranges::IndirectlyMovable
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Ranges
+
+Concepts
+
+General utilities
+
+Iterators
+
+Ranges
+
+Algorithms
+
+[edit] Iterators library
+
+ Iterator concepts
+
+
+
+Readable
+
+Writable
+
+WeaklyIncrementable
+
+Incrementable
+
+
+
+Iterator
+
+Sentinel
+
+SizedSentinel
+
+
+
+
+
+
+
+InputIterator
+
+ForwardIterator
+
+BidirectionalIterator
+
+RandomAccessIterator
+
+
+
+OutputIterator
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Indirect callable concepts
+
+
+
+IndirectUnaryInvocableIndirectRegularUnaryInvocable
+
+
+
+IndirectUnaryPredicate
+
+                                                  
+
+
+
+IndirectRelation
+
+                                                  
+
+
+
+IndirectStrictWeakOrder
+
+                                                  
+
+
+
+ Common algorithm requirements
+
+
+
+IndirectlyMovable
+
+IndirectlyMovableStorable
+
+                                                  
+
+
+
+IndirectlyCopyable
+
+IndirectlyCopyableStorable
+
+
+
+
+
+
+
+IndirectlySwappable
+
+IndirectlyComparable
+
+
+
+
+
+
+
+Permutable
+
+Mergeable
+
+Sortable
+
+
+
+ Concept utilities
+
+
+
+indirect_result_of
+
+
+
+projected
+
+
+
+ Iterator utilities and operations
+
+
+
+iter_move
+
+iter_swap
+
+
+
+advance
+
+distance
+
+
+
+next
+
+prev
+
+
+
+ Iterator traits
+
+
+
+difference_type
+
+value_type
+
+reference_trvalue_reference_titer_common_reference_t
+
+iterator_category
+
+
+
+input_iterator_tagoutput_iterator_tagforward_iterator_tagbidirectional_iterator_tagrandom_access_iterator_tag
+
+
+
+
+
+
+
+ranges::iterator_traits
+
+std::iterator_traits<InputIterator>std::iterator_traits<OutputIterator>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ Iterator adaptors
+
+
+
+reverse_iterator
+
+move_iterator
+
+move_sentinel
+
+
+
+back_insert_iterator
+
+front_insert_iterator
+
+insert_iterator
+
+
+
+common_iterator
+
+counted_iterator
+
+default_sentinel
+
+
+
+danglingborrowed_iterator_t
+
+unreachable
+
+
+
+ Stream iterators
+
+
+
+istream_iterator
+
+
+
+ostream_iterator
+
+
+
+istreambuf_iterator
+
+
+
+ostreambuf_iterator
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/ranges/iterator>
+
+
+
+
+
+
+
+
+
+
+
+ template< class In, class Out >
+
+concept bool IndirectlyMovable =
+
+
+
+    Readable<In> && Writable<Out, ranges::rvalue_reference_t<In>>;
+
+ 
+
+ (ranges TS) 
+
+
+
+
+
+
+
+This section is incompleteReason: add description and extra caveats 
+
+
+
+
+
+ 
+
+
+
+
+
+                    

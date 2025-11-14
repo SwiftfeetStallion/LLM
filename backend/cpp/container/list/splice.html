@@ -1,0 +1,553 @@
+std::list[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::list
+
+Member functions
+
+
+
+list::list
+
+list::~list
+
+list::operator=
+
+list::assign
+
+list::assign_range(C++23)  
+
+list::get_allocator
+
+Element access
+
+list::front
+
+list::back
+
+Iterators
+
+list::beginlist::cbegin(C++11)
+
+list::endlist::cend(C++11)
+
+list::rbeginlist::crbegin(C++11)
+
+list::rendlist::crend(C++11)
+
+Capacity
+
+list::size
+
+list::empty
+
+list::max_size
+
+
+
+Modifiers
+
+list::clear
+
+list::insert
+
+list::insert_range(C++23)
+
+list::emplace(C++11)
+
+list::erase
+
+list::push_front
+
+list::emplace_front(C++11)
+
+list::prepend_range(C++23)
+
+list::pop_front
+
+list::push_back
+
+list::emplace_back(C++11)
+
+list::append_range(C++23)
+
+list::pop_back
+
+list::resize
+
+list::swap
+
+Operations
+
+list::merge
+
+list::splice
+
+list::removelist::remove_if
+
+list::reverse
+
+list::unique
+
+list::sort
+
+
+
+Non-member functions
+
+
+
+operator==operator<=>(C++20)
+
+swap(std::list)
+
+erase(std::list)erase_if(std::list)(C++20)(C++20)
+
+
+
+operator!=operator<operator>operator<=operator>=(until C++20)(until C++20)(until C++20)(until C++20)(until C++20)
+
+
+
+Deduction guides(C++17)
+
+[edit] 
+
+
+
+
+
+void splice( const_iterator pos, list& other );
+
+ (1)
+
+(constexpr since C++26)
+
+
+
+
+
+void splice( const_iterator pos, list&& other );
+
+ (2)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+void splice( const_iterator pos, list& other, const_iterator it );
+
+ (3)
+
+(constexpr since C++26)
+
+
+
+
+
+void splice( const_iterator pos, list&& other, const_iterator it );
+
+ (4)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+void splice( const_iterator pos, list& other, 
+
+             const_iterator first, const_iterator last );
+
+ (5)
+
+(constexpr since C++26)
+
+
+
+
+
+void splice( const_iterator pos, list&& other, 
+
+             const_iterator first, const_iterator last );
+
+ (6)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+
+
+Transfers elements from other to *this. The elements are inserted at pos.
+
+If any of the following conditions is satisfied, the behavior is undefined:
+
+
+
+ pos is not in the range [begin(), end()).
+
+ get_allocator() == other.get_allocator() is false.
+
+
+
+1,2) Transfers all elements of other. other becomes empty after the operation.
+
+ If *this and other refer to the same object, the behavior is undefined.
+
+3,4) Transfers the element pointed to by it.
+
+ *this and other can refer to the same object. In this case, there is no effect if pos == it or pos == ++it is true.
+
+ If it is not in the range [begin(), end()), the behavior is undefined.
+
+5,6) Transfers elements in the range [first, last).
+
+ *this and other can refer to the same object.
+
+ If any of the following conditions is satisfied, the behavior is undefined:
+
+ [first, last) is not a valid range in other,
+
+ Any iterator in [first, last) is not dereferenceable.
+
+ pos is in [first, last).
+
+
+
+No iterators or references become invalidated. If *this and other refer to different objects, the iterators to the transferred elements now refer into *this, not into other.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Complexity
+
+3 Example
+
+4 Defect reports
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ pos
+
+
+
+ -
+
+
+
+ element before which the content will be inserted
+
+
+
+
+
+ other
+
+
+
+ -
+
+
+
+ another container to transfer the content from
+
+
+
+
+
+ it
+
+
+
+ -
+
+
+
+ the element to transfer from other to *this
+
+
+
+
+
+ first, last
+
+
+
+ -
+
+
+
+ the pair of iterators defining the  range of elements to transfer from other to *this
+
+
+
+[edit] Complexity
+
+1-4) Constant.
+
+5,6) Constant if other refers to the same object as *this, otherwise linear in std::distance(first, last).
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <list>
+
+ 
+
+std::ostream& operator<<(std::ostream& ostr, const std::list<int>& list)
+
+{
+
+    for (auto& i : list)
+
+        ostr << ' ' << i;
+
+ 
+
+    return ostr;
+
+}
+
+ 
+
+int main ()
+
+{
+
+    std::list<int> list1{1, 2, 3, 4, 5};
+
+    std::list<int> list2{10, 20, 30, 40, 50};
+
+ 
+
+    auto it = list1.begin();
+
+    std::advance(it, 2);
+
+ 
+
+    list1.splice(it, list2);
+
+ 
+
+    std::cout << "list1:" << list1 << '\n';
+
+    std::cout << "list2:" << list2 << '\n';
+
+ 
+
+    list2.splice(list2.begin(), list1, it, list1.end());
+
+ 
+
+    std::cout << "list1:" << list1 << '\n';
+
+    std::cout << "list2:" << list2 << '\n';
+
+}
+
+Output:
+
+
+
+list1: 1 2 10 20 30 40 50 3 4 5
+
+list2:
+
+list1: 1 2 10 20 30 40 50
+
+list2: 3 4 5
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 250
+
+
+
+C++98
+
+
+
+references and iterators to the movedelement(s) were all invalidated
+
+
+
+they refer or point to thesame element(s) in *this
+
+
+
+
+
+N2525
+
+
+
+C++98
+
+
+
+O(1) splicing could not be guaranteed ifget_allocator() != other.get_allocator()
+
+
+
+the behavior isundefined in this case
+
+
+
+[edit] See also
+
+
+
+
+
+  merge
+
+
+
+  merges two sorted lists  (public member function) [edit]
+
+
+
+
+
+  removeremove_if
+
+
+
+  removes elements satisfying specific criteria  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

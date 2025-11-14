@@ -1,0 +1,287 @@
+std::experimental::ranges::make_tagged_pair
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Ranges
+
+Concepts
+
+General utilities
+
+Iterators
+
+Ranges
+
+Algorithms
+
+[edit] General utilities library
+
+ Utility components
+
+
+
+swap
+
+
+
+exchange
+
+
+
+ Function objects
+
+
+
+invoke
+
+identity
+
+
+
+equal_to
+
+not_equal_to
+
+
+
+greater
+
+less
+
+
+
+greater_equal
+
+less_equal
+
+
+
+ Metaprogramming and type traits
+
+
+
+is_swappable_withis_swappable
+
+
+
+is_nothrow_swappable_withis_nothrow_swappable
+
+
+
+common_reference
+
+common_type
+
+
+
+ Tagged pairs and tuples
+
+
+
+TagSpecifier
+
+TaggedType
+
+                          
+
+
+
+tagged
+
+ tag specifiers
+
+                                      
+
+
+
+tagged_pair
+
+make_tagged_pair
+
+                          
+
+
+
+tagged_tuple
+
+make_tagged_tuple
+
+
+
+
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/ranges/utility>
+
+
+
+
+
+
+
+
+
+
+
+ template< TagSpecifier Tag1, TagSpecifier Tag2, class T1, class T2 >
+
+constexpr ranges::tagged</*see below*/, Tag1, Tag2> make_tagged_pair( T1&& x, T2&& y );
+
+ 
+
+ (ranges TS) 
+
+
+
+
+
+
+
+Convenience function for creating a tagged pair, deducing the element types from the arguments (the tag specifiers must be explicitly specified).
+
+The see below portion of the return type is decltype(std::make_pair(std::forward<T1>(x), std::forward<T2>(y))).
+
+
+
+[edit] Return value
+
+R(std::forward<T1>(x), std::forward<T2>(y)), where R is the return type.
+
+
+
+[edit] See also
+
+
+
+
+
+  TaggedType
+
+
+
+  specifies that a type represents a tag specifier and its element type  (concept) [edit]
+
+
+
+
+
+  tagged
+
+
+
+  augument a tuple-like type with named accessors  (class template) [edit]
+
+
+
+
+
+  tagged_pair
+
+
+
+ alias template for a tagged std::pair(alias template)[edit]
+
+
+
+
+
+  tagged_tuple
+
+
+
+ alias template for a tagged std::tuple(alias template)[edit]
+
+
+
+
+
+  make_tagged_tuple
+
+
+
+  convenience function for creating a tagged_tuple  (function template) [edit]
+
+
+
+
+
+  inin1in2outout1out2funminmaxbeginend
+
+
+
+  tag specifiers for use with ranges::tagged  (class) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

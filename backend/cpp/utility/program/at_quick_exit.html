@@ -1,0 +1,517 @@
+std::at_quick_exit
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Utilities library
+
+
+
+Language support
+
+Type support (basic types, RTTI)
+
+Library feature-test macros (C++20)
+
+Program utilities
+
+Variadic functions
+
+initializer_list(C++11)
+
+is_constant_evaluated(C++20)
+
+is_within_lifetime(C++26)
+
+source_location(C++20)
+
+Coroutine support (C++20)
+
+Contract support (C++26)
+
+Three-way comparison
+
+three_way_comparablethree_way_comparable_with(C++20)(C++20)
+
+strong_ordering(C++20)
+
+weak_ordering(C++20)
+
+partial_ordering(C++20)
+
+common_comparison_category(C++20)
+
+compare_three_way_result(C++20)
+
+compare_three_way(C++20)
+
+strong_order(C++20)
+
+weak_order(C++20)
+
+partial_order(C++20)
+
+compare_strong_order_fallback(C++20)
+
+compare_weak_order_fallback(C++20)
+
+compare_partial_order_fallback(C++20)  
+
+
+
+
+
+is_eqis_ltis_lteq(C++20)(C++20)(C++20)  
+
+
+
+is_neqis_gtis_gteq(C++20)(C++20)(C++20)
+
+
+
+
+
+
+
+
+
+
+
+General utilities
+
+
+
+Function objects
+
+Bit manipulation (C++20)
+
+C-style bit manipulation (C++26)
+
+bitset
+
+hash(C++11)
+
+
+
+Relational operators (deprecated in C++20)
+
+
+
+
+
+rel_ops::operator!=rel_ops::operator>  
+
+
+
+rel_ops::operator<=rel_ops::operator>=
+
+
+
+Integer comparison functions
+
+
+
+cmp_equalcmp_lesscmp_less_than(C++20)(C++20)(C++20)  
+
+
+
+cmp_not_equalcmp_greatercmp_greater_than(C++20)(C++20)(C++20)
+
+
+
+in_range(C++20)
+
+Swap and type operations
+
+
+
+swap
+
+ranges::swap(C++20)
+
+exchange(C++14)
+
+declval(C++11)
+
+to_underlying(C++23)
+
+
+
+forward(C++11)
+
+forward_like(C++23)
+
+move(C++11)
+
+move_if_noexcept(C++11)
+
+as_const(C++17)
+
+
+
+Common vocabulary types
+
+
+
+pair
+
+tuple(C++11)
+
+optional(C++17)
+
+any(C++17)
+
+variant(C++17)
+
+
+
+tuple_size(C++11)
+
+tuple_element(C++11)
+
+apply(C++17)
+
+make_from_tuple(C++17)
+
+expected(C++23)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] Program support utilities
+
+Program termination
+
+
+
+abort
+
+exit
+
+quick_exit(C++11)
+
+_Exit(C++11)
+
+
+
+atexit
+
+at_quick_exit(C++11)
+
+EXIT_SUCCESSEXIT_FAILURE
+
+
+
+Unreachable control flow
+
+unreachable(C++23)
+
+Communicating with the environment
+
+
+
+system
+
+
+
+getenv
+
+
+
+Signals
+
+
+
+signal
+
+raise
+
+sig_atomic_t
+
+
+
+SIG_DFLSIG_IGN
+
+SIG_ERR
+
+
+
+Signal types
+
+
+
+SIGABRTSIGFPESIGILL
+
+
+
+SIGINTSIGSEGVSIGTERM
+
+
+
+Non-local jumps
+
+
+
+setjmp
+
+
+
+longjmp
+
+
+
+Types
+
+jmp_buf
+
+[edit] 
+
+
+
+
+
+ Defined in header <cstdlib>
+
+
+
+
+
+
+
+
+
+
+
+ int at_quick_exit( /*atexit-handler*/* func ) noexcept;
+
+int at_quick_exit( /*c-atexit-handler*/* func ) noexcept;
+
+ (1) 
+
+ (since C++11) 
+
+
+
+
+
+ extern "C++" using /*atexit-handler*/ = void();
+
+extern "C" using /*c-atexit-handler*/ = void();
+
+ (2) 
+
+ (exposition only*) 
+
+
+
+
+
+
+
+Registers the function pointed to by func to be called on quick program termination (via std::quick_exit).
+
+Calling the function from several threads does not induce a data race. The implementation is guaranteed to support the registration of at least 32 functions. The exact limit is implementation-defined. 
+
+The registered functions will not be called on normal program termination. If a function need to be called in that case, std::atexit must be used.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Notes
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ func
+
+
+
+ -
+
+
+
+ pointer to a function to be called on quick program termination
+
+
+
+[edit] Return value
+
+​0​ if the registration succeeds, nonzero value otherwise.
+
+
+
+[edit] Notes
+
+The two overloads are distinct because the types of the parameter func are distinct (language linkage is part of its type).
+
+
+
+[edit] Example
+
+Run this code
+
+#include <cstdlib>
+
+#include <iostream>
+
+ 
+
+void f1()
+
+{
+
+    std::cout << "pushed first" << std::endl; // flush is intentional
+
+}
+
+ 
+
+extern "C" void f2()
+
+{
+
+    std::cout << "pushed second\n";
+
+}
+
+ 
+
+int main()
+
+{
+
+    auto f3 = []
+
+    {
+
+        std::cout << "pushed third\n";
+
+    };
+
+ 
+
+    std::at_quick_exit(f1);
+
+    std::at_quick_exit(f2);
+
+    std::at_quick_exit(f3);
+
+    std::quick_exit(0);
+
+}
+
+Output:
+
+
+
+pushed third
+
+pushed second
+
+pushed first
+
+
+
+[edit] See also
+
+
+
+
+
+  abort
+
+
+
+  causes abnormal program termination (without cleaning up)  (function) [edit]
+
+
+
+
+
+  exit
+
+
+
+  causes normal program termination with cleaning up  (function) [edit]
+
+
+
+
+
+  atexit
+
+
+
+  registers a function to be called on std::exit() invocation  (function) [edit]
+
+
+
+
+
+  quick_exit(C++11)
+
+
+
+  causes quick program termination without completely cleaning up  (function) [edit]
+
+
+
+
+
+ C documentation for at_quick_exit
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,157 @@
+std::char_traits[edit] Strings library
+
+Classes
+
+basic_string
+
+basic_string_view(C++17)
+
+char_traits
+
+[edit] std::char_traits
+
+Member functions
+
+char_traits::assign
+
+char_traits::eqchar_traits::lt
+
+char_traits::move
+
+char_traits::copy
+
+char_traits::compare
+
+char_traits::length
+
+char_traits::find
+
+char_traits::to_char_type
+
+char_traits::to_int_type
+
+char_traits::eq_int_type
+
+char_traits::eof
+
+char_traits::not_eof
+
+[edit] 
+
+
+
+
+
+ static void assign( char_type& c1, const char_type& c2 );
+
+ (1) 
+
+ (noexcept since C++11)(constexpr since C++17) 
+
+
+
+
+
+ static char_type* assign( char_type* ptr, std::size_t count, char_type c2 );
+
+ (2) 
+
+ (constexpr since C++20) 
+
+
+
+
+
+
+
+1) Assigns c2 to c1, behaves identically to c1 = c2.
+
+2) Assigns c2 to each character in count characters in the character sequence pointed to by ptr.
+
+See CharTraits for the general requirements on character traits for X::assign.
+
+
+
+[edit] Parameters
+
+
+
+
+
+ c1
+
+
+
+ -
+
+
+
+ character to assign to
+
+
+
+
+
+ c2
+
+
+
+ -
+
+
+
+ character value to assign
+
+
+
+
+
+ ptr
+
+
+
+ -
+
+
+
+ pointer to a character sequence to assign to
+
+
+
+
+
+ count
+
+
+
+ -
+
+
+
+ the length of the character sequence
+
+
+
+[edit] Return value
+
+1) (none)
+
+2) ptr
+
+[edit] Complexity
+
+1) Constant.
+
+2) Linear in count.
+
+
+
+
+
+ 
+
+
+
+
+
+                    

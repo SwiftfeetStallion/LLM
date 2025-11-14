@@ -1,0 +1,497 @@
+std::flat_multiset[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::flat_multiset
+
+Member types
+
+Member functions
+
+
+
+
+
+flat_multiset::flat_multiset 
+
+flat_multiset::operator=
+
+Iterators
+
+flat_multiset::beginflat_multiset::cbegin
+
+flat_multiset::endflat_multiset::cend
+
+flat_multiset::rbeginflat_multiset::crbegin
+
+flat_multiset::rendflat_multiset::crend
+
+Capacity
+
+flat_multiset::size
+
+flat_multiset::max_size
+
+flat_multiset::empty
+
+Observers
+
+flat_multiset::key_comp
+
+flat_multiset::value_comp
+
+
+
+Modifiers
+
+flat_multiset::clear
+
+flat_multiset::insert
+
+flat_multiset::insert_range
+
+flat_multiset::emplace
+
+flat_multiset::emplace_hint
+
+flat_multiset::erase
+
+flat_multiset::swap
+
+flat_multiset::extract
+
+flat_multiset::replace
+
+Lookup
+
+flat_multiset::count
+
+flat_multiset::find
+
+flat_multiset::contains
+
+flat_multiset::equal_range
+
+flat_multiset::lower_bound
+
+flat_multiset::upper_bound
+
+
+
+
+
+Non-member functions
+
+
+
+
+
+swap(std::flat_multiset)
+
+erase_if(std::flat_multiset)  
+
+
+
+operator==operator<=>
+
+
+
+
+
+Helper classes
+
+
+
+uses_allocator<std::flat_multiset>
+
+
+
+Tags
+
+
+
+
+
+sorted_equivalent       
+
+
+
+sorted_equivalent_t
+
+
+
+
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+std::pair<iterator, iterator> equal_range( const Key& key );
+
+ (1)
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+std::pair<const_iterator, const_iterator>
+
+    equal_range( const Key& key ) const;
+
+ (2)
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+template< class K >
+
+std::pair<iterator, iterator> equal_range( const K& x );
+
+ (3)
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+template< class K >
+
+std::pair<const_iterator, const_iterator>
+
+
+
+    equal_range( const K& x ) const;
+
+ (4)
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+
+
+Returns a range containing all elements with the given key in the container. The range is defined by two iterators, one pointing to the first element that is not less than the given key and another pointing to the first element greater than the given key.
+
+Alternatively, the first iterator may be obtained with lower_bound(), and the second with upper_bound().
+
+
+
+1,2) Compares the keys to key.
+
+3,4) Compares the keys to the value x.
+
+ This overload participates in overload resolution only if Compare is transparent. It allows calling this function without constructing an instance of Key.
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Complexity
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ key
+
+
+
+ -
+
+
+
+ key value to compare the elements to
+
+
+
+
+
+ x
+
+
+
+ -
+
+
+
+ alternative value that can be compared to Key
+
+
+
+[edit] Return value
+
+std::pair containing a pair of iterators defining the wanted range:
+
+
+
+ The first iterator points to the first element not less than the given key, or end() if no such element exists.
+
+ The second iterator points to the first element greater than the given key, or end() if no such element exists.
+
+
+
+Since emplace and unhinted insert always insert at the upper bound, the order of equivalent elements in the equal range is the order of insertion unless hinted insert or emplace_hint was used to insert an element at a different position.
+
+[edit] Complexity
+
+Logarithmic in the size of the container.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <flat_set>
+
+ 
+
+template<typename I>
+
+void print_equal_range(I first, I lb, I ub, I last)
+
+{
+
+    for (I i{first}; i != lb; ++i)
+
+        std::cout << *i << ' ';
+
+    std::cout << "[ ";
+
+ 
+
+    for (I i{lb}; i != ub; ++i)
+
+        std::cout << *i << ' ';
+
+    std::cout << ") ";
+
+ 
+
+    for (I i{ub}; i != last; ++i)
+
+        std::cout << *i << ' ';
+
+    std::cout << '\n';
+
+}
+
+ 
+
+int main()
+
+{
+
+    std::flat_multiset<int> c{4, 3, 2, 1, 3, 3};
+
+    std::cout << "c = ";
+
+    print_equal_range(begin(c), begin(c), end(c), end(c));
+
+    for (int key{}; key != 6; ++key)
+
+    {
+
+        std::cout << "key = " << key << "; equal range = ";
+
+        const auto [lb, ub] = c.equal_range(key);
+
+        print_equal_range(begin(c), lb, ub, end(c));
+
+    }
+
+}
+
+Output:
+
+
+
+c = [ 1 2 3 3 3 4 )
+
+key = 0; equal range = [ ) 1 2 3 3 3 4
+
+key = 1; equal range = [ 1 ) 2 3 3 3 4
+
+key = 2; equal range = 1 [ 2 ) 3 3 3 4
+
+key = 3; equal range = 1 2 [ 3 3 3 ) 4
+
+key = 4; equal range = 1 2 3 3 3 [ 4 )
+
+key = 5; equal range = 1 2 3 3 3 4 [ )
+
+
+
+[edit] See also
+
+
+
+
+
+  find
+
+
+
+  finds element with specific key  (public member function) [edit]
+
+
+
+
+
+  contains
+
+
+
+  checks if the container contains element with specific key  (public member function) [edit]
+
+
+
+
+
+  count
+
+
+
+  returns the number of elements matching specific key  (public member function) [edit]
+
+
+
+
+
+  upper_bound
+
+
+
+  returns an iterator to the first element greater than the given key  (public member function) [edit]
+
+
+
+
+
+  lower_bound
+
+
+
+  returns an iterator to the first element not less than the given key  (public member function) [edit]
+
+
+
+
+
+  equal_range
+
+
+
+  returns range of elements matching a specific key  (function template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

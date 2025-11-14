@@ -1,0 +1,103 @@
+std::char_traits[edit] Strings library
+
+Classes
+
+basic_string
+
+basic_string_view(C++17)
+
+char_traits
+
+[edit] std::char_traits
+
+Member functions
+
+char_traits::assign
+
+char_traits::eqchar_traits::lt
+
+char_traits::move
+
+char_traits::copy
+
+char_traits::compare
+
+char_traits::length
+
+char_traits::find
+
+char_traits::to_char_type
+
+char_traits::to_int_type
+
+char_traits::eq_int_type
+
+char_traits::eof
+
+char_traits::not_eof
+
+[edit] 
+
+
+
+
+
+ static char_type to_char_type( int_type c );
+
+ 
+
+ (constexpr since C++11)(noexcept since C++11) 
+
+
+
+
+
+
+
+Converts c to char_type. If there is no equivalent char_type value (such as when c is a copy of the eof() value), the result is unspecified.
+
+See CharTraits for the general requirements on character traits for X::to_char_type.
+
+
+
+[edit] Parameters
+
+
+
+
+
+ c
+
+
+
+ -
+
+
+
+ value to convert
+
+
+
+[edit] Return value
+
+A value equivalent to c.
+
+
+
+[edit] Complexity
+
+Constant.
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

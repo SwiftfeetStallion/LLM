@@ -1,0 +1,287 @@
+ckd_mul
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Numerics library
+
+Common mathematical functions
+
+Mathematical special functions (C++17)
+
+Mathematical constants (C++20)
+
+Basic linear algebra algorithms (C++26)
+
+Data-parallel types (SIMD) (C++26)
+
+Floating-point environment (C++11)
+
+Complex numbers
+
+Numeric array (valarray)
+
+Pseudo-random number generation
+
+Bit manipulation (C++20)
+
+Saturation arithmetic (C++26)
+
+Factor operations
+
+
+
+gcd(C++17)
+
+
+
+lcm(C++17)
+
+
+
+Interpolations
+
+
+
+midpoint(C++20)
+
+
+
+lerp(C++20)
+
+
+
+Generic numeric operations
+
+
+
+iota(C++11)
+
+ranges::iota(C++23)
+
+accumulate
+
+inner_product
+
+adjacent_difference  
+
+partial_sum
+
+
+
+reduce(C++17)
+
+transform_reduce(C++17)
+
+inclusive_scan(C++17)
+
+exclusive_scan(C++17)
+
+transform_inclusive_scan(C++17)
+
+transform_exclusive_scan(C++17)
+
+
+
+C-style checked integer arithmetic
+
+
+
+ckd_add(C++26)
+
+ckd_sub(C++26)
+
+
+
+ckd_mul(C++26)
+
+
+
+
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <stdckdint.h>
+
+
+
+
+
+
+
+
+
+
+
+ template< class type1, class type2, class type3 >
+
+bool ckd_mul( type1* result, type2 a, type3 b );
+
+ 
+
+ (since C++26) 
+
+
+
+
+
+
+
+Computes the multiplication x × y and stores the result into *result. The multiplication is performed as if both operands were represented in a signed integer type with infinite range, and the result was then converted from this integer type to type1. If the value assigned to *result correctly represents the mathematical result of the operation, it returns false. Otherwise, it returns true. In this case, the value assigned to *result is the mathematical result of the operation wrapped around to the width of *result.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Note
+
+4 Example
+
+5 References
+
+6 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ a, b
+
+
+
+ -
+
+
+
+ integer values
+
+
+
+
+
+ result
+
+
+
+ -
+
+
+
+ address of where result should be stored
+
+
+
+[edit] Return value
+
+false if the value assigned to *result correctly represents the mathematical result of the multiplication, true otherwise.
+
+
+
+[edit] Note
+
+The function template ckd_mul has the same semantics as the corresponding type-generic macro with the same name specified in C23.
+
+
+
+
+
+Each of the types type1, type2, and type3 is a cv-unqualified signed or unsigned integer type.
+
+
+
+It is recommended to produce a diagnostic message if type2 or type3 are not suitable integer types, or if *result is not a modifiable lvalue of a suitable integer type.
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] References
+
+
+
+ C++26 standard (ISO/IEC 14882:2026): 
+
+
+
+ 29.11.2 Checked integer operations 
+
+
+
+
+
+
+
+[edit] See also
+
+
+
+
+
+  ckd_add(C++26)
+
+
+
+  checked addition operation on two integers  (function template) [edit]
+
+
+
+
+
+  ckd_sub(C++26)
+
+
+
+  checked subtraction operation on two integers  (function template) [edit]
+
+
+
+
+
+ C documentation for ckd_mul
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

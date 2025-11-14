@@ -1,0 +1,299 @@
+std::basic_fstream[edit] Input/output library
+
+I/O manipulators
+
+Print functions (C++23)
+
+C-style I/O
+
+Buffers
+
+basic_streambuf
+
+basic_filebuf
+
+basic_stringbuf
+
+basic_spanbuf(C++23)
+
+strstreambuf(C++98/26*)
+
+basic_syncbuf(C++20)
+
+Streams
+
+Abstractions
+
+ios_base
+
+basic_ios
+
+basic_istream
+
+basic_ostream
+
+basic_iostream
+
+File I/O
+
+basic_ifstream
+
+basic_ofstream
+
+basic_fstream
+
+String I/O
+
+basic_istringstream
+
+basic_ostringstream
+
+basic_stringstream
+
+Array I/O
+
+basic_ispanstream(C++23)
+
+basic_ospanstream(C++23)
+
+basic_spanstream(C++23)
+
+istrstream(C++98/26*)
+
+ostrstream(C++98/26*)
+
+strstream(C++98/26*)
+
+Synchronized Output
+
+basic_osyncstream(C++20)
+
+Types
+
+streamoff
+
+streamsize
+
+fpos
+
+Error category interface
+
+iostream_category(C++11)
+
+io_errc(C++11)
+
+[edit] std::basic_fstream
+
+Member functions
+
+basic_fstream::basic_fstream
+
+basic_fstream::operator=(C++11)
+
+basic_fstream::swap(C++11)
+
+basic_fstream::rdbuf
+
+basic_fstream::native_handle(C++26)
+
+File operations
+
+basic_fstream::is_open
+
+basic_fstream::open
+
+basic_fstream::close
+
+Non-member functions
+
+swap(std::basic_fstream)(C++11)
+
+[edit] 
+
+
+
+
+
+ bool is_open() const;
+
+ 
+
+ 
+
+
+
+
+
+
+
+Checks if the file stream has an associated file.
+
+Effectively calls rdbuf()->is_open(). 
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Example
+
+4 Defect reports
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+(none)
+
+
+
+[edit] Return value
+
+true if the file stream has an associated file, false otherwise.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <fstream>
+
+#include <iostream>
+
+#include <string>
+
+ 
+
+int main()
+
+{
+
+    std::string filename = "some_file";
+
+ 
+
+    std::fstream fs(filename, std::ios::in);
+
+ 
+
+    std::cout << std::boolalpha;
+
+    std::cout << "fs.is_open() = " << fs.is_open() << '\n';
+
+ 
+
+    if (!fs.is_open())
+
+    {
+
+        fs.clear();
+
+        fs.open(filename, std::ios::out);
+
+        std::cout << "fs.is_open() = " << fs.is_open() << '\n';
+
+    }
+
+}
+
+Possible output:
+
+
+
+fs.is_open() = false
+
+fs.is_open() = true
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 365
+
+
+
+C++98
+
+
+
+is_open was not declared with const qualifier
+
+
+
+declared with const qualifier
+
+
+
+[edit] See also
+
+
+
+
+
+  open
+
+
+
+  opens a file and associates it with the stream  (public member function) [edit]
+
+
+
+
+
+  close
+
+
+
+  closes the associated file  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

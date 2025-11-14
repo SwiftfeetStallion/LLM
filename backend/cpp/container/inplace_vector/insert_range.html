@@ -1,0 +1,411 @@
+std::inplace_vector[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::inplace_vector
+
+Member types
+
+Member functions
+
+
+
+inplace_vector::inplace_vector
+
+inplace_vector::~inplace_vector  
+
+inplace_vector::operator=
+
+inplace_vector::assign
+
+inplace_vector::assign_range
+
+Size and capacity
+
+inplace_vector::empty
+
+inplace_vector::size
+
+inplace_vector::max_size
+
+inplace_vector::capacity
+
+inplace_vector::resize
+
+inplace_vector::reserve
+
+inplace_vector::shrink_to_fit
+
+Iterators
+
+inplace_vector::begininplace_vector::cbegin
+
+inplace_vector::endinplace_vector::cend
+
+inplace_vector::rbegininplace_vector::crbegin
+
+inplace_vector::rendinplace_vector::crend
+
+
+
+Element access
+
+inplace_vector::at
+
+inplace_vector::operator[]
+
+inplace_vector::front
+
+inplace_vector::back
+
+inplace_vector::data
+
+Modifiers
+
+inplace_vector::clear
+
+inplace_vector::erase
+
+inplace_vector::swap
+
+inplace_vector::insert
+
+inplace_vector::insert_range
+
+inplace_vector::emplace
+
+inplace_vector::emplace_back
+
+inplace_vector::try_emplace_back
+
+inplace_vector::unchecked_emplace_back
+
+inplace_vector::push_back
+
+inplace_vector::try_push_back
+
+inplace_vector::unchecked_push_back
+
+inplace_vector::pop_back
+
+inplace_vector::append_range
+
+inplace_vector::try_append_range
+
+
+
+Non-member functions
+
+
+
+erase(std::inplace_vector)erase_if(std::inplace_vector)
+
+swap(std::inplace_vector)
+
+
+
+operator==operator<=>
+
+
+
+
+
+
+
+[edit] 
+
+
+
+
+
+template< container-compatible-range<T> R >
+
+constexpr iterator insert_range( const_iterator pos, R&& rg );
+
+ 
+
+(since C++26)
+
+
+
+
+
+
+
+Inserts, in non-reversing order, copies of elements in rg before pos.
+
+
+
+This section is incomplete 
+
+Each iterator in the range rg is dereferenced exactly once.
+
+If rg overlaps with *this, the behavior is undefined.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Exceptions
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ pos
+
+
+
+ -
+
+
+
+ iterator before which the content will be inserted (pos may be the end() iterator)
+
+
+
+
+
+ rg
+
+
+
+ -
+
+
+
+ a container compatible range, that is, an input_range whose elements are convertible to T
+
+
+
+
+
+ Type requirements
+
+
+
+
+
+ -If any of the following conditions is satisfied, the behavior is undefined:
+
+ T is not EmplaceConstructible into inplace_vector from *ranges::begin(rg).
+
+ T is not MoveInsertable into inplace_vector.
+
+ T does not satisfy the requirements of MoveConstructible, MoveAssignable, or Swappable.
+
+
+
+
+
+
+
+[edit] Return value
+
+An iterator to the first element inserted into *this, or pos if rg is empty.
+
+
+
+ Exceptions
+
+ std::bad_alloc, if ranges::distance(rg) + size() > capacity(). The elements of *this are not modified.
+
+ Any exception thrown by insertion (i.e. by copy/move constructor, move/copy assignment operator of T) or by any LegacyInputIterator operation. The elements of *this in the range [​0​, pos) are not modified.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <cassert>
+
+#include <inplace_vector>
+
+#include <iterator>
+
+#include <new>
+
+#include <print>
+
+ 
+
+int main()
+
+{
+
+    auto v = std::inplace_vector<int, 8>{0, 1, 2, 3};
+
+    auto pos = std::next(v.begin(), 2);
+
+    assert(*pos == 2);
+
+    const auto rg = {-1, -2, -3};
+
+    v.insert_range(pos, rg);
+
+    std::println("{}", v);
+
+ 
+
+    try
+
+    {
+
+        assert(v.size() + rg.size() > v.capacity());
+
+        v.insert_range(pos, rg); // throws: no space
+
+    }
+
+    catch(const std::bad_alloc& ex)
+
+    {
+
+        std::println("{}", ex.what());
+
+    }
+
+}
+
+Possible output:
+
+
+
+[0, 1, -1, -2, -3, 2, 3]
+
+std::bad_alloc
+
+
+
+[edit] See also
+
+
+
+
+
+  insert
+
+
+
+  inserts elements   (public member function)
+
+
+
+
+
+  append_range
+
+
+
+  adds a range of elements to the end  (public member function)
+
+
+
+
+
+  try_append_range
+
+
+
+  tries to add a range of elements to the end  (public member function)
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

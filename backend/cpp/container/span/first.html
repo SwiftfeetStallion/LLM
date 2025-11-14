@@ -1,0 +1,359 @@
+std::span[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::span
+
+Member functions
+
+span::span
+
+span::operator=
+
+Element access
+
+span::front
+
+span::back
+
+span::at(C++26)
+
+span::operator[]
+
+span::data
+
+Iterators
+
+span::beginspan::cbegin(C++23)
+
+span::endspan::cend(C++23)
+
+span::rbeginspan::crbegin(C++23)
+
+span::rendspan::crend(C++23)
+
+Observers
+
+span::empty
+
+span::size
+
+span::size_bytes
+
+Subviews
+
+span::first
+
+span::last
+
+span::subspan
+
+Non-member functions
+
+as_bytesas_writable_bytes
+
+Non-member constant
+
+dynamic_extent
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+ template< std::size_t Count >
+
+constexpr std::span<element_type, Count> first() const;
+
+ (1) 
+
+ (since C++20) 
+
+
+
+
+
+ constexpr std::span<element_type, std::dynamic_extent>
+
+    first( size_type count ) const;
+
+ (2) 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Obtains a subview over the first Count or count elements of this span.
+
+
+
+1) The element count is provided as a template argument, and the subview has a static extent.
+
+ If Count > Extent is true, the program is ill-formed.
+
+2) The element count is provided as a function argument, and the subview has a dynamic extent.
+
+
+
+
+
+If Count > size() or count > size() is true, the behavior is undefined.
+
+
+
+
+
+(until C++26)
+
+
+
+If Count > size() or count > size() is true:
+
+
+
+ If the implementation is hardened, a contract violation occurs. Moreover, if the contract-violation handler returns under “observe” evaluation semantic, the behavior is undefined.
+
+ If the implementation is not hardened, the behavior is undefined.
+
+
+
+
+
+(since C++26)
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Example
+
+4 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ count
+
+
+
+ -
+
+
+
+ the number of the elements of the subview
+
+
+
+[edit] Return value
+
+1) std::span<element_type, Count>{data(), Count}
+
+2) std::span<element_type, std::dynamic_extent>{data(), count}
+
+[edit] Example
+
+Run this code
+
+#include <iostream>
+
+#include <ranges>
+
+#include <span>
+
+#include <string_view>
+
+ 
+
+void print(const std::string_view title,
+
+           const std::ranges::forward_range auto& container)
+
+{
+
+    auto size{std::size(container)};
+
+    std::cout << title << '[' << size << "]{";
+
+    for (const auto& elem : container)
+
+        std::cout << elem << (--size ? ", " : "");
+
+    std::cout << "};\n";
+
+}
+
+ 
+
+void run_game(std::span<const int> span)
+
+{
+
+    print("span: ", span);
+
+ 
+
+    std::span<const int, 5> span_first = span.first<5>();
+
+    print("span.first<5>(): ", span_first);
+
+ 
+
+    std::span<const int, std::dynamic_extent> span_first_dynamic = span.first(4);
+
+    print("span.first(4): ", span_first_dynamic);
+
+}
+
+ 
+
+int main()
+
+{
+
+    int a[8]{1, 2, 3, 4, 5, 6, 7, 8};
+
+    print("int a", a);
+
+    run_game(a);
+
+}
+
+Output:
+
+
+
+int a[8]{1, 2, 3, 4, 5, 6, 7, 8};
+
+span: [8]{1, 2, 3, 4, 5, 6, 7, 8};
+
+span.first<5>(): [5]{1, 2, 3, 4, 5};
+
+span.first(4): [4]{1, 2, 3, 4};
+
+
+
+[edit] See also
+
+
+
+
+
+  last
+
+
+
+  obtains a subspan consisting of the last N elements of the sequence  (public member function) [edit]
+
+
+
+
+
+  subspan
+
+
+
+  obtains a subspan  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,181 @@
+std::char_traits[edit] Strings library
+
+Classes
+
+basic_string
+
+basic_string_view(C++17)
+
+char_traits
+
+[edit] std::char_traits
+
+Member functions
+
+char_traits::assign
+
+char_traits::eqchar_traits::lt
+
+char_traits::move
+
+char_traits::copy
+
+char_traits::compare
+
+char_traits::length
+
+char_traits::find
+
+char_traits::to_char_type
+
+char_traits::to_int_type
+
+char_traits::eq_int_type
+
+char_traits::eof
+
+char_traits::not_eof
+
+[edit] 
+
+
+
+
+
+ static int_type eof();
+
+ 
+
+ (constexpr since C++11)(noexcept since C++11) 
+
+
+
+
+
+
+
+Returns a value not equivalent to any valid value of type char_type.
+
+See CharTraits for the general requirements on character traits for X::eof.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Complexity
+
+4 See also
+
+
+
+
+
+[edit] Parameters
+
+(none)
+
+
+
+[edit] Return value
+
+
+
+
+
+ char_type 
+
+
+
+eof()
+
+
+
+
+
+char
+
+
+
+EOF
+
+
+
+
+
+wchar_t
+
+
+
+WEOF
+
+
+
+
+
+char8_t
+
+
+
+an implementation-defined constant thatcannot appear as a valid UTF-8 code unit
+
+
+
+
+
+char16_t
+
+
+
+an implementation-defined constant thatcannot appear as a valid UTF-16 code unit
+
+
+
+
+
+char32_t
+
+
+
+an implementation-defined constant thatcannot appear as a Unicode code point
+
+
+
+[edit] Complexity
+
+Constant.
+
+
+
+[edit] See also
+
+
+
+
+
+  not_eof[static]
+
+
+
+  checks whether a character is eof value  (public static member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

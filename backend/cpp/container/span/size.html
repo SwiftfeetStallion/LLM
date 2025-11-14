@@ -1,0 +1,277 @@
+std::span[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::span
+
+Member functions
+
+span::span
+
+span::operator=
+
+Element access
+
+span::front
+
+span::back
+
+span::at(C++26)
+
+span::operator[]
+
+span::data
+
+Iterators
+
+span::beginspan::cbegin(C++23)
+
+span::endspan::cend(C++23)
+
+span::rbeginspan::crbegin(C++23)
+
+span::rendspan::crend(C++23)
+
+Observers
+
+span::empty
+
+span::size
+
+span::size_bytes
+
+Subviews
+
+span::first
+
+span::last
+
+span::subspan
+
+Non-member functions
+
+as_bytesas_writable_bytes
+
+Non-member constant
+
+dynamic_extent
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+ constexpr size_type size() const noexcept;
+
+ 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Returns the number of elements in the span.
+
+
+
+Contents
+
+
+
+1 Return value
+
+2 Note
+
+3 Example
+
+4 See also
+
+
+
+
+
+[edit] Return value
+
+The number of elements in the span.
+
+
+
+[edit] Note
+
+
+
+
+
+Feature-test macro
+
+Value
+
+Std
+
+Feature
+
+
+
+
+
+__cpp_lib_ssize
+
+201902L
+
+(C++20)
+
+std::ssize and unsigned std::span::size
+
+
+
+[edit] Example
+
+Run this code
+
+#include <span>
+
+ 
+
+int main()
+
+{
+
+    constexpr static int c_array[]{1, 2, 3, 4, 5, 6, 7, 8};
+
+ 
+
+    constexpr std::span<const int> span{c_array};
+
+ 
+
+    static_assert(8 == span.size());
+
+    static_assert(7 == span.first(7).size());
+
+    static_assert(6 == span.first<6>().size());
+
+    static_assert(5 == span.last(5).size());
+
+    static_assert(4 == span.last<4>().size());
+
+    static_assert(3 == span.subspan(2, 3).size());
+
+    static_assert(2 == span.subspan<3, 2>().size());
+
+    static_assert(1 == span.subspan<7>().size());
+
+}
+
+
+
+[edit] See also
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a span  (public member function) [edit]
+
+
+
+
+
+  size_bytes
+
+
+
+  returns the size of the sequence in bytes  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

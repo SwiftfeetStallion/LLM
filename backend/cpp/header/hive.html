@@ -1,0 +1,793 @@
+Standard library header [edit] Standard library headers
+
+
+
+Language support
+
+<cfloat>
+
+<climits>
+
+<compare> (C++20)
+
+<contracts> (C++26)
+
+<coroutine> (C++20)
+
+<csetjmp>
+
+<csignal>
+
+<cstdarg>
+
+<cstddef>
+
+<cstdint> (C++11)
+
+<cstdlib>
+
+<exception>
+
+<initializer_list> (C++11)   
+
+<limits>
+
+<new>
+
+<source_location> (C++20)
+
+<stdfloat> (C++23)
+
+<typeinfo>
+
+<version> (C++20)
+
+Concepts
+
+<concepts> (C++20)
+
+Diagnostics
+
+<cassert>
+
+<cerrno>
+
+<debugging> (C++26)
+
+<stacktrace> (C++23)
+
+<stdexcept>
+
+<system_error> (C++11)
+
+Memory management
+
+<memory>
+
+<memory_resource> (C++17)
+
+<scoped_allocator> (C++11)
+
+Metaprogramming
+
+<type_traits> (C++11)
+
+<ratio> (C++11)
+
+
+
+
+
+
+
+General utilities
+
+<any> (C++17)
+
+<bitset>
+
+<bit> (C++20)
+
+<charconv> (C++17)
+
+<expected> (C++23)
+
+<format> (C++20)
+
+<functional>
+
+<optional> (C++17)
+
+<stdbit.h> (C++26)
+
+<tuple> (C++11)
+
+<typeindex> (C++11)
+
+<utility>
+
+<variant> (C++17)
+
+Containers
+
+<array> (C++11)
+
+<deque>
+
+<flat_map> (C++23)
+
+<flat_set> (C++23)
+
+<forward_list> (C++11)
+
+<hive> (C++26)
+
+<inplace_vector> (C++26)   
+
+<list>
+
+<map>
+
+<mdspan> (C++23)
+
+<queue>
+
+<set>
+
+<span> (C++20)
+
+<stack>
+
+<unordered_map> (C++11)
+
+<unordered_set> (C++11)
+
+<vector>
+
+Iterators
+
+<iterator>
+
+Ranges
+
+<generator> (C++23)
+
+<ranges> (C++20)
+
+
+
+Algorithms
+
+<algorithm>
+
+<numeric>
+
+Strings
+
+<cctype>
+
+<cstring>
+
+<cuchar> (C++11)
+
+<cwchar>
+
+<cwctype>
+
+<string_view> (C++17)
+
+<string>
+
+Text processing
+
+<clocale>
+
+<codecvt> (C++11/17/26*)
+
+<locale>
+
+<regex> (C++11)
+
+<text_encoding> (C++26)   
+
+Numerics
+
+<cfenv> (C++11)
+
+<cmath>
+
+<complex>
+
+<linalg> (C++26)
+
+<numbers> (C++20)
+
+<random> (C++11)
+
+<simd> (C++26)
+
+<stdckdint.h> (C++26)
+
+<valarray>
+
+Time
+
+<chrono> (C++11)
+
+<ctime>
+
+C compatibility
+
+<ccomplex> (C++11/17/20*)
+
+<ciso646> (until C++20)
+
+<cstdalign> (C++11/17/20*)
+
+<cstdbool> (C++11/17/20*)
+
+<ctgmath> (C++11/17/20*)
+
+
+
+Input/output
+
+<cinttypes> (C++11)
+
+<cstdio>
+
+<filesystem> (C++17)
+
+<fstream>
+
+<iomanip>
+
+<iosfwd>
+
+<iostream>
+
+<ios>
+
+<istream>
+
+<ostream>
+
+<print> (C++23)
+
+<spanstream> (C++23)
+
+<sstream>
+
+<streambuf>
+
+<strstream> (C++98/26*)
+
+<syncstream> (C++20)
+
+Concurrency support
+
+<atomic> (C++11)
+
+<barrier> (C++20)
+
+<condition_variable> (C++11)
+
+<future> (C++11)
+
+<hazard_pointer> (C++26)
+
+<latch> (C++20)
+
+<mutex> (C++11)
+
+<rcu> (C++26)
+
+<semaphore> (C++20)
+
+<shared_mutex> (C++14)
+
+<stdatomic.h> (C++23)
+
+<stop_token> (C++20)
+
+<thread> (C++11)
+
+Execution support
+
+<execution> (C++17)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] 
+
+This header is part of the containers library.
+
+
+
+
+
+
+
+ Contents
+
+
+
+1 Includes
+
+2 Classes
+
+3 Functions
+
+4 Synopsis
+
+
+
+4.1 Class template std::hive
+
+
+
+
+
+
+
+
+
+ Includes
+
+
+
+
+
+  <compare>(C++20)
+
+
+
+ Three-way comparison operator support[edit]
+
+
+
+
+
+  <initializer_list>(C++11)
+
+
+
+ std::initializer_list class template[edit]
+
+
+
+
+
+  Classes
+
+
+
+
+
+  hive_limits(C++26)
+
+
+
+  layout information about block capacity limits in std::hive  (class) [edit]
+
+
+
+
+
+  hive(C++26)
+
+
+
+  collection that reuses erased elements' memory  (class template) [edit]
+
+
+
+
+
+  Functions
+
+
+
+
+
+  std::swap(std::hive)(C++26)
+
+
+
+  specializes the std::swap algorithm  (function template) [edit]
+
+
+
+
+
+  erase(std::hive)erase_if(std::hive)(C++26)
+
+
+
+  erases all elements satisfying specific criteria  (function template) [edit]
+
+
+
+
+
+[edit] Synopsis
+
+#include <compare>
+
+#include <initializer_list>
+
+ 
+
+namespace std {
+
+ 
+
+  struct hive_limits
+
+  {
+
+    size_t min;
+
+    size_t max;
+
+    constexpr hive_limits(size_t minimum, size_t maximum) noexcept
+
+    : min(minimum), max(maximum) {}
+
+  };
+
+ 
+
+  // class template hive
+
+  template<class T, class Allocator = allocator<T>>
+
+  class hive;
+
+ 
+
+  // swap
+
+  template<class T, class Allocator>
+
+  void swap(hive<T, Allocator>& x, hive<T, Allocator>& y) noexcept(noexcept(x.swap(y)));
+
+ 
+
+  template<class T, class Allocator, class U = T>
+
+  typename hive<T, Allocator>::size_type erase(hive<T, Allocator>& c, const U& value);
+
+ 
+
+  template<class T, class Allocator, class Predicate>
+
+  typename hive<T, Allocator>::size_type erase_if(hive<T, Allocator>& c, Predicate pred);
+
+ 
+
+  namespace pmr {
+
+    template<class T>
+
+    using hive = std::hive<T, polymorphic_allocator<T>>;
+
+  }
+
+}
+
+[edit] Class template std::hive
+
+namespace std {
+
+  template<class T, class Allocator>
+
+  class hive
+
+  {
+
+  public:
+
+    // types:
+
+    using value_type             = T;
+
+    using allocator_type         = Allocator;
+
+    using pointer                = allocator_traits<Allocator>::pointer;
+
+    using const_pointer          = allocator_traits<Allocator>::const_pointer;
+
+    using reference              = value_type&;
+
+    using const_reference        = const value_type&;
+
+    using size_type              = /* implementation-defined */;
+
+    using difference_type        = /* implementation-defined */;
+
+    using iterator               = /* implementation-defined */;
+
+    using const_iterator         = /* implementation-defined */;
+
+    using reverse_iterator       = std::reverse_iterator<iterator>;
+
+    using const_reverse_iterator = std::reverse_iterator<const_iterator>;
+
+ 
+
+    // construct/copy/destroy
+
+    constexpr hive() noexcept(noexcept(Allocator())) : hive(Allocator()) {}
+
+    constexpr explicit hive(const Allocator&) noexcept;
+
+    constexpr explicit hive(hive_limits block_limits) : hive(block_limits, Allocator()) {}
+
+    constexpr hive(hive_limits block_limits, const Allocator&);
+
+    explicit hive(size_type n, const Allocator& = Allocator());
+
+    hive(size_type n, const T& value, const Allocator& = Allocator());
+
+    hive(size_type n, const T& value, hive_limits block_limits, 
+
+         const Allocator& = Allocator());
+
+    template<class InputIter>
+
+    hive(InputIter first, InputIter last, const Allocator& = Allocator());
+
+    template<class InputIter>
+
+    hive(InputIter first, InputIter last, hive_limits block_limits, 
+
+         const Allocator& = Allocator());
+
+    template<container-compatible-range<T> R>
+
+    hive(from_range_t, R&& rg, const Allocator& = Allocator());
+
+    template<container-compatible-range<T> R>
+
+    hive(from_range_t, R&& rg, hive_limits block_limits, const Allocator& = Allocator());
+
+    hive(const hive& other);
+
+    hive(hive&& other) noexcept;
+
+    hive(const hive& other, const type_identity_t<Allocator>& alloc);
+
+    hive(hive&& other, const type_identity_t<Allocator>& alloc);
+
+    hive(initializer_list<T> il, const Allocator& = Allocator());
+
+    hive(initializer_list<T> il, hive_limits block_limits, const Allocator& = Allocator());
+
+ 
+
+    ~hive();
+
+    hive& operator=(const hive& other);
+
+    hive& operator=(hive&& other) 
+
+      noexcept(allocator_traits<Allocator>::propagate_on_container_move_assignment::value
+
+            || allocator_traits<Allocator>::is_always_equal::value);
+
+    hive& operator=(initializer_list<T>);
+
+    template<class InputIter>
+
+    void assign(InputIter first, InputIter last);
+
+    template<container-compatible-range<T> R>
+
+    void assign_range(R&& rg);
+
+    void assign(size_type n, const T& value);
+
+    void assign(initializer_list<T> il);
+
+    allocator_type get_allocator() const noexcept;
+
+ 
+
+    // iterators
+
+    iterator begin() noexcept;
+
+    const_iterator begin() const noexcept;
+
+    iterator end() noexcept;
+
+    const_iterator end() const noexcept;
+
+    reverse_iterator rbegin() noexcept;
+
+    const_reverse_iterator rbegin() const noexcept;
+
+    reverse_iterator rend() noexcept;
+
+    const_reverse_iterator rend() const noexcept;
+
+ 
+
+    const_iterator cbegin() const noexcept;
+
+    const_iterator cend() const noexcept;
+
+    const_reverse_iterator crbegin() const noexcept;
+
+    const_reverse_iterator crend() const noexcept;
+
+ 
+
+    // size/capacity
+
+    bool empty() const noexcept;
+
+    size_type size() const noexcept;
+
+    size_type max_size() const noexcept;
+
+    size_type capacity() const noexcept;
+
+    void reserve(size_type n);
+
+    void shrink_to_fit();
+
+    void trim_capacity() noexcept;
+
+    void trim_capacity(size_type n) noexcept;
+
+    constexpr hive_limits block_capacity_limits() const noexcept;
+
+    static constexpr hive_limits block_capacity_default_limits() noexcept;
+
+    static constexpr hive_limits block_capacity_hard_limits() noexcept;
+
+    void reshape(hive_limits block_limits);
+
+ 
+
+    // modifiers
+
+    template<class... Args>
+
+    iterator emplace(Args&&... args);
+
+    template<class... Args>
+
+    iterator emplace_hint(const_iterator hint, Args&&... args);
+
+    iterator insert(const T& x);
+
+    iterator insert(T&& x);
+
+    iterator insert(const_iterator hint, const T& x);
+
+    iterator insert(const_iterator hint, T&& x);
+
+    void insert(initializer_list<T> il);
+
+    template<container-compatible-range<T> R>
+
+    void insert_range(R&& rg);
+
+    template<class InputIter>
+
+    void insert(InputIter first, InputIter last);
+
+    void insert(size_type n, const T& x);
+
+ 
+
+    iterator erase(const_iterator position);
+
+    iterator erase(const_iterator first, const_iterator last);
+
+    void swap(hive&)
+
+      noexcept(allocator_traits<Allocator>::propagate_on_container_swap::value
+
+            || allocator_traits<Allocator>::is_always_equal::value);
+
+    void clear() noexcept;
+
+ 
+
+    // hive operations
+
+    void splice(hive& other);
+
+    void splice(hive&& other);
+
+    template<class BinaryPredicate = equal_to<T>>
+
+    size_type unique(BinaryPredicate binary_pred = BinaryPredicate());
+
+ 
+
+    template<class Compare = less<T>>
+
+    void sort(Compare comp = Compare());
+
+ 
+
+    iterator get_iterator(const_pointer p) noexcept;
+
+    const_iterator get_iterator(const_pointer p) const noexcept;
+
+ 
+
+  private:
+
+    // exposition only
+
+    hive_limits current_limits_ = /* implementation-defined */ 
+
+  };
+
+ 
+
+  template<class InputIter, class Allocator = allocator</*iter-value-type*/<InputIter>>
+
+  hive(InputIter, InputIter, Allocator = Allocator())
+
+    -> hive</*iter-value-type*/<InputIter>, Allocator>;
+
+ 
+
+  template<class InputIter, class Allocator = allocator</*iter-value-type*/<InputIter>>
+
+  hive(InputIter, InputIter, hive_limits, Allocator = Allocator())
+
+    -> hive</*iter-value-type*/<InputIter>, Allocator>;
+
+ 
+
+  template<ranges::input_range R, class Allocator = allocator<ranges::range_value_t<R>>>
+
+  hive(from_range_t, R&&, Allocator = Allocator())
+
+    -> hive<ranges::range_value_t<R>, Allocator>;
+
+ 
+
+  template<ranges::input_range R, class Allocator = allocator<ranges::range_value_t<R>>>
+
+  hive(from_range_t, R&&, hive_limits, Allocator = Allocator())
+
+    -> hive<ranges::range_value_t<R>, Allocator>;
+
+}
+
+
+
+
+
+ 
+
+
+
+
+
+                    

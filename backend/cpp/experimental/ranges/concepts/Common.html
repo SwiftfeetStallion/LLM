@@ -1,0 +1,341 @@
+std::experimental::ranges::Common
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Ranges
+
+Concepts
+
+General utilities
+
+Iterators
+
+Ranges
+
+Algorithms
+
+[edit] Concepts library
+
+ Core language concepts
+
+
+
+Same
+
+DerivedFrom
+
+ConvertibleTo
+
+
+
+CommonReference
+
+Common
+
+                              
+
+
+
+Integral
+
+SignedIntegral
+
+UnsignedIntegral
+
+
+
+Assignable
+
+SwappableSwappableWith
+
+
+
+ Object concepts
+
+
+
+Destructible
+
+Constructible
+
+DefaultConstructible
+
+
+
+MoveConstructible
+
+CopyConstructible
+
+                              
+
+
+
+Movable
+
+Copyable
+
+                              
+
+
+
+Semiregular
+
+Regular
+
+
+
+
+
+
+
+ Comparison concepts
+
+
+
+Boolean
+
+
+
+
+
+
+
+WeaklyEqualityComparableWith
+
+
+
+
+
+
+
+EqualityComparableEqualityComparableWith
+
+
+
+StrictTotallyOrderedStrictTotallyOrderedWith
+
+
+
+ Callable concepts
+
+
+
+InvocableRegularInvocable
+
+
+
+Predicate
+
+                                        
+
+
+
+Relation
+
+                              
+
+
+
+StrictWeakOrder
+
+
+
+
+
+
+
+ URNG concept
+
+
+
+UniformRandomNumberGenerator
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/ranges/concepts>
+
+
+
+
+
+
+
+
+
+
+
+ template< class T, class U >
+
+concept bool Common =
+
+    Same<ranges::common_type_t<T, U>, ranges::common_type_t<U, T>> &&
+
+    ConvertibleTo<T, ranges::common_type_t<T, U>> &&
+
+    ConvertibleTo<U, ranges::common_type_t<T, U>> &&
+
+    CommonReference<
+
+        std::add_lvalue_reference_t<const T>,
+
+        std::add_lvalue_reference_t<const U>> &&
+
+    CommonReference<
+
+        std::add_lvalue_reference_t<ranges::common_type_t<T, U>>,
+
+        ranges::common_reference_t<
+
+            std::add_lvalue_reference_t<const T>,
+
+
+
+            std::add_lvalue_reference_t<const U>>>;
+
+ 
+
+ (ranges TS) 
+
+
+
+
+
+
+
+The concept Common<T, U> specifies that two types T and U share a common type (as computed by ranges::common_type_t) to which both can be converted.
+
+Common<T, U> is satisfied only if, given expressions t and u such that decltype((t)) is T and decltype((u)) is U,
+
+
+
+ ranges::common_type_t<T, U>(t) is equal to ranges::common_type_t<T, U>(t) if and only if t is an equality-preserving expression; and
+
+ ranges::common_type_t<T, U>(u) is equal to ranges::common_type_t<T, U>(u) if and only if u is an equality-preserving expression.
+
+
+
+In other words, the conversion to the common type must not alter the equality-preservation property of the original expression.
+
+
+
+[edit]  Equality preservation 
+
+An expression is equality preserving if it results in equal outputs given equal inputs. 
+
+
+
+ The inputs to an expression consist of its operands.
+
+ The outputs of an expression consist of its result and all operands modified by the expression (if any).
+
+
+
+Every expression required to be equality preserving is further required to be stable: two evaluations of such an expression with the same input objects must have equal outputs absent any explicit intervening modification of those input objects.
+
+
+
+[edit] See also 
+
+
+
+
+
+  common_type
+
+
+
+  determine the common type of a set of types  (class template) [edit]
+
+
+
+
+
+  common_reference
+
+
+
+  determine the common reference type of a set of types  (class template) [edit]
+
+
+
+
+
+  CommonReference
+
+
+
+  specifies that two types share a common reference type  (concept) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

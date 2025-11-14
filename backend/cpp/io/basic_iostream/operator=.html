@@ -1,0 +1,187 @@
+std::basic_iostream[edit] Input/output library
+
+I/O manipulators
+
+Print functions (C++23)
+
+C-style I/O
+
+Buffers
+
+basic_streambuf
+
+basic_filebuf
+
+basic_stringbuf
+
+basic_spanbuf(C++23)
+
+strstreambuf(C++98/26*)
+
+basic_syncbuf(C++20)
+
+Streams
+
+Abstractions
+
+ios_base
+
+basic_ios
+
+basic_istream
+
+basic_ostream
+
+basic_iostream
+
+File I/O
+
+basic_ifstream
+
+basic_ofstream
+
+basic_fstream
+
+String I/O
+
+basic_istringstream
+
+basic_ostringstream
+
+basic_stringstream
+
+Array I/O
+
+basic_ispanstream(C++23)
+
+basic_ospanstream(C++23)
+
+basic_spanstream(C++23)
+
+istrstream(C++98/26*)
+
+ostrstream(C++98/26*)
+
+strstream(C++98/26*)
+
+Synchronized Output
+
+basic_osyncstream(C++20)
+
+Types
+
+streamoff
+
+streamsize
+
+fpos
+
+Error category interface
+
+iostream_category(C++11)
+
+io_errc(C++11)
+
+[edit] std::basic_iostream
+
+Member functions
+
+basic_iostream::basic_iostream
+
+basic_iostream::~basic_iostream
+
+Protected member functions
+
+basic_iostream::operator=
+
+basic_iostream::swap
+
+[edit] 
+
+
+
+
+
+ basic_iostream& operator=( const basic_iostream& other ) = delete;
+
+ (1) 
+
+ 
+
+
+
+
+
+ protected:
+
+basic_iostream& operator=( basic_iostream&& other );
+
+ (2) 
+
+ (since C++11) 
+
+
+
+
+
+
+
+Assigns another stream object.
+
+
+
+1) Copy assignment is not allowed.
+
+2) Move assigns another stream object. Effectively calls swap(rhs). This move assignment operator is protected: it is called by the move assignment operators of the derived stream classes std::basic_stringstream and std::basic_fstream which know how to properly move-assign the associated stream buffers.
+
+[edit] Parameters
+
+
+
+
+
+  other
+
+
+
+ -
+
+
+
+  another stream to assign state of
+
+
+
+[edit] Return value
+
+*this
+
+
+
+[edit] See also
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs the object  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

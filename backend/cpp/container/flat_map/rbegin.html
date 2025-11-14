@@ -1,0 +1,401 @@
+std::flat_map[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::flat_map
+
+Member types
+
+Member functions
+
+
+
+
+
+flat_map::flat_map
+
+flat_map::operator=
+
+Element access
+
+flat_map::at
+
+flat_map::operator[]
+
+Iterators
+
+flat_map::beginflat_map::cbegin
+
+flat_map::endflat_map::cend
+
+flat_map::rbeginflat_map::crbegin
+
+flat_map::rendflat_map::crend
+
+Lookup
+
+flat_map::count
+
+flat_map::find
+
+flat_map::contains
+
+flat_map::equal_range  
+
+flat_map::lower_bound
+
+flat_map::upper_bound
+
+
+
+Capacity
+
+flat_map::size
+
+flat_map::max_size
+
+flat_map::empty
+
+Modifiers
+
+flat_map::clear
+
+flat_map::erase
+
+flat_map::swap
+
+flat_map::emplace
+
+flat_map::extract
+
+flat_map::replace
+
+flat_map::insert
+
+flat_map::insert_range
+
+flat_map::insert_or_assign
+
+flat_map::emplace_hint
+
+flat_map::try_emplace
+
+Observers
+
+flat_map::key_comp
+
+flat_map::keys
+
+flat_map::value_comp
+
+flat_map::values
+
+
+
+
+
+Non-member functions
+
+
+
+
+
+operator==operator<=>       
+
+
+
+swap(std::flat_map)
+
+erase_if(std::flat_map)
+
+
+
+
+
+Helper classes
+
+
+
+
+
+uses_allocator<std::flat_map>
+
+
+
+
+
+Tags
+
+
+
+
+
+sorted_unique     
+
+
+
+sorted_unique_t
+
+
+
+
+
+Deduction guides
+
+[edit] 
+
+
+
+
+
+reverse_iterator rbegin() noexcept;
+
+ (1)
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+const_reverse_iterator rbegin() const noexcept;
+
+ (2)
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+const_reverse_iterator crbegin() const noexcept;
+
+ (3)
+
+(since C++23) (constexpr since C++26)
+
+
+
+
+
+
+
+Returns a reverse iterator to the first element of the reversed *this. It corresponds to the last element of the non-reversed *this.
+
+If *this is empty, the returned iterator is equal to rend().
+
+
+
+
+
+
+
+
+
+
+
+Contents
+
+
+
+1 Return value
+
+2 Complexity
+
+3 Notes
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Return value
+
+Reverse iterator to the first element.
+
+
+
+[edit] Complexity
+
+Constant.
+
+
+
+[edit] Notes
+
+The underlying iterator of the returned reverse iterator is the end iterator. Hence the returned iterator is invalidated if and when the end iterator is invalidated.
+
+[edit] Example
+
+Run this code
+
+#include <iomanip>
+
+#include <iostream>
+
+#include <string_view>
+
+#include <flat_map>
+
+ 
+
+int main()
+
+{
+
+    const std::flat_map<int, std::string_view> coins
+
+    {
+
+        {10, "dime"},
+
+        {100, "dollar"},
+
+        {50, "half dollar"},
+
+        {5, "nickel"},
+
+        {1, "penny"},
+
+        {25, "quarter"}
+
+    }; // initializer entries in name alphabetical order
+
+ 
+
+    std::cout << "US coins in circulation, largest to smallest denomination:\n";
+
+    for (auto it = coins.crbegin(); it != coins.crend(); ++it)
+
+        std::cout << std::setw(11) << it->second << " = ¢" << it->first << '\n';
+
+}
+
+Output:
+
+
+
+US coins in circulation, largest to smallest denomination:
+
+     dollar = ¢100
+
+half dollar = ¢50
+
+    quarter = ¢25
+
+       dime = ¢10
+
+     nickel = ¢5
+
+      penny = ¢1
+
+
+
+[edit] See also
+
+
+
+
+
+  rendcrend
+
+
+
+  returns a reverse iterator to the end  (public member function) [edit]
+
+
+
+
+
+  rbegincrbegin(C++14)
+
+
+
+  returns a reverse iterator to the beginning of a container or array  (function template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

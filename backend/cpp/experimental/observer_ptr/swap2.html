@@ -1,0 +1,227 @@
+std::experimental::swap(std::experimental::observer_ptr)
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals v2
+
+experimental::propagate_const
+
+experimental::not_fn
+
+experimental::observer_ptr
+
+experimental::make_array
+
+experimental::to_array
+
+experimental::ostream_joiner
+
+experimental::gcd
+
+experimental::lcm
+
+experimental::source_location
+
+experimental::randint
+
+detection idiom
+
+uniform container erasure
+
+logical operator type traits
+
+[edit] std::experimental::observer_ptr
+
+Member functions
+
+observer_ptr::observer_ptr
+
+Modifiers
+
+observer_ptr::release
+
+observer_ptr::reset
+
+observer_ptr::swap
+
+Observers
+
+observer_ptr::get
+
+observer_ptr::operator bool
+
+observer_ptr::operator*observer_ptr::operator->
+
+Conversions
+
+observer_ptr::operator element_type*
+
+Non-member functions
+
+make_observer
+
+operator==operator!=operator<operator>operator<=operator>operator>=
+
+swap
+
+std::hash
+
+[edit] 
+
+
+
+
+
+ template< class W >
+
+void swap( observer_ptr<W>& lhs, observer_ptr<W>& rhs ) noexcept;
+
+ 
+
+ (library fundamentals TS v2) 
+
+
+
+
+
+
+
+Specializes the swap algorithm for std::experimental::observer_ptr. Swaps the pointers of lhs and rhs. Calls lhs.swap(rhs).
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Complexity
+
+4 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ lhs, rhs
+
+
+
+ -
+
+
+
+ observer_ptrs whose contents to swap
+
+
+
+[edit] Return value
+
+(none)
+
+
+
+[edit] Complexity
+
+Constant.
+
+
+
+[edit] See also
+
+
+
+
+
+  swap
+
+
+
+  swaps the values of two objects  (function template) [edit]
+
+
+
+
+
+  swap
+
+
+
+  swaps the watched objects  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

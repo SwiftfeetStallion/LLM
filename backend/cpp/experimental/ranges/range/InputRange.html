@@ -1,0 +1,207 @@
+std::experimental::ranges::InputRange
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Ranges
+
+Concepts
+
+General utilities
+
+Iterators
+
+Ranges
+
+Algorithms
+
+[edit] Ranges library
+
+ Range concepts
+
+
+
+Range
+
+SizedRange
+
+View
+
+
+
+BoundedRange
+
+InputRange
+
+OutputRange
+
+
+
+ForwardRange
+
+BidirectionalRange
+
+RandomAccessRange
+
+
+
+ Range access
+
+
+
+begincbegin
+
+
+
+endcend
+
+
+
+rbegincrbegin
+
+
+
+rendcrend
+
+
+
+ Range primitives
+
+
+
+iterator_tsentinel_t
+
+                              
+
+
+
+size
+
+                              
+
+
+
+
+
+
+
+datacdata
+
+
+
+
+
+
+
+empty
+
+
+
+
+
+
+
+
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/ranges/range>
+
+
+
+
+
+
+
+
+
+
+
+ template< class T >
+
+concept bool InputRange = 
+
+
+
+    Range<T> && InputIterator<ranges::iterator_t<T>>;
+
+ 
+
+ (ranges TS) 
+
+
+
+
+
+
+
+This section is incompleteReason: add description and extra caveats 
+
+
+
+
+
+ 
+
+
+
+
+
+                    

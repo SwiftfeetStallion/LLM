@@ -1,0 +1,133 @@
+std::char_traits[edit] Strings library
+
+Classes
+
+basic_string
+
+basic_string_view(C++17)
+
+char_traits
+
+[edit] std::char_traits
+
+Member functions
+
+char_traits::assign
+
+char_traits::eqchar_traits::lt
+
+char_traits::move
+
+char_traits::copy
+
+char_traits::compare
+
+char_traits::length
+
+char_traits::find
+
+char_traits::to_char_type
+
+char_traits::to_int_type
+
+char_traits::eq_int_type
+
+char_traits::eof
+
+char_traits::not_eof
+
+[edit] 
+
+
+
+
+
+ static const char_type*
+
+    find( const char_type* ptr, std::size_t count, const char_type& ch );
+
+ 
+
+ (constexpr since C++17) 
+
+
+
+
+
+
+
+Searches for character ch within the first count characters of the sequence pointed to by ptr.
+
+See CharTraits for the general requirements on character traits for X::find.
+
+
+
+[edit] Parameters
+
+
+
+
+
+ ptr
+
+
+
+ -
+
+
+
+ pointer to a character string to search
+
+
+
+
+
+ count
+
+
+
+ -
+
+
+
+ the number of characters to analyze
+
+
+
+
+
+ ch
+
+
+
+ -
+
+
+
+ the character to search for
+
+
+
+[edit] Return value
+
+A pointer to the first character in the range specified by [ptr, ptr + count) that compares equal to ch, or a null pointer if not found.
+
+
+
+[edit] Complexity
+
+Linear in count.
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

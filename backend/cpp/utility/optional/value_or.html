@@ -1,0 +1,455 @@
+std::optional[edit] Utilities library
+
+
+
+Language support
+
+Type support (basic types, RTTI)
+
+Library feature-test macros (C++20)
+
+Program utilities
+
+Variadic functions
+
+initializer_list(C++11)
+
+is_constant_evaluated(C++20)
+
+is_within_lifetime(C++26)
+
+source_location(C++20)
+
+Coroutine support (C++20)
+
+Contract support (C++26)
+
+Three-way comparison
+
+three_way_comparablethree_way_comparable_with(C++20)(C++20)
+
+strong_ordering(C++20)
+
+weak_ordering(C++20)
+
+partial_ordering(C++20)
+
+common_comparison_category(C++20)
+
+compare_three_way_result(C++20)
+
+compare_three_way(C++20)
+
+strong_order(C++20)
+
+weak_order(C++20)
+
+partial_order(C++20)
+
+compare_strong_order_fallback(C++20)
+
+compare_weak_order_fallback(C++20)
+
+compare_partial_order_fallback(C++20)  
+
+
+
+
+
+is_eqis_ltis_lteq(C++20)(C++20)(C++20)  
+
+
+
+is_neqis_gtis_gteq(C++20)(C++20)(C++20)
+
+
+
+
+
+
+
+
+
+
+
+General utilities
+
+
+
+Function objects
+
+Bit manipulation (C++20)
+
+C-style bit manipulation (C++26)
+
+bitset
+
+hash(C++11)
+
+
+
+Relational operators (deprecated in C++20)
+
+
+
+
+
+rel_ops::operator!=rel_ops::operator>  
+
+
+
+rel_ops::operator<=rel_ops::operator>=
+
+
+
+Integer comparison functions
+
+
+
+cmp_equalcmp_lesscmp_less_than(C++20)(C++20)(C++20)  
+
+
+
+cmp_not_equalcmp_greatercmp_greater_than(C++20)(C++20)(C++20)
+
+
+
+in_range(C++20)
+
+Swap and type operations
+
+
+
+swap
+
+ranges::swap(C++20)
+
+exchange(C++14)
+
+declval(C++11)
+
+to_underlying(C++23)
+
+
+
+forward(C++11)
+
+forward_like(C++23)
+
+move(C++11)
+
+move_if_noexcept(C++11)
+
+as_const(C++17)
+
+
+
+Common vocabulary types
+
+
+
+pair
+
+tuple(C++11)
+
+optional(C++17)
+
+any(C++17)
+
+variant(C++17)
+
+
+
+tuple_size(C++11)
+
+tuple_element(C++11)
+
+apply(C++17)
+
+make_from_tuple(C++17)
+
+expected(C++23)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] std::optional
+
+Member functions
+
+optional::optional
+
+optional::~optional
+
+optional::operator=
+
+Observers
+
+optional::operator->optional::operator*
+
+optional::operator booloptional::has_value
+
+optional::value
+
+optional::value_or
+
+Iterators
+
+optional::begin(C++26)
+
+optional::end(C++26)
+
+Monadic operations
+
+optional::and_then(C++23)
+
+optional::transform(C++23)
+
+optional::or_else(C++23)
+
+Modifiers
+
+optional::emplace
+
+optional::swap
+
+optional::reset
+
+Non-member functions
+
+operator==operator!=operator<operator<=operator>operator>=operator<=>(C++20)
+
+make_optional
+
+swap(std::optional)
+
+Deduction guides
+
+Helper classes
+
+hash<std::optional>
+
+nullopt_t
+
+in_place_t
+
+bad_optional_access
+
+Helper objects
+
+nullopt
+
+in_place
+
+[edit] 
+
+
+
+
+
+ template< class U = std::remove_cv_t<T> > 
+
+constexpr T value_or( U&& default_value ) const&;
+
+ (1) 
+
+ (since C++17) 
+
+
+
+
+
+ template< class U = std::remove_cv_t<T> > 
+
+constexpr T value_or( U&& default_value ) &&;
+
+ (2) 
+
+ (since C++17) 
+
+
+
+
+
+
+
+Returns the contained value if *this contains a value, otherwise returns default_value.
+
+
+
+1) If std::is_copy_constructible_v<T> && std::is_convertible_v<U&&, T> is false, the program is ill-formed.
+
+2) If std::is_move_constructible_v<T> && std::is_convertible_v<U&&, T> is false, the program is ill-formed.
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Example
+
+4 Defect reports
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ default_value
+
+
+
+ -
+
+
+
+ the value to be returned if *this does not contain a value
+
+
+
+[edit] Return value
+
+1) has_value() ? **this : static_cast<T>(std::forward<U>(default_value));
+
+2) has_value() ? std::move(**this) : static_cast<T>(std::forward<U>(default_value))
+
+[edit] Example
+
+Run this code
+
+#include <cstdlib>
+
+#include <iostream>
+
+#include <optional>
+
+ 
+
+std::optional<const char*> maybe_getenv(const char* n)
+
+{
+
+    if (const char* x = std::getenv(n))
+
+        return x;
+
+    else
+
+        return {};
+
+}
+
+ 
+
+int main()
+
+{
+
+    std::cout << maybe_getenv("SHELL").value_or("(none)") << '\n';
+
+    std::cout << maybe_getenv("MYPWD").value_or("(none)") << '\n';
+
+}
+
+Possible output:
+
+
+
+/usr/bin/zsh
+
+(none)
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 3886
+
+
+
+C++17
+
+
+
+U does not have a default template argument
+
+
+
+specified
+
+
+
+[edit] See also
+
+
+
+
+
+  value
+
+
+
+  returns the contained value  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

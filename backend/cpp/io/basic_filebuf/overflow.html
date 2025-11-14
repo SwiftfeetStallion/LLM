@@ -1,0 +1,331 @@
+std::basic_filebuf[edit] Input/output library
+
+I/O manipulators
+
+Print functions (C++23)
+
+C-style I/O
+
+Buffers
+
+basic_streambuf
+
+basic_filebuf
+
+basic_stringbuf
+
+basic_spanbuf(C++23)
+
+strstreambuf(C++98/26*)
+
+basic_syncbuf(C++20)
+
+Streams
+
+Abstractions
+
+ios_base
+
+basic_ios
+
+basic_istream
+
+basic_ostream
+
+basic_iostream
+
+File I/O
+
+basic_ifstream
+
+basic_ofstream
+
+basic_fstream
+
+String I/O
+
+basic_istringstream
+
+basic_ostringstream
+
+basic_stringstream
+
+Array I/O
+
+basic_ispanstream(C++23)
+
+basic_ospanstream(C++23)
+
+basic_spanstream(C++23)
+
+istrstream(C++98/26*)
+
+ostrstream(C++98/26*)
+
+strstream(C++98/26*)
+
+Synchronized Output
+
+basic_osyncstream(C++20)
+
+Types
+
+streamoff
+
+streamsize
+
+fpos
+
+Error category interface
+
+iostream_category(C++11)
+
+io_errc(C++11)
+
+[edit] std::basic_filebuf
+
+Public member functions
+
+basic_filebuf::basic_filebuf
+
+basic_filebuf::~basic_filebuf
+
+basic_filebuf::operator=(C++11)
+
+basic_filebuf::swap(C++11)
+
+basic_filebuf::native_handle(C++26)
+
+basic_filebuf::is_open
+
+basic_filebuf::open
+
+basic_filebuf::close
+
+Protected member functions
+
+basic_filebuf::showmanyc
+
+basic_filebuf::underflow
+
+basic_filebuf::uflow
+
+basic_filebuf::pbackfail
+
+basic_filebuf::overflow
+
+basic_filebuf::setbuf
+
+basic_filebuf::seekoff
+
+basic_filebuf::seekpos
+
+basic_filebuf::sync
+
+basic_filebuf::imbue
+
+Non-member functions
+
+swap(std::basic_filebuf)(C++11)
+
+[edit] 
+
+
+
+
+
+ protected:
+
+virtual int_type overflow( int_type ch = Traits::eof() );
+
+ 
+
+ 
+
+
+
+
+
+
+
+Writes some data from the put area to the associated character sequence (to the file).
+
+Behaves like the base class version std::basic_streambuf::overflow(), except that the behavior of “consuming characters” is defined as follows:
+
+
+
+1) First, uses std::codecvt::out of the imbued locale to convert the characters into external (possibly multibyte) representation, stored in a temporary buffer, as follows: (XSIZE is some unspecified buffer size)
+
+const std::codecvt<CharT, char, typename Traits::state_type>& a_codecvt =
+
+    std::use_facet<std::codecvt<CharT, char, typename Traits::state_type>>(getloc());
+
+typename Traits::state_type state;
+
+CharT* end;
+
+char xbuf[XSIZE];
+
+char* xbuf_end;
+
+std::codecvt_base::result r =
+
+    a_codecvt.out(state, pbase(), pptr(), end, xbuf, xbuf + XSIZE, xbuf_end);
+
+2) Then writes all fully-converted characters from the buffer into the file. Formally, performs the following steps based on the value of r:
+
+
+
+
+
+r
+
+
+
+Operation
+
+
+
+
+
+std::codecvt_base::ok
+
+
+
+Output characters in [xbuf, xbuf_end) to the file, and fail if output fails. At this point if pbase() != pptr() and pbase() == end are both true (which means xbuf is not large enough for even one external character), then increase XSIZE and repeat from the beginning.
+
+
+
+
+
+std::codecvt_base::partial
+
+
+
+Output the converted external characters in [xbuf, xbuf_end) to the file, and repeat using the remaining unconverted internal characters in [end, pptr()). If output fails, fail (without repeating).
+
+
+
+
+
+std::codecvt_base::noconv
+
+
+
+Output characters in [pbase(), pptr()) to the file.
+
+
+
+
+
+std::codecvt_base::error
+
+
+
+Fail.
+
+
+
+ If the associated file is not open (is_open() returns false), output will always fail.
+
+
+
+
+
+3) Establishes an observable checkpoint.
+
+
+
+(since C++26)
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Notes
+
+4 Example
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ ch
+
+
+
+ -
+
+
+
+ the character to store in the put area
+
+
+
+[edit] Return value
+
+Traits::not_eof(ch) to indicate success or Traits::eof() to indicate failure.
+
+
+
+[edit] Notes
+
+If a_codecvt.always_noconv() returns true, the call to a_codecvt.out() may be skipped.
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] See also
+
+
+
+
+
+  overflow[virtual]
+
+
+
+  writes characters to the associated output sequence from the put area  (virtual protected member function of std::basic_streambuf<CharT,Traits>) [edit]
+
+
+
+
+
+  underflow[virtual]
+
+
+
+  reads from the associated file  (virtual protected member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

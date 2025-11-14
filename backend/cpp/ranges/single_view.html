@@ -1,0 +1,1209 @@
+std::ranges::views::single, std::ranges::single_view
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Ranges library
+
+
+
+Range access
+
+
+
+begin
+
+cbegin 
+
+end
+
+cend
+
+
+
+rbegin
+
+crbegin 
+
+rend
+
+crend
+
+
+
+size
+
+ssize 
+
+data
+
+cdata
+
+
+
+reserve_hint(C++26)  
+
+empty
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range conversions
+
+std::from_range_tstd::from_range(C++23)(C++23)    
+
+to(C++23)
+
+
+
+
+
+
+
+Dangling iterator handling
+
+dangling
+
+borrowed_iterator_t
+
+borrowed_subrange_t
+
+
+
+
+
+
+
+
+
+
+
+Range primitives
+
+
+
+range_size_trange_difference_trange_value_t
+
+elements_of(C++23)    
+
+
+
+iterator_tconst_iterator_tsentinel_tconst_sentinel_t(C++23)(C++23)  
+
+
+
+range_reference_trange_const_reference_trange_rvalue_reference_trange_common_reference_t(C++23)
+
+
+
+
+
+
+
+Range concepts
+
+
+
+range
+
+borrowed_range  
+
+common_range
+
+
+
+sized_range
+
+viewable_range  
+
+view
+
+
+
+input_range
+
+output_range
+
+forward_range  
+
+
+
+bidirectional_range  
+
+random_access_range
+
+contiguous_range
+
+
+
+approximately_sized_range(C++26)
+
+constant_range(C++23)
+
+
+
+
+
+
+
+
+
+
+
+Views
+
+
+
+view_interface  
+
+
+
+subrange
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range factories
+
+
+
+empty_viewviews::empty  
+
+
+
+single_viewviews::single  
+
+
+
+basic_istream_viewviews::istream  
+
+
+
+iota_viewviews::iota  
+
+
+
+repeat_viewviews::repeat(C++23)(C++23)
+
+
+
+
+
+
+
+Range adaptors
+
+
+
+views::all_tviews::all
+
+as_rvalue_viewviews::as_rvalue(C++23)(C++23)  
+
+filter_viewviews::filter
+
+transform_viewviews::transform
+
+take_viewviews::take
+
+take_while_viewviews::take_while
+
+common_viewviews::common
+
+views::counted
+
+to_input_viewviews::to_input(C++26)(C++26)
+
+
+
+ref_view
+
+drop_viewviews::drop
+
+drop_while_viewviews::drop_while
+
+lazy_split_viewviews::lazy_split
+
+split_viewviews::split
+
+join_viewviews::join
+
+join_with_viewviews::join_with(C++23)(C++23)  
+
+concat_viewviews::concat(C++26)(C++26)
+
+cache_latest_viewviews::cache_latest(C++26)(C++26)  
+
+
+
+owning_view
+
+reverse_viewviews::reverse
+
+as_const_viewviews::as_const(C++23)(C++23)
+
+elements_viewviews::elements
+
+keys_viewviews::keys
+
+values_viewviews::values
+
+enumerate_viewviews::enumerate(C++23)(C++23)
+
+zip_viewviews::zip(C++23)(C++23)
+
+zip_transform_viewviews::zip_transform(C++23)(C++23)  
+
+
+
+adjacent_viewviews::adjacent(C++23)(C++23)
+
+views::pairwise(C++23)
+
+adjacent_transform_viewviews::adjacent_transform(C++23)(C++23)
+
+views::pairwise_transform(C++23)
+
+chunk_viewviews::chunk(C++23)(C++23)
+
+slide_viewviews::slide(C++23)(C++23)
+
+chunk_by_viewviews::chunk_by(C++23)(C++23)
+
+stride_viewviews::stride(C++23)(C++23)
+
+cartesian_product_viewviews::cartesian_product(C++23)(C++23)
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range generators
+
+std::generator(C++23)    
+
+
+
+Range adaptor closure objects
+
+range_adaptor_closure(C++23)    
+
+
+
+Range adaptor objects
+
+
+
+
+
+
+
+
+
+
+
+Helper items
+
+
+
+copyable-boxmovable-box(until C++23)  (C++23)
+
+
+
+simple-view
+
+non-propagating-cache
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <ranges>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(1)
+
+
+
+
+
+
+
+template< std::copy_constructible T >
+
+    requires std::is_object_v<T>
+
+class single_view
+
+
+
+    : public ranges::view_interface<single_view<T>>
+
+ 
+
+(since C++20) (until C++23)
+
+
+
+
+
+ template< std::move_constructible T >
+
+    requires std::is_object_v<T>
+
+class single_view
+
+
+
+    : public ranges::view_interface<single_view<T>>
+
+ 
+
+ (since C++23) 
+
+
+
+
+
+
+
+ namespace views {
+
+    inline constexpr /* unspecified */ single = /* unspecified */;
+
+
+
+}
+
+ (2) 
+
+ (since C++20) 
+
+
+
+
+
+ Call signature
+
+
+
+
+
+
+
+
+
+ template< class T >
+
+    requires /* see below */
+
+
+
+constexpr /* see below */ single( T&& t );
+
+ 
+
+ (since C++20) 
+
+
+
+
+
+
+
+1) Produces a view that contains exactly one element of a specified value.
+
+2) The expression views::single(e) is expression-equivalent to single_view<std::decay_t<decltype((e))>>(e) for any suitable subexpression e.
+
+The lifetime of the element is bound to the parent single_view. Copying single_view makes a copy of the element.
+
+
+
+Contents
+
+
+
+1 Customization point objects
+
+2 Data members
+
+3 Member functions
+
+
+
+3.1 Inherited from std::ranges::view_interface
+
+
+
+
+
+4 std::ranges::single_view::single_view
+
+5 std::ranges::single_view::begin
+
+6 std::ranges::single_view::end
+
+7 std::ranges::single_view::empty
+
+8 std::ranges::single_view::size
+
+9 std::ranges::single_view::data
+
+
+
+9.1 Deduction guides
+
+9.2 Notes
+
+9.3 Example
+
+9.4 Defect reports
+
+9.5 See also
+
+
+
+
+
+
+
+
+
+ Customization point objects
+
+The name views::single denotes a customization point object, which is a const function object of a literal semiregular class type.  See CustomizationPointObject for details.
+
+
+
+[edit] Data members
+
+
+
+
+
+ Member
+
+
+
+ Definition
+
+
+
+
+
+ copyable-box ﻿<T> value_ (until C++23)
+
+
+
+ the single element of the view(exposition-only member object*)
+
+
+
+
+
+ movable-box ﻿<T> value_ (since C++23)
+
+
+
+ the single element of the view(exposition-only member object*)
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a single_view  (public member function)
+
+
+
+
+
+  begin
+
+
+
+  returns a pointer to the element  (public member function)
+
+
+
+
+
+  end
+
+
+
+  returns a pointer past the element  (public member function)
+
+
+
+
+
+  empty[static]
+
+
+
+  returns false  (public static member function)
+
+
+
+
+
+  size[static]
+
+
+
+  returns 1  (public static member function)
+
+
+
+
+
+  data
+
+
+
+  returns a pointer to the element  (public member function)
+
+
+
+
+
+   Inherited from std::ranges::view_interface 
+
+
+
+
+
+  cbegin(C++23)
+
+
+
+  returns a constant iterator to the beginning of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  cend(C++23)
+
+
+
+  returns a sentinel for the constant iterator of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  operator bool
+
+
+
+  returns whether the derived view is not empty, provided only if ranges::empty is applicable to it  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  front
+
+
+
+  returns the first element in the derived view, provided if it satisfies forward_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  back
+
+
+
+  returns the last element in the derived view, provided only if it satisfies bidirectional_range and common_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  operator[]
+
+
+
+  returns the nth element in the derived view, provided only if it satisfies random_access_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+
+
+
+
+
+
+ std::ranges::single_view::single_view
+
+
+
+
+
+ single_view() requires std::default_initializable<T> = default;
+
+ (1) 
+
+ (since C++20) 
+
+
+
+
+
+
+
+
+
+(2)
+
+
+
+
+
+
+
+constexpr explicit single_view( const T& t );
+
+ 
+
+(since C++20) (until C++23)
+
+
+
+
+
+ constexpr explicit single_view( const T& t )
+
+    requires std::copy_constructible<T>;
+
+ 
+
+ (since C++23) 
+
+
+
+
+
+
+
+ constexpr explicit single_view( T&& t );
+
+ (3) 
+
+ (since C++20) 
+
+
+
+
+
+ template< class... Args >
+
+    requires std::constructible_from<T, Args...>
+
+
+
+constexpr explicit single_view( std::in_place_t, Args&&... args );
+
+ (4) 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Constructs a single_view.
+
+
+
+1) Default initializes value_, which value-initializes its contained value.
+
+2) Initializes value_ with t.
+
+3) Initializes value_ with std::move(t).
+
+4) Initializes value_ as if by value_{std::in_place, std::forward<Args>(args)...}.
+
+
+
+
+
+
+
+
+
+ std::ranges::single_view::begin
+
+
+
+
+
+ constexpr T* begin() noexcept;
+
+constexpr const T* begin() const noexcept;
+
+ 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Equivalent to return data();.
+
+
+
+
+
+
+
+
+
+
+
+ std::ranges::single_view::end
+
+
+
+
+
+ constexpr T* end() noexcept;
+
+constexpr const T* end() const noexcept;
+
+ 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Equivalent to return data() + 1;.
+
+
+
+
+
+
+
+
+
+
+
+ std::ranges::single_view::empty
+
+
+
+
+
+ static constexpr bool empty() noexcept;
+
+ 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Equivalent to return false;.
+
+
+
+
+
+
+
+
+
+
+
+ std::ranges::single_view::size
+
+
+
+
+
+ static constexpr std::size_t size() noexcept;
+
+ 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Equivalent to return 1;.
+
+Makes single_view model /*tiny-range*/ as required by split_view.
+
+
+
+
+
+
+
+
+
+
+
+ std::ranges::single_view::data
+
+
+
+
+
+ constexpr T* data() noexcept;
+
+constexpr const T* data() const noexcept;
+
+ 
+
+ (since C++20) 
+
+
+
+
+
+
+
+Returns a pointer to the contained value of value_. The behavior is undefined if value_ does not contains a value.
+
+
+
+
+
+[edit] Deduction guides
+
+
+
+
+
+ template< class T >
+
+single_view( T ) -> single_view<T>;
+
+ 
+
+ (since C++20) 
+
+
+
+
+
+
+
+[edit] Notes
+
+For a single_view, the inherited empty member function always returns false, and the inherited operator bool conversion function always returns true.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <iomanip>
+
+#include <iostream>
+
+#include <ranges>
+
+#include <string>
+
+#include <tuple>
+
+ 
+
+int main()
+
+{
+
+    constexpr std::ranges::single_view sv1{3.1415}; // uses (const T&) constructor
+
+    static_assert(sv1);
+
+    static_assert(not sv1.empty());
+
+ 
+
+    std::cout << "1) *sv1.data(): " << *sv1.data() << '\n'
+
+              << "2) *sv1.begin(): " << *sv1.begin() << '\n'
+
+              << "3)  sv1.size(): " << sv1.size() << '\n'
+
+              << "4)  distance: " << std::distance(sv1.begin(), sv1.end()) << '\n';
+
+ 
+
+    std::string str{"C++20"};
+
+    std::cout << "5)  str = " << std::quoted(str) << '\n';
+
+    std::ranges::single_view sv2{std::move(str)}; // uses (T&&) constructor
+
+    std::cout << "6) *sv2.data(): " << std::quoted(*sv2.data()) << '\n'
+
+              << "7)  str = " << std::quoted(str) << '\n';
+
+ 
+
+    std::ranges::single_view<std::tuple<int, double, std::string>>
+
+        sv3{std::in_place, 42, 3.14, "😄"}; // uses (std::in_place_t, Args&&... args)
+
+ 
+
+    std::cout << "8)  sv3 holds a tuple: { "
+
+              << std::get<0>(sv3[0]) << ", "
+
+              << std::get<1>(sv3[0]) << ", "
+
+              << std::get<2>(sv3[0]) << " }\n";
+
+}
+
+Output:
+
+
+
+1) *sv1.data(): 3.1415
+
+2) *sv1.begin(): 3.1415
+
+3)  sv1.size(): 1
+
+4)  distance: 1
+
+5)  str = "C++20"
+
+6) *sv2.data(): "C++20"
+
+7)  str = ""
+
+8)  sv3 holds a tuple: { 42, 3.14, 😄 }
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 3428
+
+
+
+C++20
+
+
+
+single_view was convertible from std::in_place_t
+
+
+
+the constructor is made explicit
+
+
+
+
+
+LWG 4035
+
+
+
+C++20
+
+
+
+single_view did not provide the member function empty()
+
+
+
+provides empty()
+
+
+
+
+
+P2367R0
+
+
+
+C++20
+
+
+
+deduction guides for single_view failed to decay the argument;views::single copied but not wrapped a single_view
+
+
+
+a decaying guide provided;made always wrapping
+
+
+
+[edit] See also
+
+
+
+
+
+  optional(C++17)
+
+
+
+  a wrapper that may or may not hold an object  (class template) [edit]
+
+
+
+
+
+  ranges::empty_viewviews::empty(C++20)
+
+
+
+ an empty view with no elements(class template) (variable template)[edit]
+
+
+
+
+
+  ranges::split_viewviews::split(C++20)
+
+
+
+ a view over the subranges obtained from splitting another view using a delimiter(class template) (range adaptor object)[edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

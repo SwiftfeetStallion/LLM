@@ -1,0 +1,629 @@
+Standard library header [edit] Standard library headers
+
+
+
+Language support
+
+<cfloat>
+
+<climits>
+
+<compare> (C++20)
+
+<contracts> (C++26)
+
+<coroutine> (C++20)
+
+<csetjmp>
+
+<csignal>
+
+<cstdarg>
+
+<cstddef>
+
+<cstdint> (C++11)
+
+<cstdlib>
+
+<exception>
+
+<initializer_list> (C++11)   
+
+<limits>
+
+<new>
+
+<source_location> (C++20)
+
+<stdfloat> (C++23)
+
+<typeinfo>
+
+<version> (C++20)
+
+Concepts
+
+<concepts> (C++20)
+
+Diagnostics
+
+<cassert>
+
+<cerrno>
+
+<debugging> (C++26)
+
+<stacktrace> (C++23)
+
+<stdexcept>
+
+<system_error> (C++11)
+
+Memory management
+
+<memory>
+
+<memory_resource> (C++17)
+
+<scoped_allocator> (C++11)
+
+Metaprogramming
+
+<type_traits> (C++11)
+
+<ratio> (C++11)
+
+
+
+
+
+
+
+General utilities
+
+<any> (C++17)
+
+<bitset>
+
+<bit> (C++20)
+
+<charconv> (C++17)
+
+<expected> (C++23)
+
+<format> (C++20)
+
+<functional>
+
+<optional> (C++17)
+
+<stdbit.h> (C++26)
+
+<tuple> (C++11)
+
+<typeindex> (C++11)
+
+<utility>
+
+<variant> (C++17)
+
+Containers
+
+<array> (C++11)
+
+<deque>
+
+<flat_map> (C++23)
+
+<flat_set> (C++23)
+
+<forward_list> (C++11)
+
+<hive> (C++26)
+
+<inplace_vector> (C++26)   
+
+<list>
+
+<map>
+
+<mdspan> (C++23)
+
+<queue>
+
+<set>
+
+<span> (C++20)
+
+<stack>
+
+<unordered_map> (C++11)
+
+<unordered_set> (C++11)
+
+<vector>
+
+Iterators
+
+<iterator>
+
+Ranges
+
+<generator> (C++23)
+
+<ranges> (C++20)
+
+
+
+Algorithms
+
+<algorithm>
+
+<numeric>
+
+Strings
+
+<cctype>
+
+<cstring>
+
+<cuchar> (C++11)
+
+<cwchar>
+
+<cwctype>
+
+<string_view> (C++17)
+
+<string>
+
+Text processing
+
+<clocale>
+
+<codecvt> (C++11/17/26*)
+
+<locale>
+
+<regex> (C++11)
+
+<text_encoding> (C++26)   
+
+Numerics
+
+<cfenv> (C++11)
+
+<cmath>
+
+<complex>
+
+<linalg> (C++26)
+
+<numbers> (C++20)
+
+<random> (C++11)
+
+<simd> (C++26)
+
+<stdckdint.h> (C++26)
+
+<valarray>
+
+Time
+
+<chrono> (C++11)
+
+<ctime>
+
+C compatibility
+
+<ccomplex> (C++11/17/20*)
+
+<ciso646> (until C++20)
+
+<cstdalign> (C++11/17/20*)
+
+<cstdbool> (C++11/17/20*)
+
+<ctgmath> (C++11/17/20*)
+
+
+
+Input/output
+
+<cinttypes> (C++11)
+
+<cstdio>
+
+<filesystem> (C++17)
+
+<fstream>
+
+<iomanip>
+
+<iosfwd>
+
+<iostream>
+
+<ios>
+
+<istream>
+
+<ostream>
+
+<print> (C++23)
+
+<spanstream> (C++23)
+
+<sstream>
+
+<streambuf>
+
+<strstream> (C++98/26*)
+
+<syncstream> (C++20)
+
+Concurrency support
+
+<atomic> (C++11)
+
+<barrier> (C++20)
+
+<condition_variable> (C++11)
+
+<future> (C++11)
+
+<hazard_pointer> (C++26)
+
+<latch> (C++20)
+
+<mutex> (C++11)
+
+<rcu> (C++26)
+
+<semaphore> (C++20)
+
+<shared_mutex> (C++14)
+
+<stdatomic.h> (C++23)
+
+<stop_token> (C++20)
+
+<thread> (C++11)
+
+Execution support
+
+<execution> (C++17)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] 
+
+This header was originally in the C standard library (<stdbit.h>).
+
+This C-compatibility header is part of the general utility library, in particular, it provides several function templates to access, manipulate, and process individual bits and bit sequences. The byte ordering (endianness) of scalar types can be inspected via __STDC_ENDIAN_NATIVE__ facility.
+
+It is unspecified whether <stdbit.h> provides any declarations in namespace std.
+
+
+
+
+
+This section is incompleteReason: add descriptors for functions and constants 
+
+
+
+
+
+ Contents
+
+
+
+1 Functions
+
+2 Constants
+
+3 Synopsis
+
+4 See also
+
+
+
+
+
+ Functions
+
+
+
+
+
+
+
+
+
+  Constants
+
+
+
+
+
+[edit] Synopsis
+
+#define __STDC_VERSION_STDBIT_H__ 202311L
+
+ 
+
+#define __STDC_ENDIAN_BIG__    /* see description */
+
+#define __STDC_ENDIAN_LITTLE__ /* see description */
+
+#define __STDC_ENDIAN_NATIVE__ /* see description */
+
+ 
+
+unsigned int stdc_leading_zeros_uc(unsigned char value);
+
+unsigned int stdc_leading_zeros_us(unsigned short value);
+
+unsigned int stdc_leading_zeros_ui(unsigned int value);
+
+unsigned int stdc_leading_zeros_ul(unsigned long int value);
+
+unsigned int stdc_leading_zeros_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_leading_zeros(T value);
+
+ 
+
+unsigned int stdc_leading_ones_uc(unsigned char value);
+
+unsigned int stdc_leading_ones_us(unsigned short value);
+
+unsigned int stdc_leading_ones_ui(unsigned int value);
+
+unsigned int stdc_leading_ones_ul(unsigned long int value);
+
+unsigned int stdc_leading_ones_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_leading_ones(T value);
+
+ 
+
+unsigned int stdc_trailing_zeros_uc(unsigned char value);
+
+unsigned int stdc_trailing_zeros_us(unsigned short value);
+
+unsigned int stdc_trailing_zeros_ui(unsigned int value);
+
+unsigned int stdc_trailing_zeros_ul(unsigned long int value);
+
+unsigned int stdc_trailing_zeros_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_trailing_zeros(T value);
+
+ 
+
+unsigned int stdc_trailing_ones_uc(unsigned char value);
+
+unsigned int stdc_trailing_ones_us(unsigned short value);
+
+unsigned int stdc_trailing_ones_ui(unsigned int value);
+
+unsigned int stdc_trailing_ones_ul(unsigned long int value);
+
+unsigned int stdc_trailing_ones_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_trailing_ones(T value);
+
+ 
+
+unsigned int stdc_first_leading_zero_uc(unsigned char value);
+
+unsigned int stdc_first_leading_zero_us(unsigned short value);
+
+unsigned int stdc_first_leading_zero_ui(unsigned int value);
+
+unsigned int stdc_first_leading_zero_ul(unsigned long int value);
+
+unsigned int stdc_first_leading_zero_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_first_leading_zero(T value);
+
+ 
+
+unsigned int stdc_first_leading_one_uc(unsigned char value);
+
+unsigned int stdc_first_leading_one_us(unsigned short value);
+
+unsigned int stdc_first_leading_one_ui(unsigned int value);
+
+unsigned int stdc_first_leading_one_ul(unsigned long int value);
+
+unsigned int stdc_first_leading_one_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_first_leading_one(T value);
+
+ 
+
+unsigned int stdc_first_trailing_zero_uc(unsigned char value);
+
+unsigned int stdc_first_trailing_zero_us(unsigned short value);
+
+unsigned int stdc_first_trailing_zero_ui(unsigned int value);
+
+unsigned int stdc_first_trailing_zero_ul(unsigned long int value);
+
+unsigned int stdc_first_trailing_zero_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_first_trailing_zero(T value);
+
+ 
+
+unsigned int stdc_first_trailing_one_uc(unsigned char value);
+
+unsigned int stdc_first_trailing_one_us(unsigned short value);
+
+unsigned int stdc_first_trailing_one_ui(unsigned int value);
+
+unsigned int stdc_first_trailing_one_ul(unsigned long int value);
+
+unsigned int stdc_first_trailing_one_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_first_trailing_one(T value);
+
+ 
+
+unsigned int stdc_count_zeros_uc(unsigned char value);
+
+unsigned int stdc_count_zeros_us(unsigned short value);
+
+unsigned int stdc_count_zeros_ui(unsigned int value);
+
+unsigned int stdc_count_zeros_ul(unsigned long int value);
+
+unsigned int stdc_count_zeros_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_count_zeros(T value);
+
+ 
+
+unsigned int stdc_count_ones_uc(unsigned char value);
+
+unsigned int stdc_count_ones_us(unsigned short value);
+
+unsigned int stdc_count_ones_ui(unsigned int value);
+
+unsigned int stdc_count_ones_ul(unsigned long int value);
+
+unsigned int stdc_count_ones_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_count_ones(T value);
+
+ 
+
+bool stdc_has_single_bit_uc(unsigned char value);
+
+bool stdc_has_single_bit_us(unsigned short value);
+
+bool stdc_has_single_bit_ui(unsigned int value);
+
+bool stdc_has_single_bit_ul(unsigned long int value);
+
+bool stdc_has_single_bit_ull(unsigned long long int value);
+
+template<class T>
+
+bool stdc_has_single_bit(T value);
+
+ 
+
+unsigned int stdc_bit_width_uc(unsigned char value);
+
+unsigned int stdc_bit_width_us(unsigned short value);
+
+unsigned int stdc_bit_width_ui(unsigned int value);
+
+unsigned int stdc_bit_width_ul(unsigned long int value);
+
+unsigned int stdc_bit_width_ull(unsigned long long int value);
+
+template<class T>
+
+/* see description */ stdc_bit_width(T value);
+
+ 
+
+unsigned char          stdc_bit_floor_uc(unsigned char value);
+
+unsigned short         stdc_bit_floor_us(unsigned short value);
+
+unsigned int           stdc_bit_floor_ui(unsigned int value);
+
+unsigned long int      stdc_bit_floor_ul(unsigned long int value);
+
+unsigned long long int stdc_bit_floor_ull(unsigned long long int value);
+
+template<class T>
+
+T stdc_bit_floor(T value);
+
+ 
+
+unsigned char          stdc_bit_ceil_uc(unsigned char value);
+
+unsigned short         stdc_bit_ceil_us(unsigned short value);
+
+unsigned int           stdc_bit_ceil_ui(unsigned int value);
+
+unsigned long int      stdc_bit_ceil_ul(unsigned long int value);
+
+unsigned long long int stdc_bit_ceil_ull(unsigned long long int value);
+
+template<class T>
+
+T stdc_bit_ceil(T value);
+
+[edit] See also
+
+
+
+
+
+  <bit>(C++20)
+
+
+
+ Bit manipulation functions[edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

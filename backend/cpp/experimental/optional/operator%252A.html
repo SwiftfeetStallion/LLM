@@ -1,0 +1,321 @@
+std::experimental::optional[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals
+
+experimental::optional
+
+experimental::any
+
+experimental::basic_string_view
+
+experimental::sample
+
+experimental::shared_ptr
+
+experimental::weak_ptr
+
+experimental::apply
+
+experimental::invocation_typeexperimental::raw_invocation_type
+
+experimental::search
+
+experimental::default_searcherexperimental::make_default_searcher
+
+experimental::boyer_moore_searcherexperimental::make_boyer_moore_searcher
+
+experimental::boyer_moore_horspool_searcherexperimental::make_boyer_moore_horspool_searcher
+
+Type-erased and polymorphic allocators
+
+Variable templates for type traits
+
+[edit] std::experimental::optional
+
+Member functions
+
+optional::optional
+
+optional::~optional
+
+optional::operator=
+
+Observers
+
+optional::operator->optional::operator*
+
+optional::operator bool
+
+optional::value
+
+optional::value_or
+
+Modifiers
+
+optional::emplace
+
+optional::swap
+
+Non-member functions
+
+operator==operator!=operator<operator<=operator>operator>=
+
+make_optional
+
+swap
+
+Helper classes
+
+hash
+
+nullopt_t
+
+in_place_t
+
+bad_optional_access
+
+Helper objects
+
+nullopt
+
+in_place
+
+[edit] 
+
+
+
+
+
+ constexpr const T* operator->() const;
+
+ (1) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ constexpr T* operator->();
+
+ (1) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ constexpr const T& operator*() const&;
+
+ (2) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ constexpr T& operator*() &;
+
+ (2) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ constexpr const T&& operator*() const&&;
+
+ (2) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+ constexpr T&& operator*() &&;
+
+ (2) 
+
+ (library fundamentals TS) 
+
+
+
+
+
+
+
+Accesses the contained value.
+
+
+
+1) Returns a pointer to the contained value.
+
+2) Returns a reference to the contained value.
+
+The behavior is undefined if *this does not contain a value.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Exceptions
+
+4 Notes
+
+5 Example
+
+6 See also
+
+
+
+
+
+[edit] Parameters
+
+(none)
+
+
+
+[edit] Return value
+
+Pointer or reference to the contained value.
+
+
+
+[edit] Exceptions
+
+Throws nothing.
+
+
+
+[edit] Notes
+
+This operator does not check whether the optional contains a value. If checked access is needed, value() or value_or() may be used.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <experimental/optional>
+
+#include <iostream>
+
+#include <string>
+
+using namespace std::literals;
+
+ 
+
+int main()
+
+{
+
+    std::experimental::optional<int> opt1 = 1;
+
+    std::cout << *opt1 << '\n';
+
+ 
+
+    std::experimental::optional<std::string> opt2 = "abc"s;
+
+    std::cout << opt2->size() << '\n';
+
+}
+
+Output:
+
+
+
+1
+
+3
+
+
+
+[edit] See also
+
+
+
+
+
+  value
+
+
+
+  returns the contained value  (public member function) [edit]
+
+
+
+
+
+  value_or
+
+
+
+  returns the contained value if available, another value otherwise  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

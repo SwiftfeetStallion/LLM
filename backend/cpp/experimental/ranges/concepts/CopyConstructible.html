@@ -1,0 +1,295 @@
+std::experimental::ranges::CopyConstructible
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Ranges
+
+Concepts
+
+General utilities
+
+Iterators
+
+Ranges
+
+Algorithms
+
+[edit] Concepts library
+
+ Core language concepts
+
+
+
+Same
+
+DerivedFrom
+
+ConvertibleTo
+
+
+
+CommonReference
+
+Common
+
+                              
+
+
+
+Integral
+
+SignedIntegral
+
+UnsignedIntegral
+
+
+
+Assignable
+
+SwappableSwappableWith
+
+
+
+ Object concepts
+
+
+
+Destructible
+
+Constructible
+
+DefaultConstructible
+
+
+
+MoveConstructible
+
+CopyConstructible
+
+                              
+
+
+
+Movable
+
+Copyable
+
+                              
+
+
+
+Semiregular
+
+Regular
+
+
+
+
+
+
+
+ Comparison concepts
+
+
+
+Boolean
+
+
+
+
+
+
+
+WeaklyEqualityComparableWith
+
+
+
+
+
+
+
+EqualityComparableEqualityComparableWith
+
+
+
+StrictTotallyOrderedStrictTotallyOrderedWith
+
+
+
+ Callable concepts
+
+
+
+InvocableRegularInvocable
+
+
+
+Predicate
+
+                                        
+
+
+
+Relation
+
+                              
+
+
+
+StrictWeakOrder
+
+
+
+
+
+
+
+ URNG concept
+
+
+
+UniformRandomNumberGenerator
+
+
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/ranges/concepts>
+
+
+
+
+
+
+
+
+
+
+
+ template< class T >
+
+concept bool CopyConstructible =
+
+    MoveConstructible<T> &&
+
+    Constructible<T, T&> && ConvertibleTo<T&, T> &&
+
+    Constructible<T, const T&> && ConvertibleTo<const T&, T> &&
+
+
+
+    Constructible<T, const T> && ConvertibleTo<const T, T>;
+
+ 
+
+ (ranges TS) 
+
+
+
+
+
+
+
+The concept CopyConstructible is satisfied if T is an lvalue reference type, or if it is a MoveConstructible object type where an object of that type can constructed from a (possibly const) lvalue or const rvalue of that type in both direct- and copy-initialization contexts with the usual semantics (a copy is constructed with the source unchanged).
+
+More precisely, if T is an object type, then CopyConstructible<T> is satisfied only if given
+
+
+
+ v, an lvalue of type (possibly const) T or an rvalue of type const T,
+
+
+
+the following are true:
+
+
+
+ After the definition T u = v;, u is equal to v;
+
+ T{v} is equal to v.
+
+
+
+[edit] See also
+
+
+
+
+
+  is_copy_constructibleis_trivially_copy_constructibleis_nothrow_copy_constructible(C++11)(C++11)(C++11)
+
+
+
+   checks if a type has a copy constructor   (class template) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

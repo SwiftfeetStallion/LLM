@@ -1,0 +1,14 @@
+
+dataset_path: '/home/test/db'
+
+llm:
+  model_name: 'mistral-large-latest'
+  model_type: 'mistral' # ['ollama', 'mistral', 'huggingface', 'openai']
+  api_key: None # нужно добавить ключ
+  kwargs:
+    temperature: 1
+    max_retries: 2
+
+
+embedding_model_name: 'all-MiniLM-L6-v2'
+history_length: 10

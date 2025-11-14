@@ -1,0 +1,1085 @@
+std::vector[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::vector<bool>
+
+Member types
+
+vector<bool>::reference
+
+Member functions
+
+
+
+vector::vector
+
+vector::~vector
+
+vector::operator=
+
+vector::assign
+
+vector::assign_range(C++23)
+
+vector::get_allocator
+
+Element access
+
+vector::operator[]
+
+vector::at
+
+vector::front
+
+vector::back
+
+Iterators
+
+vector::beginvector::cbegin(C++11)
+
+vector::endvector::cend(C++11)
+
+vector::rbeginvector::crbegin(C++11)
+
+vector::rendvector::crend(C++11)
+
+
+
+Capacity
+
+vector::empty
+
+vector::size
+
+vector::max_size
+
+vector::capacity
+
+vector::resize
+
+vector::reserve
+
+vector::shrink_to_fit(DR*)
+
+Modifiers
+
+vector::clear
+
+vector::erase
+
+vector::insert
+
+vector::insert_range(C++23)
+
+vector::append_range(C++23)
+
+vector::emplace(C++11)
+
+vector::emplace_back(C++11)
+
+vector::push_back
+
+vector::pop_back
+
+vector::swap
+
+vector<bool>::flip
+
+vector<bool>::swap
+
+
+
+Non-member functions
+
+
+
+operator==operator<=>(C++20)
+
+swap(std::vector<bool>)
+
+erase(std::vector<bool>)erase_if(std::vector<bool>)(C++20)(C++20)  
+
+
+
+operator!=operator<operator>operator<=operator>=(until C++20)(until C++20)(until C++20)(until C++20)(until C++20)
+
+
+
+Helper classes
+
+hash<std::vector<bool>>(C++11)
+
+Deduction guides (C++17)
+
+[edit] 
+
+
+
+
+
+ Defined in header <vector>
+
+
+
+
+
+
+
+
+
+
+
+ template<
+
+    class Allocator
+
+
+
+> class vector<bool, Allocator>;
+
+ 
+
+ 
+
+
+
+
+
+
+
+std::vector<bool> is a possibly space-efficient specialization of std::vector for the type bool.
+
+The manner in which std::vector<bool> is made space efficient (as well as whether it is optimized at all) is implementation defined. One potential optimization involves coalescing vector elements such that each element occupies a single bit instead of sizeof(bool) bytes.
+
+std::vector<bool> behaves similarly to std::vector, but in order to be space efficient, it:
+
+
+
+ Does not necessarily store its elements as a contiguous array.
+
+ Exposes class std::vector<bool>::reference as a method of accessing individual bits. In particular, objects of this class are returned by operator[] by value.
+
+ Does not use std::allocator_traits::construct to construct bit values.
+
+ Does not guarantee that different elements in the same container can be modified concurrently by different threads.
+
+
+
+Contents
+
+
+
+1 Member types
+
+2 Member functions
+
+
+
+2.1 Element access
+
+2.2 Iterators
+
+2.3 Capacity
+
+2.4 Modifiers
+
+2.5 vector<bool> specific modifiers
+
+
+
+
+
+3 Non-member functions
+
+4 Helper classes
+
+5 Deduction guides (C++17)
+
+6 Notes
+
+7 Example
+
+8 Defect reports
+
+
+
+
+
+[edit] Member types
+
+
+
+
+
+ Member type
+
+
+
+ Definition
+
+
+
+
+
+ value_type
+
+
+
+ bool[edit]
+
+
+
+
+
+ allocator_type
+
+
+
+ Allocator[edit]
+
+
+
+
+
+ size_type
+
+
+
+ implementation-defined[edit]
+
+
+
+
+
+ difference_type
+
+
+
+ implementation-defined[edit]
+
+
+
+
+
+  reference
+
+
+
+  proxy class representing a reference to a single bool  (class)
+
+
+
+
+
+ const_reference
+
+
+
+ bool[edit]
+
+
+
+
+
+ pointer
+
+
+
+ implementation-defined[edit]
+
+
+
+
+
+ const_pointer
+
+
+
+ implementation-defined[edit]
+
+
+
+
+
+ iterator
+
+
+
+ 
+
+
+
+implementation-defined
+
+
+
+
+
+(until C++20)
+
+
+
+implementation-defined ConstexprIterator
+
+
+
+
+
+(since C++20)
+
+[edit]
+
+
+
+
+
+ const_iterator
+
+
+
+ 
+
+
+
+implementation-defined
+
+
+
+
+
+(until C++20)
+
+
+
+implementation-defined ConstexprIterator
+
+
+
+
+
+(since C++20)
+
+[edit]
+
+
+
+
+
+ reverse_iterator
+
+
+
+ std::reverse_iterator<iterator>[edit]
+
+
+
+
+
+ const_reverse_iterator
+
+
+
+ std::reverse_iterator<const_iterator>[edit]
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs the vector  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  (destructor)
+
+
+
+  destructs the vector  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  operator=
+
+
+
+  assigns values to the container  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  assign
+
+
+
+  assigns values to the container  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  assign_range(C++23)
+
+
+
+  assigns a range of values to the container  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  get_allocator
+
+
+
+  returns the associated allocator  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+   Element access 
+
+
+
+
+
+  at
+
+
+
+  access specified element with bounds checking  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  operator[]
+
+
+
+  access  specified element  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  front
+
+
+
+  access the first element  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  back
+
+
+
+  access the last element  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+   Iterators 
+
+
+
+
+
+  begincbegin(C++11)
+
+
+
+  returns an iterator to the beginning  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  endcend(C++11)
+
+
+
+  returns an iterator to the end  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  rbegincrbegin(C++11)
+
+
+
+  returns a reverse iterator to the beginning  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  rendcrend(C++11)
+
+
+
+  returns a reverse iterator to the end  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+   Capacity 
+
+
+
+
+
+  empty
+
+
+
+  checks whether the container  is empty  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  size
+
+
+
+  returns the number of elements  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  max_size
+
+
+
+  returns the maximum possible number of elements  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  reserve
+
+
+
+  reserves storage  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  capacity
+
+
+
+  returns the number of elements that can be held in currently allocated storage  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+   Modifiers 
+
+
+
+
+
+  clear
+
+
+
+  clears the contents  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  insert
+
+
+
+  inserts elements   (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  insert_range(C++23)
+
+
+
+  inserts a range of elements  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  append_range(C++23)
+
+
+
+  adds a range of elements to the end  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  emplace(C++11)
+
+
+
+  constructs element in-place   (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  erase
+
+
+
+  erases elements  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  push_back
+
+
+
+  adds an element to the end  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  emplace_back(C++11)
+
+
+
+  constructs an element in-place at the end  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  pop_back
+
+
+
+  removes the last element  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  resize
+
+
+
+  changes the number of elements stored  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+  swap
+
+
+
+  swaps the contents  (public member function of std::vector<T,Allocator>) [edit]
+
+
+
+
+
+   vector<bool> specific modifiers 
+
+
+
+
+
+  flip
+
+
+
+  flips all the bits  (public member function) [edit]
+
+
+
+
+
+  swap[static]
+
+
+
+  swaps two std::vector<bool>::references  (public static member function) [edit]
+
+
+
+
+
+[edit] Non-member functions
+
+
+
+
+
+  operator==operator!=operator<operator<=operator>operator>=operator<=>(removed in C++20)(removed in C++20)(removed in C++20)(removed in C++20)(removed in C++20)(C++20)
+
+
+
+  lexicographically compares the values of two vectors  (function template) [edit]
+
+
+
+
+
+  std::swap(std::vector)
+
+
+
+  specializes the std::swap algorithm  (function template) [edit]
+
+
+
+
+
+  erase(std::vector)erase_if(std::vector)(C++20)
+
+
+
+  erases all elements satisfying specific criteria  (function template) [edit]
+
+
+
+
+
+[edit] Helper classes
+
+
+
+
+
+  std::hash<std::vector<bool>>(C++11)
+
+
+
+  hash support for std::vector<bool>  (class template specialization) [edit]
+
+
+
+
+
+[edit] Deduction guides (C++17)
+
+[edit] Notes
+
+If the size of the bitset is known at compile time, std::bitset may be used, which offers a richer set of member functions. In addition, boost::dynamic_bitset exists as an alternative to std::vector<bool>.
+
+Since its representation may be optimized, std::vector<bool> does not necessarily meet all Container or SequenceContainer requirements. For example, because std::vector<bool>::iterator is implementation-defined, it may not satisfy the LegacyForwardIterator requirement. Use of algorithms such as std::search that require LegacyForwardIterators may result in either compile-time or run-time errors.
+
+The Boost.Container version of vector does not specialize for bool.
+
+
+
+
+
+
+
+Feature-test macro
+
+
+
+Value
+
+
+
+Std
+
+
+
+Feature
+
+
+
+
+
+__cpp_lib_containers_ranges
+
+202202L
+
+(C++23)
+
+Ranges construction and insertion for containers
+
+
+
+[edit] Example
+
+Run this code
+
+#include <cassert>
+
+#include <initializer_list>
+
+#include <iostream>
+
+#include <vector>
+
+ 
+
+void println(auto rem, const std::vector<bool>& vb)
+
+{
+
+    std::cout << rem << " = [";
+
+    for (std::size_t t{}; t != vb.size(); ++t)
+
+        std::cout << (t ? ", " : "") << vb[t];
+
+    std::cout << "]\n";
+
+}
+
+ 
+
+int main()
+
+{
+
+    std::vector<bool> v1; // creates an empty vector of boolean values
+
+    println("1) v1", v1);
+
+ 
+
+    std::vector<bool> v2{0, 1, 1, 0, 1}; // creates filled vector
+
+    println("2) v2", v2);
+
+ 
+
+    v1 = v2; // copies v2 to v1
+
+    println("3) v1", v1);
+
+ 
+
+    assert(v1.size() == v2.size()); // checks that v1 and v2 sizes are equal
+
+    assert(v1.front() == false); // accesses first element, equivalent to:
+
+    assert(v1[0] == false);
+
+    assert(v1.back() == true); // accesses last element, equivalent to:
+
+    assert(v1[v1.size() - 1] == true);
+
+ 
+
+    v1 = {true, true, false, false}; // assigns an initializer list
+
+    println("4) v1", v1);
+
+ 
+
+    v1.push_back(true); // adds one element to the end
+
+    println("5) v1", v1);
+
+ 
+
+    v1.pop_back(); // removes one element from the end
+
+    println("6) v1", v1);
+
+ 
+
+    v1.flip(); // flips all elements
+
+    println("7) v1", v1);
+
+ 
+
+    v1.resize(8, true); // resizes v1; new elements are set to “true”
+
+    println("8) v1", v1);
+
+ 
+
+    v1.clear(); // erases v1
+
+    assert(v1.empty()); // checks that v1 is empty
+
+}
+
+Output:
+
+
+
+1) v1 = []
+
+2) v2 = [0, 1, 1, 0, 1]
+
+3) v1 = [0, 1, 1, 0, 1]
+
+4) v1 = [1, 1, 0, 0]
+
+5) v1 = [1, 1, 0, 0, 1]
+
+6) v1 = [1, 1, 0, 0]
+
+7) v1 = [0, 0, 1, 1]
+
+8) v1 = [0, 0, 1, 1, 1, 1, 1, 1]
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 2187
+
+
+
+C++11
+
+
+
+specializations for bool lacked emplace and emplace_back member functions
+
+
+
+added
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

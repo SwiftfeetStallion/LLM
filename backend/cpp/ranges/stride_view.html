@@ -1,0 +1,965 @@
+std::ranges::views::stride, std::ranges::stride_view
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Ranges library
+
+
+
+Range access
+
+
+
+begin
+
+cbegin 
+
+end
+
+cend
+
+
+
+rbegin
+
+crbegin 
+
+rend
+
+crend
+
+
+
+size
+
+ssize 
+
+data
+
+cdata
+
+
+
+reserve_hint(C++26)  
+
+empty
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range conversions
+
+std::from_range_tstd::from_range(C++23)(C++23)    
+
+to(C++23)
+
+
+
+
+
+
+
+Dangling iterator handling
+
+dangling
+
+borrowed_iterator_t
+
+borrowed_subrange_t
+
+
+
+
+
+
+
+
+
+
+
+Range primitives
+
+
+
+range_size_trange_difference_trange_value_t
+
+elements_of(C++23)    
+
+
+
+iterator_tconst_iterator_tsentinel_tconst_sentinel_t(C++23)(C++23)  
+
+
+
+range_reference_trange_const_reference_trange_rvalue_reference_trange_common_reference_t(C++23)
+
+
+
+
+
+
+
+Range concepts
+
+
+
+range
+
+borrowed_range  
+
+common_range
+
+
+
+sized_range
+
+viewable_range  
+
+view
+
+
+
+input_range
+
+output_range
+
+forward_range  
+
+
+
+bidirectional_range  
+
+random_access_range
+
+contiguous_range
+
+
+
+approximately_sized_range(C++26)
+
+constant_range(C++23)
+
+
+
+
+
+
+
+
+
+
+
+Views
+
+
+
+view_interface  
+
+
+
+subrange
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range factories
+
+
+
+empty_viewviews::empty  
+
+
+
+single_viewviews::single  
+
+
+
+basic_istream_viewviews::istream  
+
+
+
+iota_viewviews::iota  
+
+
+
+repeat_viewviews::repeat(C++23)(C++23)
+
+
+
+
+
+
+
+Range adaptors
+
+
+
+views::all_tviews::all
+
+as_rvalue_viewviews::as_rvalue(C++23)(C++23)  
+
+filter_viewviews::filter
+
+transform_viewviews::transform
+
+take_viewviews::take
+
+take_while_viewviews::take_while
+
+common_viewviews::common
+
+views::counted
+
+to_input_viewviews::to_input(C++26)(C++26)
+
+
+
+ref_view
+
+drop_viewviews::drop
+
+drop_while_viewviews::drop_while
+
+lazy_split_viewviews::lazy_split
+
+split_viewviews::split
+
+join_viewviews::join
+
+join_with_viewviews::join_with(C++23)(C++23)  
+
+concat_viewviews::concat(C++26)(C++26)
+
+cache_latest_viewviews::cache_latest(C++26)(C++26)  
+
+
+
+owning_view
+
+reverse_viewviews::reverse
+
+as_const_viewviews::as_const(C++23)(C++23)
+
+elements_viewviews::elements
+
+keys_viewviews::keys
+
+values_viewviews::values
+
+enumerate_viewviews::enumerate(C++23)(C++23)
+
+zip_viewviews::zip(C++23)(C++23)
+
+zip_transform_viewviews::zip_transform(C++23)(C++23)  
+
+
+
+adjacent_viewviews::adjacent(C++23)(C++23)
+
+views::pairwise(C++23)
+
+adjacent_transform_viewviews::adjacent_transform(C++23)(C++23)
+
+views::pairwise_transform(C++23)
+
+chunk_viewviews::chunk(C++23)(C++23)
+
+slide_viewviews::slide(C++23)(C++23)
+
+chunk_by_viewviews::chunk_by(C++23)(C++23)
+
+stride_viewviews::stride(C++23)(C++23)
+
+cartesian_product_viewviews::cartesian_product(C++23)(C++23)
+
+
+
+
+
+
+
+
+
+
+
+
+
+Range generators
+
+std::generator(C++23)    
+
+
+
+Range adaptor closure objects
+
+range_adaptor_closure(C++23)    
+
+
+
+Range adaptor objects
+
+
+
+
+
+
+
+
+
+
+
+Helper items
+
+
+
+copyable-boxmovable-box(until C++23)  (C++23)
+
+
+
+simple-view
+
+non-propagating-cache
+
+
+
+
+
+
+
+
+
+
+
+
+
+[edit] std::ranges::stride_view
+
+Member functions
+
+stride_view::stride_view
+
+stride_view::base
+
+stride_view::stride
+
+stride_view::begin
+
+stride_view::end
+
+stride_view::size
+
+stride_view::reserve_hint(C++26)
+
+Deduction guides
+
+Iterator
+
+Member functions
+
+stride_view::iterator::iterator
+
+stride_view::iterator::base
+
+stride_view::iterator::operator*
+
+stride_view::iterator::operator[]
+
+stride_view::iterator::operator++stride_view::iterator::operator++(int)stride_view::iterator::operator--stride_view::iterator::operator--(int)stride_view::iterator::operator+=stride_view::iterator::operator-=
+
+Non-member functions
+
+operator==(std::default_sentinel_t)operator==(stride_view::iterator)operator<(stride_view::iterator)operator>(stride_view::iterator)operator<=(stride_view::iterator)operator>=(stride_view::iterator)operator<=>(stride_view::iterator)
+
+operator+(stride_view::iterator)operator-(stride_view::iterator)
+
+iter_move(stride_view::iterator)
+
+iter_swap(stride_view::iterator)
+
+[edit] 
+
+
+
+
+
+ Defined in header <ranges>
+
+
+
+
+
+
+
+
+
+
+
+ template< ranges::input_range V >
+
+    requires ranges::view<V>
+
+class stride_view
+
+
+
+    : public ranges::view_interface<stride_view<V>>
+
+ (1) 
+
+ (since C++23) 
+
+
+
+
+
+ namespace views {
+
+    inline constexpr /* unspecified */ stride = /* unspecified */;
+
+
+
+}
+
+ (2) 
+
+ (since C++23) 
+
+
+
+
+
+ Call signature
+
+
+
+
+
+
+
+
+
+ template< ranges::viewable_range R >
+
+constexpr ranges::view auto stride( R&& r, ranges::range_difference_t<R> n );
+
+ 
+
+ (since C++23) 
+
+
+
+
+
+ template< class DifferenceType >
+
+constexpr /*range adaptor closure*/ stride( DifferenceType&& n );
+
+ 
+
+ (since C++23) 
+
+
+
+
+
+ Helper templates
+
+
+
+
+
+
+
+
+
+
+
+1) stride_view is a range adaptor that takes a view and a number n and produces a view, that consists of elements of the original view by advancing over n elements at a time. This means that each mth element of the produced view is (n * i)th element of the original view, for some non-negative index i.
+
+The elements of the original view, whose “index” is not a multiple of n, are not present in the produced view.
+
+ Let S be the size of the original view. Then the size of produced view is:
+
+ (S / n) + (S % n ? 1 : 0), if S >= n; otherwise,
+
+ 1, if S > 0; otherwise,
+
+ ​0​, and the resulting view is empty.
+
+
+
+2) The name views::stride denotes a RangeAdaptorObject. Given subexpressions e and n, the expression views::stride(e, n) is expression-equivalent to stride_view(e, n).
+
+ The n must be greater than ​0​, otherwise the behavior is undefined.
+
+stride_view always models input_range, and models forward_range, bidirectional_range, random_access_range, and/or sized_range, if adapted view type V models the corresponding concept.
+
+stride_view<V> models common_range whenever the underlying view V does.
+
+
+
+Contents
+
+
+
+1 Data members
+
+2 Member functions
+
+
+
+2.1 Inherited from std::ranges::view_interface
+
+
+
+
+
+3 Deduction guides
+
+4 Nested classes
+
+5 Helper templates
+
+6 Notes
+
+7 Example
+
+8 References
+
+9 See also
+
+
+
+
+
+[edit] Data members
+
+
+
+
+
+ Member
+
+
+
+ Description
+
+
+
+
+
+ V base_
+
+
+
+ the underlying view(exposition-only member object*)
+
+
+
+
+
+ ranges::range_difference_t<V> stride_
+
+
+
+ the size object (the “stride”)(exposition-only member object*)
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs a stride_view  (public member function) [edit]
+
+
+
+
+
+  stride(C++23)
+
+
+
+  returns the stored stride value  (public member function)
+
+
+
+
+
+  base
+
+
+
+  returns a copy of the underlying (adapted) view  (public member function) [edit]
+
+
+
+
+
+  begin
+
+
+
+  returns an iterator to the beginning  (public member function) [edit]
+
+
+
+
+
+  end
+
+
+
+  returns an iterator or a sentinel to the end  (public member function) [edit]
+
+
+
+
+
+  size
+
+
+
+  returns the number of elements, provided only if the underlying (adapted) range satisfies sized_range  (public member function) [edit]
+
+
+
+
+
+  reserve_hint(C++26)
+
+
+
+  returns the approximate size of the resulting approximately_sized_range  (public member function) [edit]
+
+
+
+
+
+   Inherited from std::ranges::view_interface 
+
+
+
+
+
+  empty
+
+
+
+  returns whether the derived view is empty, provided only if it satisfies sized_range or forward_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  cbegin(C++23)
+
+
+
+  returns a constant iterator to the beginning of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  cend(C++23)
+
+
+
+  returns a sentinel for the constant iterator of the range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  operator bool
+
+
+
+  returns whether the derived view is not empty, provided only if ranges::empty is applicable to it  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  front
+
+
+
+  returns the first element in the derived view, provided if it satisfies forward_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  back
+
+
+
+  returns the last element in the derived view, provided only if it satisfies bidirectional_range and common_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+  operator[]
+
+
+
+  returns the nth element in the derived view, provided only if it satisfies random_access_range  (public member function of std::ranges::view_interface<D>) [edit]
+
+
+
+
+
+[edit] Deduction guides
+
+[edit] Nested classes
+
+
+
+
+
+ iterator(C++23)
+
+
+
+ the iterator type(exposition-only member class template*)
+
+
+
+
+
+[edit] Helper templates
+
+
+
+
+
+ template< class V >
+
+constexpr bool ranges::enable_borrowed_range<stride_view<V>> =
+
+
+
+    ranges::enable_borrowed_range<V>;
+
+ 
+
+ (since C++23) 
+
+
+
+
+
+
+
+This specialization of ranges::enable_borrowed_range makes stride_view satisfy borrowed_range when the underlying view satisfies it.
+
+
+
+[edit] Notes
+
+
+
+
+
+Feature-test macro
+
+Value
+
+Std
+
+Feature
+
+
+
+
+
+__cpp_lib_ranges_stride
+
+202207L
+
+(C++23)
+
+std::ranges::stride_view
+
+
+
+[edit] Example
+
+Run this code
+
+#include <algorithm>
+
+#include <iostream>
+
+#include <ranges>
+
+#include <string_view>
+
+using namespace std::literals;
+
+ 
+
+void print(std::ranges::viewable_range auto&& v, std::string_view separator = " ")
+
+{
+
+    for (auto const& x : v)
+
+        std::cout << x << separator;
+
+    std::cout << '\n';
+
+}
+
+ 
+
+int main()
+
+{
+
+    print(std::views::iota(1, 13) | std::views::stride(3));
+
+    print(std::views::iota(1, 13) | std::views::stride(3) | std::views::reverse);
+
+    print(std::views::iota(1, 13) | std::views::reverse | std::views::stride(3));
+
+ 
+
+    print("0x0!133713337*x//42/A$@"sv | std::views::stride(0B11) |
+
+          std::views::transform([](char O) -> char { return 0100 | O; }),
+
+          "");
+
+}
+
+Output:
+
+
+
+1 4 7 10
+
+10 7 4 1
+
+12 9 6 3
+
+password
+
+
+
+[edit] References
+
+
+
+ C++23 standard (ISO/IEC 14882:2024): 
+
+
+
+ 26.7.31 Stride view [range.stride] 
+
+
+
+
+
+
+
+[edit] See also
+
+
+
+
+
+  ranges::slide_viewviews::slide(C++23)
+
+
+
+ a view whose Mth element is a view over the Mth through (M + N - 1)th elements of another view(class template) (range adaptor object)[edit]
+
+
+
+
+
+  ranges::chunk_viewviews::chunk(C++23)
+
+
+
+ a range of views that are N-sized non-overlapping successive chunks of the elements of another view(class template) (range adaptor object)[edit]
+
+
+
+
+
+  ranges::adjacent_viewviews::adjacent(C++23)
+
+
+
+ a view consisting of tuples of references to adjacent elements of the adapted view(class template) (range adaptor object)[edit]
+
+
+
+
+
+  ranges::filter_viewviews::filter(C++20)
+
+
+
+ a view that consists of the elements of a range that satisfies a predicate(class template) (range adaptor object)[edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,137 @@
+std::char_traits[edit] Strings library
+
+Classes
+
+basic_string
+
+basic_string_view(C++17)
+
+char_traits
+
+[edit] std::char_traits
+
+Member functions
+
+char_traits::assign
+
+char_traits::eqchar_traits::lt
+
+char_traits::move
+
+char_traits::copy
+
+char_traits::compare
+
+char_traits::length
+
+char_traits::find
+
+char_traits::to_char_type
+
+char_traits::to_int_type
+
+char_traits::eq_int_type
+
+char_traits::eof
+
+char_traits::not_eof
+
+[edit] 
+
+
+
+
+
+ static int_type not_eof( int_type e );
+
+ 
+
+ (constexpr since C++11)(noexcept since C++11) 
+
+
+
+
+
+
+
+Given e, produces a suitable value that is not equivalent to eof.
+
+This function is typically used when a value other than eof needs to be returned, such as in implementations of std::basic_streambuf::overflow().
+
+See CharTraits for the general requirements on character traits for X::not_eof.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Complexity
+
+4 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ e
+
+
+
+ -
+
+
+
+ value to analyze
+
+
+
+[edit] Return value
+
+e if e and eof value are not equivalent, or some other non-eof value otherwise.
+
+
+
+[edit] Complexity
+
+Constant.
+
+
+
+[edit] See also
+
+
+
+
+
+  eof[static]
+
+
+
+  returns an eof value  (public static member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

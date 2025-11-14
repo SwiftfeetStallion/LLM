@@ -1,0 +1,531 @@
+std::forward_list[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::forward_list
+
+Member functions
+
+
+
+forward_list::forward_list
+
+forward_list::~forward_list
+
+forward_list::operator=
+
+forward_list::assign
+
+forward_list::assign_range(C++23)  
+
+forward_list::get_allocator
+
+Element access
+
+forward_list::front
+
+Iterators
+
+forward_list::before_beginforward_list::cbefore_begin
+
+forward_list::beginforward_list::cbegin
+
+forward_list::endforward_list::cend
+
+Capacity
+
+forward_list::empty
+
+forward_list::max_size
+
+
+
+Modifiers
+
+forward_list::clear
+
+forward_list::emplace_front
+
+forward_list::push_front
+
+forward_list::insert_after
+
+forward_list::emplace_after
+
+forward_list::erase_after
+
+forward_list::insert_range_after(C++23)
+
+forward_list::prepend_range(C++23)
+
+forward_list::pop_front
+
+forward_list::resize
+
+forward_list::swap
+
+Operations
+
+forward_list::merge
+
+forward_list::splice_after
+
+forward_list::removeforward_list::remove_if
+
+forward_list::reverse
+
+forward_list::unique
+
+forward_list::sort
+
+
+
+Non-member functions
+
+
+
+operator==operator<=>(C++20)
+
+swap(std::forward_list)
+
+erase(std::forward_list)erase_if(std::forward_list)(C++20)(C++20)
+
+
+
+operator!=operator<operator>operator<=operator>=(until C++20)(until C++20)(until C++20)(until C++20)(until C++20)
+
+
+
+Deduction guides (C++17)
+
+[edit] 
+
+
+
+
+
+iterator insert_after( const_iterator pos, const T& value );
+
+ (1)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+iterator insert_after( const_iterator pos, T&& value );
+
+ (2)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+iterator insert_after( const_iterator pos,
+
+                       size_type count, const T& value );
+
+ (3)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+template< class InputIt >
+
+iterator insert_after( const_iterator pos,
+
+
+
+                       InputIt first, InputIt last );
+
+ (4)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+iterator insert_after( const_iterator pos,
+
+                       std::initializer_list<T> ilist );
+
+ (5)
+
+(since C++11) (constexpr since C++26)
+
+
+
+
+
+
+
+Inserts elements after the specified position in the container. If pos is before_begin(), the first element inserted (if exists) will become the first element of *this.
+
+If pos is not in the range [before_begin(), end()), the behavior is undefined.
+
+
+
+1,2) Inserts a copy of value after pos.
+
+1) If T is not CopyInsertable into forward_list, the behavior is undefined.
+
+2) If T is not MoveInsertable into forward_list, the behavior is undefined.
+
+3) Inserts count copies of the value after pos.
+
+ If T is not CopyInsertable into forward_list, the behavior is undefined.
+
+4) Inserts elements from range [first, last) after pos.
+
+ This overload participates in overload resolution only if InputIt satisfies the requirements of LegacyInputIterator.
+
+ If any of the following conditions is satisfied, the behavior is undefined:
+
+ T is not EmplaceConstructible into forward_list from *first.
+
+ first or last is an iterator into *this.
+
+
+
+5) Inserts elements from initializer list ilist after pos.
+
+ Equivalent to return insert_after(position, ilist.begin(), ilist.end());.
+
+No iterators or references are invalidated.
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Exceptions
+
+4 Complexity
+
+5 Example
+
+6 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ pos
+
+
+
+ -
+
+
+
+ iterator after which the content will be inserted
+
+
+
+
+
+ value
+
+
+
+ -
+
+
+
+ element value to insert
+
+
+
+
+
+ count
+
+
+
+ -
+
+
+
+ number of copies to insert
+
+
+
+
+
+ first, last
+
+
+
+ -
+
+
+
+ the pair of iterators defining the source range of elements to insert
+
+
+
+
+
+ ilist
+
+
+
+ -
+
+
+
+ initializer list to insert the values from
+
+
+
+[edit] Return value
+
+1,2) Iterator to the inserted element.
+
+3) Iterator to the last element inserted, or pos if count == 0 is true.
+
+4) Iterator to the last element inserted, or pos if first == last is true.
+
+5) Iterator to the last element inserted, or pos if ilist is empty.
+
+[edit] Exceptions
+
+If an exception is thrown for any reason, these functions have no effect (strong exception safety guarantee).
+
+
+
+[edit] Complexity
+
+1,2) Constant.
+
+3) Linear in count.
+
+4) Linear in std::distance(first, last).
+
+5) Linear in ilist.size().
+
+[edit] Example
+
+Run this code
+
+#include <forward_list>
+
+#include <iostream>
+
+#include <string>
+
+#include <vector>
+
+ 
+
+void print(const std::forward_list<int>& list)
+
+{
+
+    std::cout << "list: {";
+
+    for (char comma[3] = {'\0', ' ', '\0'}; int i : list)
+
+    {
+
+        std::cout << comma << i;
+
+        comma[0] = ',';
+
+    }
+
+    std::cout << "}\n";
+
+}
+
+ 
+
+int main()
+
+{
+
+    std::forward_list<int> ints{1, 2, 3, 4, 5};
+
+    print(ints);
+
+ 
+
+    // insert_after (2)
+
+    auto beginIt = ints.begin();
+
+    ints.insert_after(beginIt, -6);
+
+    print(ints);
+
+ 
+
+    // insert_after (3)
+
+    auto anotherIt = beginIt;
+
+    ++anotherIt;
+
+    anotherIt = ints.insert_after(anotherIt, 2, -7);
+
+    print(ints);
+
+ 
+
+    // insert_after (4)
+
+    const std::vector<int> v = {-8, -9, -10};
+
+    anotherIt = ints.insert_after(anotherIt, v.cbegin(), v.cend());
+
+    print(ints);
+
+ 
+
+    // insert_after (5)
+
+    ints.insert_after(anotherIt, {-11, -12, -13, -14});
+
+    print(ints);
+
+}
+
+Output:
+
+
+
+list: {1, 2, 3, 4, 5}
+
+list: {1, -6, 2, 3, 4, 5}
+
+list: {1, -6, -7, -7, 2, 3, 4, 5}
+
+list: {1, -6, -7, -7, -8, -9, -10, 2, 3, 4, 5}
+
+list: {1, -6, -7, -7, -8, -9, -10, -11, -12, -13, -14, 2, 3, 4, 5}
+
+
+
+[edit] See also
+
+
+
+
+
+  emplace_after
+
+
+
+  constructs elements in-place after an element  (public member function) [edit]
+
+
+
+
+
+  push_front
+
+
+
+  inserts an element to the beginning  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

@@ -1,0 +1,11 @@
+langchain
+langchain_chroma
+langchain_community
+bs4
+langchain-ollama
+langchain_mistralai
+langchain_huggingface
+langchain-openai
+sentence-transformers
+langsmith
+lxml

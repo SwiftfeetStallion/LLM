@@ -1,0 +1,333 @@
+std::experimental::any
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals
+
+experimental::optional
+
+experimental::any
+
+experimental::basic_string_view
+
+experimental::sample
+
+experimental::shared_ptr
+
+experimental::weak_ptr
+
+experimental::apply
+
+experimental::invocation_typeexperimental::raw_invocation_type
+
+experimental::search
+
+experimental::default_searcherexperimental::make_default_searcher
+
+experimental::boyer_moore_searcherexperimental::make_boyer_moore_searcher
+
+experimental::boyer_moore_horspool_searcherexperimental::make_boyer_moore_horspool_searcher
+
+Type-erased and polymorphic allocators
+
+Variable templates for type traits
+
+[edit] std::experimental::any
+
+Member functions
+
+any::any
+
+any::operator=
+
+Modifiers
+
+any::clear
+
+any::swap
+
+Observers
+
+any::empty
+
+any::type
+
+Non-member functions
+
+swap(std::experimental::any)
+
+any_cast
+
+[edit] 
+
+
+
+
+
+
+
+
+
+ Merged into ISO C++ The functionality described on this page was merged into the mainline ISO C++ standard as of 3/2016, see std::any (since C++17) 
+
+
+
+
+
+
+
+
+
+ Defined in header <experimental/any>
+
+
+
+
+
+
+
+
+
+
+
+ class any;
+
+ 
+
+ (library fundamentals TS) 
+
+
+
+
+
+
+
+The class any describes a type-safe container for single values of any type.
+
+
+
+1) An object of class any stores an instance of any type that satisfies the constructor requirements or is empty, and this is referred to as the state of the class any object. The stored instance is called the contained object. Two states are equivalent if they are either both empty or if both are not empty and if the contained objects are equivalent.
+
+2) The non-member any_cast functions provide type-safe access to the contained object.
+
+Implementations are encouraged to avoid dynamic allocations for small objects, but such an optimization may only be applied to types that for which std::is_nothrow_move_constructible returns true.
+
+
+
+Contents
+
+
+
+1 Member functions
+
+
+
+1.1 Modifiers
+
+1.2 Observers
+
+
+
+
+
+2 Non-member functions
+
+3 Helper classes
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs an any object  (public member function) [edit]
+
+
+
+
+
+  operator=
+
+
+
+  assigns an any object  (public member function) [edit]
+
+
+
+
+
+  (destructor)
+
+
+
+  destroys an any object  (public member function) [edit]
+
+
+
+
+
+   Modifiers 
+
+
+
+
+
+  clear
+
+
+
+  destroys contained object  (public member function) [edit]
+
+
+
+
+
+  swap
+
+
+
+  swaps two any objects  (public member function) [edit]
+
+
+
+
+
+   Observers 
+
+
+
+
+
+  empty
+
+
+
+  checks if object holds a value  (public member function) [edit]
+
+
+
+
+
+  type
+
+
+
+  returns the typeid of the contained value  (public member function) [edit]
+
+
+
+
+
+[edit] Non-member functions
+
+
+
+
+
+  swap
+
+
+
+  swaps two any instances  (function) [edit]
+
+
+
+
+
+  any_cast
+
+
+
+  type-safe access to the contained object  (function template) [edit]
+
+
+
+
+
+[edit] Helper classes
+
+
+
+
+
+  bad_any_cast(library fundamentals TS)
+
+
+
+  exception thrown by the value-returning forms of any_cast on a type mismatch  (class) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

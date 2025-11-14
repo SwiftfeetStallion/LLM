@@ -1,0 +1,751 @@
+operator==,!=,[edit] Containers library
+
+node-handle(C++17)
+
+Sequence
+
+array(C++11)
+
+vector
+
+vector<bool>
+
+inplace_vector(C++26)
+
+hive(C++26)
+
+deque
+
+forward_list(C++11)
+
+list
+
+Associative
+
+set
+
+multiset
+
+map
+
+multimap
+
+Unordered associative
+
+unordered_set(C++11)
+
+unordered_multiset(C++11)
+
+unordered_map(C++11)
+
+unordered_multimap(C++11)
+
+Adaptors
+
+stack
+
+queue
+
+priority_queue
+
+flat_set(C++23)
+
+flat_multiset(C++23)
+
+flat_map(C++23)
+
+flat_multimap(C++23)
+
+Views
+
+span(C++20)
+
+mdspan(C++23)
+
+Tables
+
+Iterator invalidation
+
+Member function table
+
+Non-member function table
+
+[edit] std::map
+
+Member functions
+
+
+
+
+
+map::map
+
+map::~map             
+
+
+
+map::operator=
+
+map::get_allocator
+
+
+
+
+
+
+
+
+
+Element access
+
+map::at
+
+map::operator[]
+
+Iterators
+
+map::beginmap::cbegin(C++11)
+
+map::endmap::cend(C++11)
+
+map::rbeginmap::crbegin(C++11)     
+
+map::rendmap::crend(C++11)
+
+Capacity
+
+map::size
+
+map::max_size
+
+map::empty
+
+Observers
+
+map::key_comp
+
+map::value_comp
+
+
+
+Modifiers
+
+map::clear
+
+map::insert
+
+map::erase
+
+map::swap
+
+map::extract(C++17)
+
+map::merge(C++17)
+
+map::insert_range(C++23)
+
+map::insert_or_assign(C++17)
+
+map::emplace(C++11)
+
+map::emplace_hint(C++11)
+
+map::try_emplace(C++17)
+
+Lookup
+
+map::count
+
+map::find
+
+map::contains(C++20)
+
+map::equal_range
+
+map::lower_bound
+
+map::upper_bound
+
+
+
+
+
+Non-member functions
+
+
+
+
+
+operator==operator<=>(C++20)
+
+std::swap(std::map)
+
+erase_if(std::map)(C++20)  
+
+
+
+
+
+
+
+operator!=operator<operator>operator<=operator>=(until C++20)(until C++20)(until C++20)(until C++20)(until C++20)
+
+
+
+
+
+Deduction guides (C++17)
+
+[edit] 
+
+
+
+
+
+ Defined in header <map>
+
+
+
+
+
+
+
+
+
+
+
+template< class Key, class T, class Compare, class Alloc >
+
+bool operator==( const std::map<Key, T, Compare, Alloc>& lhs,
+
+
+
+                 const std::map<Key, T, Compare, Alloc>& rhs );
+
+ (1)
+
+(constexpr since C++26)
+
+
+
+
+
+ template< class Key, class T, class Compare, class Alloc >
+
+bool operator!=( const std::map<Key, T, Compare, Alloc>& lhs,
+
+
+
+                 const std::map<Key, T, Compare, Alloc>& rhs );
+
+ (2) 
+
+ (until C++20) 
+
+
+
+
+
+ template< class Key, class T, class Compare, class Alloc >
+
+bool operator< ( const std::map<Key, T, Compare, Alloc>& lhs,
+
+
+
+                 const std::map<Key, T, Compare, Alloc>& rhs );
+
+ (3) 
+
+ (until C++20) 
+
+
+
+
+
+ template< class Key, class T, class Compare, class Alloc >
+
+bool operator<=( const std::map<Key, T, Compare, Alloc>& lhs,
+
+
+
+                 const std::map<Key, T, Compare, Alloc>& rhs );
+
+ (4) 
+
+ (until C++20) 
+
+
+
+
+
+ template< class Key, class T, class Compare, class Alloc >
+
+bool operator> ( const std::map<Key, T, Compare, Alloc>& lhs,
+
+
+
+                 const std::map<Key, T, Compare, Alloc>& rhs );
+
+ (5) 
+
+ (until C++20) 
+
+
+
+
+
+ template< class Key, class T, class Compare, class Alloc >
+
+bool operator>=( const std::map<Key, T, Compare, Alloc>& lhs,
+
+
+
+                 const std::map<Key, T, Compare, Alloc>& rhs );
+
+ (6) 
+
+ (until C++20) 
+
+
+
+
+
+template< class Key, class T, class Compare, class Alloc >
+
+/* see below */
+
+    operator<=>( const std::map<Key, T, Compare, Alloc>& lhs,
+
+
+
+                 const std::map<Key, T, Compare, Alloc>& rhs );
+
+ (7)
+
+(since C++20) (constexpr since C++26)
+
+
+
+
+
+
+
+Compares the contents of two maps.
+
+Let value_type be the value type of map (i.e., typename map::value_type):
+
+
+
+1,2) Checks if the contents of lhs and rhs are equal, that is, they have the same number of elements and each element in lhs compares equal with the element in rhs at the same position.
+
+ Equivalent to:
+
+
+
+
+
+return std::distance(lhs.begin(), lhs.end())               == std::distance(rhs.begin(), rhs.end())           && std::equal(lhs.begin(), lhs.end(), rhs.begin());
+
+
+
+
+
+(until C++14)
+
+
+
+return std::equal(lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
+
+
+
+
+
+(since C++14)
+
+
+
+ If value_type is not EqualityComparable, the behavior is undefined.
+
+3-7) Compares the contents of lhs and rhs lexicographically.
+
+3-6) Equivalent to return std::lexicographical_compare(lhs.begin(), lhs.end(),                                    rhs.begin(), rhs.end());.
+
+ If any of the following conditions is satisfied, the behavior is undefined:
+
+ value_type is not LessThanComparable.
+
+ operator< does not establish total order.
+
+
+
+7) Equivalent to return std::lexicographical_compare_three_way(lhs.begin(), lhs.end(),                                              rhs.begin(), rhs.end(),                                              synth-three-way).
+
+ The return type is the return type of synth-three-way (i.e., synth-three-way-result ﻿<value_type>).
+
+ If any of the following conditions is satisfied, the behavior is undefined:
+
+ T does not model three_way_comparable.
+
+ operator< is not defined for values of type (possibly const-qualified) value_type.
+
+ operator< does not establish total order.
+
+
+
+
+
+
+
+The <, <=, >, >=, and != operators are synthesized from operator<=> and operator== respectively.
+
+
+
+
+
+(since C++20)
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Complexity
+
+4 Notes
+
+5 Example
+
+6 Defect reports
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ lhs, rhs
+
+
+
+ -
+
+
+
+ maps whose contents to compare
+
+
+
+[edit] Return value
+
+
+
+
+
+Operator
+
+
+
+lhs and rhsare equal
+
+
+
+lhs is lexicographically greater 
+
+
+
+rhs is lexicographically greater 
+
+
+
+
+
+operator==
+
+
+
+true
+
+
+
+false
+
+
+
+
+
+operator!=
+
+
+
+false
+
+
+
+true
+
+
+
+
+
+operator<
+
+
+
+false
+
+
+
+false
+
+
+
+true
+
+
+
+
+
+operator<=
+
+
+
+true
+
+
+
+
+
+operator>
+
+
+
+false
+
+
+
+true
+
+
+
+false
+
+
+
+
+
+operator>=
+
+
+
+true
+
+
+
+
+
+ operator<=> 
+
+
+
+ a value equal to ​0​ 
+
+
+
+a value greater then ​0​
+
+
+
+a value less than ​0​
+
+
+
+[edit] Complexity
+
+1,2) Constant if lhs and rhs are of different size, otherwise linear in the size of the map.
+
+3-7) Linear in the size of the map.
+
+[edit] Notes
+
+
+
+
+
+The relational operators are defined in terms of value_type's operator<.
+
+
+
+
+
+(until C++20)
+
+
+
+The relational operators are not defined. The rewritten candidate operator<=> will be selected by overload resolution.
+
+operator<=> uses value_type's operator<=> if possible, or value_type's operator< otherwise. Notably, if the value_type does not itself provide operator<=>, but is implicitly convertible to a three-way comparable type, that conversion will be used instead of operator<.
+
+
+
+
+
+(since C++20)
+
+
+
+These non-member comparison operators do not use Compare to compare elements.
+
+
+
+[edit] Example
+
+Run this code
+
+#include <cassert>
+
+#include <compare>
+
+#include <map>
+
+ 
+
+int main()
+
+{
+
+    std::map<int, char> a{{1, 'a'}, {2, 'b'}, {3, 'c'}};
+
+    std::map<int, char> b{{1, 'a'}, {2, 'b'}, {3, 'c'}};
+
+    std::map<int, char> c{{7, 'Z'}, {8, 'Y'}, {9, 'X'}, {10, 'W'}};
+
+ 
+
+    assert
+
+    (""
+
+        "Compare equal containers:" &&
+
+        (a != b) == false &&
+
+        (a == b) == true &&
+
+        (a < b) == false &&
+
+        (a <= b) == true &&
+
+        (a > b) == false &&
+
+        (a >= b) == true &&
+
+        (a <=> b) != std::weak_ordering::less &&
+
+        (a <=> b) != std::weak_ordering::greater &&
+
+        (a <=> b) == std::weak_ordering::equivalent &&
+
+        (a <=> b) >= 0 &&
+
+        (a <=> b) <= 0 &&
+
+        (a <=> b) == 0 &&
+
+ 
+
+        "Compare non equal containers:" &&
+
+        (a != c) == true &&
+
+        (a == c) == false &&
+
+        (a < c) == true &&
+
+        (a <= c) == true &&
+
+        (a > c) == false &&
+
+        (a >= c) == false &&
+
+        (a <=> c) == std::weak_ordering::less &&
+
+        (a <=> c) != std::weak_ordering::equivalent &&
+
+        (a <=> c) != std::weak_ordering::greater &&
+
+        (a <=> c) < 0 &&
+
+        (a <=> c) != 0 &&
+
+        (a <=> c) <= 0 &&
+
+    "");
+
+}
+
+
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 3431
+
+
+
+C++20
+
+
+
+operator<=> did not require Tto model three_way_comparable
+
+
+
+requires
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

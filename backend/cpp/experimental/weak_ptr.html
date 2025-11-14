@@ -1,0 +1,347 @@
+std::experimental::weak_ptr
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Experimental
+
+Technical Specification
+
+Filesystem library (filesystem TS)
+
+Library fundamentals (library fundamentals TS)
+
+Library fundamentals 2 (library fundamentals TS v2)
+
+Library fundamentals 3 (library fundamentals TS v3)
+
+Extensions for parallelism (parallelism TS)
+
+Extensions for parallelism 2 (parallelism TS v2)
+
+Extensions for concurrency (concurrency TS)
+
+Extensions for concurrency 2 (concurrency TS v2)
+
+Concepts (concepts TS)
+
+Ranges (ranges TS)
+
+Reflection (reflection TS)
+
+Mathematical special functions (special functions TR)
+
+Experimental Non-TS
+
+Pattern Matching
+
+Linear Algebra
+
+std::execution
+
+Contracts
+
+2D Graphics
+
+[edit] Library fundamentals
+
+experimental::optional
+
+experimental::any
+
+experimental::basic_string_view
+
+experimental::sample
+
+experimental::shared_ptr
+
+experimental::weak_ptr
+
+experimental::apply
+
+experimental::invocation_typeexperimental::raw_invocation_type
+
+experimental::search
+
+experimental::default_searcherexperimental::make_default_searcher
+
+experimental::boyer_moore_searcherexperimental::make_boyer_moore_searcher
+
+experimental::boyer_moore_horspool_searcherexperimental::make_boyer_moore_horspool_searcher
+
+Type-erased and polymorphic allocators
+
+Variable templates for type traits
+
+[edit] std::experimental::weak_ptr
+
+weak_ptr::weak_ptr
+
+Members and non-members identical to those of std::weak_ptr
+
+[edit] 
+
+
+
+
+
+ Defined in header <experimental/memory>
+
+
+
+
+
+
+
+
+
+
+
+ template< class T > class weak_ptr;
+
+ 
+
+ (library fundamentals TS) 
+
+
+
+
+
+
+
+std::experimental::weak_ptr is a modified version of std::weak_ptr that interoperates with std::experimental::shared_ptr and has support for arrays.
+
+
+
+Contents
+
+
+
+1 Member types
+
+2 Member functions
+
+3 Members and non-members identical to std::weak_ptr
+
+
+
+3.1 Member functions
+
+
+
+3.1.1 Modifiers
+
+3.1.2 Observers
+
+
+
+
+
+3.2 Non-member functions
+
+3.3 Example
+
+
+
+
+
+
+
+
+
+[edit] Member types
+
+
+
+
+
+ Member type
+
+
+
+ Definition
+
+
+
+
+
+ element_type
+
+
+
+ std::remove_extent_t<T>
+
+
+
+
+
+[edit] Member functions
+
+
+
+
+
+  (constructor)
+
+
+
+  constructs new weak_ptr  (public member function) [edit]
+
+
+
+
+
+
+
+ Members and non-members identical to std::weak_ptr 
+
+ Member functions
+
+The following member functions work with std::experimental::shared_ptr instead of std::shared_ptr and std::experimental::weak_ptr instead of std::weak_ptr. The behavior is otherwise identical.
+
+
+
+
+
+
+
+  (destructor)
+
+
+
+  destroys a weak_ptr  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+  operator=
+
+
+
+  assigns the weak_ptr  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+   Modifiers 
+
+
+
+
+
+  reset
+
+
+
+  releases the ownership of the managed object  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+  swap
+
+
+
+  swaps the managed objects  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+   Observers 
+
+
+
+
+
+  use_count
+
+
+
+  returns the number of shared_ptr objects that manage the object  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+  expired
+
+
+
+  checks whether the referenced object was already deleted  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+  lock
+
+
+
+  creates a shared_ptr that manages the referenced object  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+  owner_before
+
+
+
+  provides owner-based ordering of weak pointers  (public member function of std::weak_ptr<T>) [edit]
+
+
+
+
+
+ Non-member functions
+
+This non-member function is declared in the std::experimental namespace, and work with std::experimental::weak_ptr rather than std::weak_ptr, but otherwise behaves identically to the corresponding C++14 function.
+
+
+
+
+
+
+
+  std::swap(std::weak_ptr)(C++11)
+
+
+
+  specializes the std::swap algorithm  (function template) [edit]
+
+
+
+
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+
+
+
+
+ 
+
+
+
+
+
+                    

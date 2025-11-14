@@ -1,0 +1,1817 @@
+Template parameters
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] C++ language
+
+
+
+General topics
+
+
+
+Preprocessor
+
+Comments
+
+
+
+Keywords
+
+Escape sequences
+
+
+
+Flow control
+
+Conditional execution statements
+
+
+
+if
+
+
+
+switch
+
+
+
+Iteration statements (loops)
+
+
+
+for
+
+range-for (C++11)
+
+
+
+while
+
+do-while
+
+
+
+Jump statements
+
+
+
+continue - break
+
+
+
+goto - return
+
+
+
+Functions
+
+Function declaration
+
+Lambda function expression
+
+inline specifier
+
+Dynamic exception specifications (until C++17*)
+
+noexcept specifier (C++11)
+
+Exceptions
+
+
+
+throw-expression
+
+try block
+
+
+
+
+
+
+
+catch handler
+
+
+
+Namespaces
+
+
+
+Namespace declaration  
+
+
+
+Namespace aliases
+
+
+
+Types
+
+
+
+Fundamental types
+
+Enumeration types
+
+Function types
+
+
+
+Class/struct types
+
+Union types
+
+
+
+
+
+
+
+Specifiers
+
+
+
+const/volatile
+
+decltype (C++11)
+
+auto (C++11)
+
+
+
+constexpr (C++11)
+
+consteval (C++20)
+
+constinit (C++20)
+
+
+
+Storage duration specifiers
+
+Initialization
+
+
+
+Default-initialization
+
+Value-initialization
+
+Zero-initialization
+
+Copy-initialization
+
+Direct-initialization
+
+
+
+Aggregate initialization
+
+List-initialization (C++11)  
+
+Constant initialization
+
+Reference initialization
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Expressions
+
+
+
+Value categories
+
+Order of evaluation
+
+
+
+Operators
+
+Operator precedence
+
+
+
+Alternative representations
+
+Literals
+
+Boolean - Integer - Floating-point
+
+Character - String - nullptr (C++11)
+
+User-defined (C++11)
+
+Utilities
+
+Attributes (C++11)
+
+Types
+
+typedef declaration
+
+Type alias declaration (C++11)
+
+Casts
+
+
+
+Implicit conversions
+
+static_cast
+
+const_cast
+
+
+
+Explicit conversions
+
+dynamic_cast
+
+reinterpret_cast
+
+
+
+Memory allocation
+
+
+
+new expression
+
+
+
+delete expression
+
+
+
+Classes
+
+
+
+Class declaration
+
+Constructors
+
+this pointer
+
+
+
+Access specifiers
+
+friend specifier
+
+
+
+
+
+
+
+Class-specific function properties
+
+
+
+Virtual function
+
+override specifier (C++11)  
+
+final specifier (C++11)
+
+
+
+explicit (C++11)
+
+static
+
+
+
+
+
+
+
+Special member functions
+
+
+
+Default constructor
+
+Copy constructor
+
+Move constructor (C++11)
+
+
+
+Copy assignment
+
+Move assignment (C++11)
+
+Destructor
+
+
+
+Templates
+
+
+
+Class template
+
+Function template
+
+
+
+Template specialization
+
+Parameter packs (C++11)
+
+
+
+Miscellaneous
+
+
+
+Inline assembly
+
+
+
+History of C++
+
+
+
+
+
+[edit]  Templates
+
+
+
+Template parameters
+
+Template arguments
+
+Class templates
+
+Function templates
+
+Class member templates
+
+Variable templates (C++14)
+
+Template argument deduction
+
+Class template argument deduction (C++17)
+
+Explicit (full) specialization
+
+Partial specialization
+
+Dependent names
+
+Packs (C++11)
+
+  sizeof... (C++11)
+
+  Fold expressions (C++17)
+
+  Pack indexing (C++26)
+
+SFINAE
+
+Constraints and concepts (C++20)
+
+requires expression (C++20)
+
+
+
+[edit] 
+
+Every template is parameterized by one or more template parameters.
+
+Each parameter in template-parameter-list (see template declaration syntax) belongs to one of the following categories:
+
+
+
+ constant template parameter
+
+ type template parameter
+
+ template template parameter
+
+
+
+Contents
+
+
+
+1 Constant template parameter
+
+2 Type template parameter
+
+3 Template template parameter
+
+4 Name resolution for template parameters
+
+5 Default template arguments
+
+6 Notes
+
+7 Examples
+
+8 Defect reports
+
+
+
+
+
+[edit] Constant template parameter
+
+Also known as non-type template parameter (see below).
+
+
+
+
+
+
+
+
+
+
+
+
+
+ type name ﻿(optional)
+
+
+
+ (1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ type name ﻿(optional) = default
+
+
+
+ (2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ type ... name ﻿(optional)
+
+
+
+ (3)
+
+
+
+ (since C++11)
+
+
+
+
+
+
+
+
+
+
+
+
+
+ type
+
+
+
+ -
+
+
+
+ one of the following types:
+
+ a structural type (see below)
+
+
+
+
+
+
+
+ a type that contains a placeholder type
+
+
+
+
+
+(since C++17)
+
+
+
+ a placeholder for a deduced class type
+
+
+
+
+
+(since C++20)
+
+
+
+
+
+
+
+ name
+
+
+
+ -
+
+
+
+ the name of the constant template parameter
+
+
+
+
+
+ default
+
+
+
+ -
+
+
+
+ the default template argument
+
+
+
+1) A constant template parameter.
+
+2) A constant template parameter with a default template argument.
+
+3) A constant template parameter pack.
+
+
+
+A structural type is one of the following types (optionally cv-qualified, the qualifiers are ignored):
+
+
+
+ lvalue reference type (to object or to function);
+
+ an integral type;
+
+ a pointer type (to object or to function);
+
+ a pointer to member type (to member object or to member function);
+
+ an enumeration type;
+
+
+
+
+
+
+
+ std::nullptr_t;
+
+
+
+
+
+(since C++11)
+
+
+
+
+
+
+
+ a floating-point type;
+
+ a lambda closure type whose lambda expression has no capture;
+
+ a non-closure literal class type with the following properties:
+
+
+
+ all base classes and non-static data members are public and non-mutable and
+
+ the types of all base classes and non-static data members are structural types or (possibly multi-dimensional) array thereof.
+
+
+
+
+
+
+
+(since C++20)
+
+
+
+Array and function types may be written in a template declaration, but they are automatically replaced by pointer to object and pointer to function as appropriate.
+
+When the name of a constant template parameter is used in an expression within the body of the class template, it is an unmodifiable prvalue unless its type was an lvalue reference type, or unless its type is a class type(since C++20).
+
+A template parameter of the form class Foo is not an unnamed constant template parameter of type Foo, even if otherwise class Foo is an elaborated type specifier and class Foo x; declares x to be of type Foo.
+
+
+
+
+
+
+
+
+
+
+
+An identifier that names a constant template parameter of class type T denotes a static storage duration object of type const T, called a template parameter object, which is Template argument equivalence to the corresponding template argument after it has been converted to the type of the template parameter. No two template parameter objects are template-argument-equivalent.
+
+
+
+struct A
+
+{
+
+    friend bool operator==(const A&, const A&) = default;
+
+};
+
+ 
+
+template<A a>
+
+void f()
+
+{
+
+    &a;                       // OK
+
+    const A& ra = a, &rb = a; // Both bound to the same template parameter object
+
+    assert(&ra == &rb);       // passes
+
+}
+
+
+
+(since C++20)
+
+
+
+[edit] Type template parameter
+
+
+
+
+
+
+
+
+
+
+
+ type-parameter-key name ﻿(optional)
+
+
+
+ (1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ type-parameter-key name ﻿(optional) = default
+
+
+
+ (2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ type-parameter-key ... name ﻿(optional)
+
+
+
+ (3)
+
+
+
+ (since C++11)
+
+
+
+
+
+
+
+
+
+
+
+ type-constraint name ﻿(optional)
+
+
+
+ (4)
+
+
+
+ (since C++20)
+
+
+
+
+
+
+
+
+
+
+
+ type-constraint name ﻿(optional) = default
+
+
+
+ (5)
+
+
+
+ (since C++20)
+
+
+
+
+
+
+
+
+
+
+
+ type-constraint ... name ﻿(optional)
+
+
+
+ (6)
+
+
+
+ (since C++20)
+
+
+
+
+
+
+
+
+
+
+
+
+
+ type-parameter-key
+
+
+
+ -
+
+
+
+ either typename or class. There is no difference between these keywords in a type template parameter declaration
+
+
+
+
+
+ type-constraint
+
+
+
+ -
+
+
+
+ either the name of a concept or the name of a concept followed by a list of template arguments (in angle brackets). Either way, the concept name may be optionally qualified
+
+
+
+
+
+ name
+
+
+
+ -
+
+
+
+ the name of the type template parameter
+
+
+
+
+
+ default
+
+
+
+ -
+
+
+
+ the default template argument
+
+
+
+1) A type template parameter without a default.
+
+template<class T>
+
+class My_vector { /* ... */ };
+
+2) A type template parameter with a default.
+
+template<class T = void>
+
+struct My_op_functor { /* ... */ };
+
+3) A type template parameter pack.
+
+template<typename... Ts>
+
+class My_tuple { /* ... */ };
+
+4) A constrained type template parameter without a default.
+
+template<My_concept T>
+
+class My_constrained_vector { /* ... */ };
+
+5) A constrained type template parameter with a default.
+
+template<My_concept T = void>
+
+class My_constrained_op_functor { /* ... */ };
+
+6) A constrained type template parameter pack.
+
+template<My_concept... Ts>
+
+class My_constrained_tuple { /* ... */ };
+
+
+
+The name of the parameter is optional:
+
+
+
+// Declarations of the templates shown above:
+
+template<class>
+
+class My_vector;
+
+template<class = void>
+
+struct My_op_functor;
+
+template<typename...>
+
+class My_tuple;
+
+In the body of the template declaration, the name of a type parameter is a typedef-name which aliases the type supplied when the template is instantiated.
+
+
+
+
+
+
+
+
+
+Each constrained parameter P whose type-constraint is Q designating the concept C introduces a constraint-expression E according to the following rules:
+
+
+
+ if Q is C (without an argument list),
+
+
+
+ if P is not a parameter pack, E is simply C<P>
+
+ otherwise, P is a parameter pack, E is a fold-expression (C<P> && ...)
+
+
+
+
+
+ if Q is C<A1,A2...,AN>, then E is C<P,A1,A2,...AN> or (C<P,A1,A2,...AN> && ...), respectively.
+
+
+
+template<typename T>
+
+concept C1 = true;
+
+template<typename... Ts> // variadic concept
+
+concept C2 = true;
+
+template<typename T, typename U>
+
+concept C3 = true;
+
+ 
+
+template<C1 T>         struct s1; // constraint-expression is C1<T>
+
+template<C1... T>      struct s2; // constraint-expression is (C1<T> && ...)
+
+template<C2... T>      struct s3; // constraint-expression is (C2<T> && ...)
+
+template<C3<int> T>    struct s4; // constraint-expression is C3<T, int>
+
+template<C3<int>... T> struct s5; // constraint-expression is (C3<T, int> && ...)
+
+
+
+(since C++20)
+
+
+
+[edit] Template template parameter
+
+
+
+
+
+
+
+
+
+
+
+ template < parameter-list > type-parameter-key name ﻿(optional)
+
+
+
+ (1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ template < parameter-list > type-parameter-key name ﻿(optional) = default
+
+
+
+ (2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ template < parameter-list > type-parameter-key ... name ﻿(optional)
+
+
+
+ (3)
+
+
+
+ (since C++11)
+
+
+
+
+
+
+
+
+
+
+
+
+
+ type-parameter-key
+
+
+
+ -
+
+
+
+ class or typename(since C++17)
+
+
+
+1) A template template parameter with an optional name.
+
+2) A template template parameter with an optional name and a default.
+
+3) A template template parameter pack with an optional name.
+
+
+
+In the body of the template declaration, the name of this parameter is a template-name (and needs arguments to be instantiated).
+
+
+
+template<typename T>
+
+class my_array {};
+
+ 
+
+// two type template parameters and one template template parameter:
+
+template<typename K, typename V, template<typename> typename C = my_array>
+
+class Map
+
+{
+
+    C<K> key;
+
+    C<V> value;
+
+};
+
+[edit] Name resolution for template parameters
+
+The name of a template parameter is not allowed to be redeclared within its scope (including nested scopes). A template parameter is not allowed to have the same name as the template name.
+
+
+
+template<class T, int N>
+
+class Y
+
+{
+
+    int T;      // error: template parameter redeclared
+
+    void f()
+
+    {
+
+        char T; // error: template parameter redeclared
+
+    }
+
+};
+
+ 
+
+template<class X>
+
+class X; // error: template parameter redeclared
+
+In the definition of a member of a class template that appears outside of the class template definition, the name of a member of the class template hides the name of a template parameter of any enclosing class templates, but not a template parameter of the member if the member is a class or function template.
+
+
+
+template<class T>
+
+struct A
+
+{
+
+    struct B {};
+
+    typedef void C;
+
+    void f();
+
+ 
+
+    template<class U>
+
+    void g(U);
+
+};
+
+ 
+
+template<class B>
+
+void A<B>::f()
+
+{
+
+    B b; // A's B, not the template parameter
+
+}
+
+ 
+
+template<class B>
+
+template<class C>
+
+void A<B>::g(C)
+
+{
+
+    B b; // A's B, not the template parameter
+
+    C c; // the template parameter C, not A's C
+
+}
+
+In the definition of a member of a class template that appears outside of the namespace containing the class template definition, the name of a template parameter hides the name of a member of this namespace.
+
+
+
+namespace N
+
+{
+
+    class C {};
+
+ 
+
+    template<class T>
+
+    class B
+
+    {
+
+        void f(T);
+
+    };
+
+}
+
+ 
+
+template<class C>
+
+void N::B<C>::f(C)
+
+{
+
+    C b; // C is the template parameter, not N::C
+
+}
+
+In the definition of a class template or in the definition of a member of such a template that appears outside of the template definition, for each non-dependent base class, if the name of the base class or the name of a member of the base class is the same as the name of a template parameter, the base class name or member name hides the template parameter name.
+
+
+
+struct A
+
+{
+
+    struct B {};
+
+    int C;
+
+    int Y;
+
+};
+
+ 
+
+template<class B, class C>
+
+struct X : A
+
+{
+
+    B b; // A's B
+
+    C b; // error: A's C isn't a type name
+
+};
+
+[edit] Default template arguments
+
+Default template arguments are specified in the parameter lists after the = sign. Defaults can be specified for any kind of template parameter (type, constant, or template), but not to parameter packs(since C++11).
+
+If the default is specified for a template parameter of a primary class template, primary variable template,(since C++14) or alias template, each subsequent template parameter must have a default argument, except the very last one may be a template parameter pack(since C++11). In a function template, there are no restrictions on the parameters that follow a default, and a parameter pack may be followed by more type parameters only if they have defaults or can be deduced from the function arguments(since C++11).
+
+Default parameters are not allowed
+
+
+
+ in the out-of-class definition of a member of a class template (they have to be provided in the declaration inside the class body). Note that member templates of non-template classes can use default parameters in their out-of-class definitions (see GCC bug 53856)
+
+ in friend class template declarations
+
+
+
+
+
+
+
+ in any function template declaration or definition
+
+
+
+
+
+(until C++11)
+
+
+
+
+
+
+
+On a friend function template declaration, default template arguments are allowed only if the declaration is a definition, and no other declarations of this function appear in this translation unit.
+
+
+
+
+
+(since C++11)
+
+
+
+Default template arguments that appear in the declarations are merged similarly to default function arguments:
+
+
+
+template<typename T1, typename T2 = int> class A;
+
+template<typename T1 = int, typename T2> class A;
+
+ 
+
+// the above is the same as the following:
+
+template<typename T1 = int, typename T2 = int> class A;
+
+But the same parameter cannot be given default arguments twice in the same scope:
+
+
+
+template<typename T = int> class X;
+
+template<typename T = int> class X {}; // error
+
+When parsing a default template argument for a constant template parameter, the first non-nested > is taken as the end of the template parameter list rather than a greater-than operator:
+
+
+
+template<int i = 3 > 4>   // syntax error
+
+class X { /* ... */ };
+
+ 
+
+template<int i = (3 > 4)> // OK
+
+class Y { /* ... */ };
+
+The template parameter lists of template template parameters can have their own default arguments, which are only in effect where the template template parameter itself is in scope:
+
+
+
+// class template, with a type template parameter with a default
+
+template<typename T = float>
+
+struct B {};
+
+ 
+
+// template template parameter T has a parameter list, which
+
+// consists of one type template parameter with a default
+
+template<template<typename = float> typename T>
+
+struct A
+
+{
+
+    void f();
+
+    void g();
+
+};
+
+ 
+
+// out-of-body member function template definitions
+
+ 
+
+template<template<typename TT> class T>
+
+void A<T>::f()
+
+{
+
+    T<> t; // error: TT has no default in scope
+
+}
+
+ 
+
+template<template<typename TT = char> class T>
+
+void A<T>::g()
+
+{
+
+    T<> t; // OK: t is T<char>
+
+}
+
+Member access for the names used in a default template parameter is checked at the declaration, not at the point of use:
+
+
+
+class B {};
+
+ 
+
+template<typename T>
+
+class C
+
+{
+
+protected:
+
+    typedef T TT;
+
+};
+
+ 
+
+template<typename U, typename V = typename U::TT>
+
+class D: public U {};
+
+ 
+
+D<C<B>>* d; // error: C::TT is protected
+
+
+
+
+
+The default template argument is implicitly instantiated when the value of that default argument is needed, except if the template is used to name a function:
+
+
+
+template<typename T, typename U = int>
+
+struct S {};
+
+ 
+
+S<bool>* p; // The default argument for U is instantiated at this point
+
+            // the type of p is S<bool, int>*
+
+
+
+(since C++14)
+
+
+
+[edit] Notes
+
+Before C++26, constant template parameter were called non-type template parameter in the standard wording. The terminology was changed by P2841R6  / PR#7587.
+
+
+
+
+
+
+
+In template parameters, type constraints could be used for both type and constant parameters, depending on whether auto is present.
+
+
+
+template<typename>
+
+concept C = true;
+
+ 
+
+template<C,     // type parameter 
+
+         C auto // constant parameter
+
+        >
+
+struct S{};
+
+ 
+
+S<int, 0> s;
+
+
+
+
+
+
+
+(since C++20)
+
+
+
+
+
+
+
+Feature-test macro
+
+
+
+Value
+
+
+
+Std
+
+
+
+Feature
+
+
+
+
+
+__cpp_nontype_template_parameter_auto
+
+201606L
+
+(C++17)
+
+Declaring constant template parameters with auto
+
+
+
+
+
+__cpp_nontype_template_args
+
+201411L
+
+(C++17)
+
+Allow constant evaluation for all constant template arguments
+
+
+
+
+
+201911L
+
+(C++20)
+
+Class types and floating-point types in constant template parameters
+
+
+
+[edit] Examples
+
+Run this code
+
+#include <array>
+
+#include <iostream>
+
+#include <numeric>
+
+ 
+
+// simple constant template parameter
+
+template<int N>
+
+struct S { int a[N]; };
+
+ 
+
+template<const char*>
+
+struct S2 {};
+
+ 
+
+// complicated constant example
+
+template
+
+<
+
+    char c,             // integral type
+
+    int (&ra)[5],       // lvalue reference to object (of array type)
+
+    int (*pf)(int),     // pointer to function
+
+    int (S<10>::*a)[10] // pointer to member object (of type int[10])
+
+>
+
+struct Complicated
+
+{
+
+    // calls the function selected at compile time
+
+    // and stores the result in the array selected at compile time
+
+    void foo(char base)
+
+    {
+
+        ra[4] = pf(c - base);
+
+    }
+
+};
+
+ 
+
+//  S2<"fail"> s2;        // error: string literal cannot be used
+
+    char okay[] = "okay"; // static object with linkage
+
+//  S2<&okay[0]> s3;      // error: array element has no linkage
+
+    S2<okay> s4;          // works
+
+ 
+
+int a[5];
+
+int f(int n) { return n; }
+
+ 
+
+// C++20: NTTP can be a literal class type
+
+template<std::array arr>
+
+constexpr
+
+auto sum() { return std::accumulate(arr.cbegin(), arr.cend(), 0); }
+
+ 
+
+// C++20: class template arguments are deduced at the call site
+
+static_assert(sum<std::array<double, 8>{3, 1, 4, 1, 5, 9, 2, 6}>() == 31.0);
+
+// C++20: NTTP argument deduction and CTAD
+
+static_assert(sum<std::array{2, 7, 1, 8, 2, 8}>() == 28);
+
+ 
+
+int main()
+
+{
+
+    S<10> s; // s.a is an array of 10 int
+
+    s.a[9] = 4;
+
+ 
+
+    Complicated<'2', a, f, &S<10>::a> c;
+
+    c.foo('0');
+
+ 
+
+    std::cout << s.a[9] << a[4] << '\n';
+
+}
+
+Output:
+
+
+
+42
+
+
+
+This section is incompleteReason: more examples 
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+CWG 184
+
+
+
+C++98
+
+
+
+whether the template parameters of template templateparameters are allowed to have default arguments is unspecified
+
+
+
+specification added
+
+
+
+
+
+CWG 1922
+
+
+
+C++98
+
+
+
+it was unclear whether a class template whose name is aninjected-class-name can use the default arguments in prior declarations
+
+
+
+allowed
+
+
+
+
+
+CWG 2032
+
+
+
+C++14
+
+
+
+for variable templates, there was no restriction on the templateparameters after a template parameter with a default argument
+
+
+
+apply the same restrictionas on class templatesand alias templates
+
+
+
+
+
+CWG 2542
+
+
+
+C++20
+
+
+
+it was unclear whether the closure type is structural
+
+
+
+it is not structural
+
+
+
+
+
+CWG 2845
+
+
+
+C++20
+
+
+
+the closure type was not structural
+
+
+
+it is structuralif capture-less
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    

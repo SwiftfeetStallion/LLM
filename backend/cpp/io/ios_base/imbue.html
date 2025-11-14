@@ -1,0 +1,319 @@
+std::ios_base::imbue
+
+
+
+
+
+
+
+
+
+From cppreference.com
+
+
+
+
+
+[edit] Input/output library
+
+I/O manipulators
+
+Print functions (C++23)
+
+C-style I/O
+
+Buffers
+
+basic_streambuf
+
+basic_filebuf
+
+basic_stringbuf
+
+basic_spanbuf(C++23)
+
+strstreambuf(C++98/26*)
+
+basic_syncbuf(C++20)
+
+Streams
+
+Abstractions
+
+ios_base
+
+basic_ios
+
+basic_istream
+
+basic_ostream
+
+basic_iostream
+
+File I/O
+
+basic_ifstream
+
+basic_ofstream
+
+basic_fstream
+
+String I/O
+
+basic_istringstream
+
+basic_ostringstream
+
+basic_stringstream
+
+Array I/O
+
+basic_ispanstream(C++23)
+
+basic_ospanstream(C++23)
+
+basic_spanstream(C++23)
+
+istrstream(C++98/26*)
+
+ostrstream(C++98/26*)
+
+strstream(C++98/26*)
+
+Synchronized Output
+
+basic_osyncstream(C++20)
+
+Types
+
+streamoff
+
+streamsize
+
+fpos
+
+Error category interface
+
+iostream_category(C++11)
+
+io_errc(C++11)
+
+[edit] std::ios_base
+
+Member functions
+
+ios_base::ios_base
+
+ios_base::~ios_base
+
+ios_base::operator=
+
+Formatting
+
+ios_base::flags
+
+ios_base::setf
+
+ios_base::unsetf
+
+ios_base::precision
+
+ios_base::width
+
+Locales
+
+ios_base::imbue
+
+ios_base::getloc
+
+Internal extensible array
+
+ios_base::xalloc
+
+ios_base::iword
+
+ios_base::pword
+
+Miscellaneous
+
+ios_base::register_callback
+
+ios_base::sync_with_stdio
+
+Member classes
+
+ios_base::failure
+
+ios_base::Init
+
+Member types
+
+ios_base::openmode
+
+ios_base::fmtflags
+
+ios_base::iostate
+
+ios_base::seekdir
+
+ios_base::event
+
+ios_base::event_callback
+
+[edit] 
+
+
+
+
+
+ std::locale imbue( const std::locale& loc );
+
+ 
+
+ 
+
+
+
+
+
+
+
+Sets the associated locale of the stream to loc. Before returning, each function, registered by register_callback() is called with imbue_event as a parameter. 
+
+
+
+Contents
+
+
+
+1 Parameters
+
+2 Return value
+
+3 Example
+
+4 Defect reports
+
+5 See also
+
+
+
+
+
+[edit] Parameters
+
+
+
+
+
+ loc
+
+
+
+ -
+
+
+
+ new locale to associate the stream to
+
+
+
+[edit] Return value
+
+The locale object associated with the stream before the operation.
+
+
+
+[edit] Example
+
+This section is incompleteReason: no example 
+
+[edit] Defect reports
+
+The following behavior-changing defect reports were applied retroactively to previously published C++ standards.
+
+
+
+
+
+
+
+DR
+
+
+
+Applied to
+
+
+
+Behavior as published
+
+
+
+Correct behavior
+
+
+
+
+
+LWG 47
+
+
+
+C++98
+
+
+
+the return value was misspecified as the return value of getloc()
+
+
+
+corrected
+
+
+
+
+
+LWG 156
+
+
+
+C++98
+
+
+
+the type of loc was const std::locale
+
+
+
+corrected to const std::locale&
+
+
+
+[edit] See also
+
+
+
+
+
+  getloc
+
+
+
+  returns current locale  (public member function) [edit]
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+                    
