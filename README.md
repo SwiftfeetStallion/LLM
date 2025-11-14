@@ -18,5 +18,5 @@ docker-compose up -d
 
 Есть также файл <u style="color: orange"><i>backend/backend/scripts/test.py</i></u> с несколькими тестами, использующий langsmith.
 
-<i style="color: green"> После изменения конфигурциии нужно перезапустить приложение.<i>
+<i style="color: green"> После изменения конфигурациии нужно перезапустить приложение.<i>
 </div>
