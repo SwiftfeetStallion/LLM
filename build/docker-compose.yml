@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+
+  web:
+    image: web:latest
+    build: ../frontend
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
+  
+  server:
+    image: server:latest
+    build: ../backend
+    ports:
+      - 3001:3001
