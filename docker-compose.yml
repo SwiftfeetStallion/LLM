@@ -3,15 +3,13 @@ version: '3.9'
 services:
 
   web:
-    image: web:latest
-    build: ./frontend
+    image: nameofmyuser/llm:web
     depends_on:
       - server
     ports:
       - 3000:3000
   
   server:
-    image: server:latest
-    build: ./backend
+    image: nameofmyuser/llm:server
     ports:
       - 3001:3001
