@@ -137,7 +137,7 @@ textarea {
   background-color: rgb(161, 121, 198);
 }
 
-.not_allowed:hover {
+.not_allowed:hover, .active:hover {
   cursor: not-allowed;
 }
 
